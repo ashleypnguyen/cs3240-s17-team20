@@ -18,7 +18,7 @@ def load_course_database(db_name, csv_filename):
         instructor = [5]
 
     PG_USER = "postgres"
-    PG_USER_PASS = "sarah"
+    PG_USER_PASS = "sarahxxxx"
     PG_DATABASE = "Berkeley"
     PG_HOST_INFO = "localhost"
     conn = psycopg2.connect("dbname=" + PG_DATABASE + " user=" + PG_USER + " password=" + PG_USER_PASS + PG_HOST_INFO)
