@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<form method="post" enctype="multipart/form-data">
+{% csrf_token %}
+    <head>
+    <meta charset="UTF-8">
+    <title>Report Upload</title>
+</head>
+<body>
+Upload your report below.
+<table>
+    <tr> <td>Report Name: </td>
+    <td><input type="text" name="report_file_name"></td>
+    </tr>
+    <tr><td> Report File: </td>
+    <td> <input type = "file" name = "report_file"></td>
+    </tr>
+    <tr><td>Company Name: </td>
+    <td> <input type="text" name = "company_name"></td>
+    </tr>
+    <tr><td>Company Location: </td>
+    <td><input type="text" name = "company_location"></td>
+    </tr>
+    <tr> <td> Company Country: </td>
+    <td> <input type="text" name = "company_country"></td>
+    </tr>
+    <tr><td> Current Projects: </td>
+    <td> <input type="text" name="current_projects"></td>
+    </tr>
+</table>
+<button type="submit">Upload</button>
+</body>
+</form>
+</html>
