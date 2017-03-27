@@ -3,10 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <title>Group Signup</title>
+	<script language="JavaScript">
+		function validInfo() {
+			var groupName = document.getElementById("group_name").value;
+			var addMembers = document.getElementById("add_members").value;
+			var removeMembers = document.getElementById("remove_members").value;
+			var errorMessage = "";
+			var errors = 0;
+			if (groupName == ""){
+			    errorMessage += "Please enter your group name. ";
+				errors++;
+			}
+
+			if (addMembers == "" && removeMembers == ""){
+			    errorMessage += "Please enter the members you would like to add or remove to the group";
+				errors++;
+			}
+
+			if (errors > 0){
+			    alert(errorMessage);
+				return false;
+			} else {
+			    return true;
+			}
+        }
+
+	</script>
 </head>
 <body>
 <h2>Group Signup</h2>
-<form method="POST" action="/getdata/">
+<form method="POST" action="/getdata/" onsubmit="return validInfo()">
 	<table>
 		<tr>
 			<td>Enter your group name:</td>

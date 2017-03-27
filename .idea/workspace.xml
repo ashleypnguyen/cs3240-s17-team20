@@ -2,8 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e3473fa8-62ca-43c0-9190-952cb1a5399c" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/cs3240-s17-team20.iml" afterPath="$PROJECT_DIR$/.idea/cs3240-s17-team20.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/UserGroupForms/templates/groupSignup.html" afterPath="$PROJECT_DIR$/UserGroupForms/templates/groupSignup.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/UserGroupForms/templates/uploadReport.html" afterPath="$PROJECT_DIR$/UserGroupForms/templates/uploadReport.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/UserGroupForms/templates/userSignup.html" afterPath="$PROJECT_DIR$/UserGroupForms/templates/userSignup.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/UserGroupForms/views.py" afterPath="$PROJECT_DIR$/UserGroupForms/views.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -21,8 +26,8 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/UserGroupForms/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-292">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="561">
+              <caret line="33" column="32" lean-forward="false" selection-start-line="33" selection-start-column="32" selection-end-line="33" selection-end-column="32" />
               <folding>
                 <element signature="e#0#49#0" expanded="true" />
               </folding>
@@ -43,28 +48,53 @@
       <file leaf-file-name="userSignup.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/UserGroupForms/templates/userSignup.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="-393">
+              <caret line="14" column="33" lean-forward="false" selection-start-line="14" selection-start-column="33" selection-end-line="14" selection-end-column="33" />
+              <folding>
+                <marker date="1490577872832" expanded="true" signature="1308:2155" ph="..." />
+                <marker date="1490577872832" expanded="true" signature="1399:2147" ph="..." />
+                <marker date="1490577872832" expanded="true" signature="1408:2139" ph="..." />
+                <marker date="1490577872832" expanded="true" signature="1415:1519" ph="..." />
+                <marker date="1490577872832" expanded="true" signature="1458:1514" ph="..." />
+                <marker date="1490577872832" expanded="true" signature="1526:1622" ph="..." />
+                <marker date="1490577872832" expanded="true" signature="1568:1622" ph="..." />
+                <marker date="1490577872832" expanded="true" signature="1730:1831" ph="..." />
+                <marker date="1490577872832" expanded="true" signature="1838:2064" ph="..." />
+                <marker date="1490577872832" expanded="true" signature="1885:2056" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="groupSignup.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="groupSignup.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/UserGroupForms/templates/groupSignup.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="510">
-              <caret line="30" column="7" lean-forward="true" selection-start-line="30" selection-start-column="7" selection-end-line="30" selection-end-column="7" />
-              <folding />
+            <state relative-caret-position="236">
+              <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="69" />
+              <folding>
+                <marker date="1490576856029" expanded="true" signature="31:1345" ph="..." />
+                <marker date="1490576856029" expanded="true" signature="38:801" ph="..." />
+                <marker date="1490576856029" expanded="true" signature="808:1337" ph="..." />
+                <marker date="1490576856029" expanded="true" signature="900:1329" ph="..." />
+                <marker date="1490576856029" expanded="true" signature="909:1321" ph="..." />
+                <marker date="1490576856029" expanded="true" signature="916:1020" ph="..." />
+                <marker date="1490576856029" expanded="true" signature="959:1015" ph="..." />
+                <marker date="1490576856029" expanded="true" signature="1027:1117" ph="..." />
+                <marker date="1490576856029" expanded="true" signature="1059:1117" ph="..." />
+                <marker date="1490576856029" expanded="true" signature="1121:1225" ph="..." />
+                <marker date="1490576856029" expanded="true" signature="1156:1220" ph="..." />
+                <marker date="1490576856029" expanded="true" signature="1233:1311" ph="..." />
+                <marker date="1490576856029" expanded="true" signature="1241:1303" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="uploadReport.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="uploadReport.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/UserGroupForms/templates/uploadReport.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="289">
+              <caret line="17" column="27" lean-forward="false" selection-start-line="17" selection-start-column="27" selection-end-line="17" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -115,8 +145,8 @@
       <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/UserGroupForms/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="102">
+              <caret line="6" column="11" lean-forward="false" selection-start-line="6" selection-start-column="11" selection-end-line="6" selection-end-column="24" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
               </folding>
@@ -135,6 +165,9 @@
         <option value="$PROJECT_DIR$/readme.txt" />
         <option value="$PROJECT_DIR$/course_reader.py" />
         <option value="$PROJECT_DIR$/UserGroupForms/templates/groupSignup.html" />
+        <option value="$PROJECT_DIR$/UserGroupForms/templates/userSignup.html" />
+        <option value="$PROJECT_DIR$/UserGroupForms/views.py" />
+        <option value="$PROJECT_DIR$/UserGroupForms/templates/uploadReport.html" />
       </list>
     </option>
   </component>
@@ -524,11 +557,54 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/UserGroupForms/templates/uploadReport.html">
+    <entry file="file://$PROJECT_DIR$/UserGroupForms/templates/userSignup.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="-393">
+          <caret line="14" column="33" lean-forward="false" selection-start-line="14" selection-start-column="33" selection-end-line="14" selection-end-column="33" />
+          <folding>
+            <marker date="1490577872832" expanded="true" signature="1308:2155" ph="..." />
+            <marker date="1490577872832" expanded="true" signature="1399:2147" ph="..." />
+            <marker date="1490577872832" expanded="true" signature="1408:2139" ph="..." />
+            <marker date="1490577872832" expanded="true" signature="1415:1519" ph="..." />
+            <marker date="1490577872832" expanded="true" signature="1458:1514" ph="..." />
+            <marker date="1490577872832" expanded="true" signature="1526:1622" ph="..." />
+            <marker date="1490577872832" expanded="true" signature="1568:1622" ph="..." />
+            <marker date="1490577872832" expanded="true" signature="1730:1831" ph="..." />
+            <marker date="1490577872832" expanded="true" signature="1838:2064" ph="..." />
+            <marker date="1490577872832" expanded="true" signature="1885:2056" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/UserGroupForms/templates/groupSignup.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="236">
+          <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="69" />
+          <folding>
+            <marker date="1490576856029" expanded="true" signature="31:1345" ph="..." />
+            <marker date="1490576856029" expanded="true" signature="38:801" ph="..." />
+            <marker date="1490576856029" expanded="true" signature="808:1337" ph="..." />
+            <marker date="1490576856029" expanded="true" signature="900:1329" ph="..." />
+            <marker date="1490576856029" expanded="true" signature="909:1321" ph="..." />
+            <marker date="1490576856029" expanded="true" signature="916:1020" ph="..." />
+            <marker date="1490576856029" expanded="true" signature="959:1015" ph="..." />
+            <marker date="1490576856029" expanded="true" signature="1027:1117" ph="..." />
+            <marker date="1490576856029" expanded="true" signature="1059:1117" ph="..." />
+            <marker date="1490576856029" expanded="true" signature="1121:1225" ph="..." />
+            <marker date="1490576856029" expanded="true" signature="1156:1220" ph="..." />
+            <marker date="1490576856029" expanded="true" signature="1233:1311" ph="..." />
+            <marker date="1490576856029" expanded="true" signature="1241:1303" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/UserGroupForms/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="11" lean-forward="false" selection-start-line="6" selection-start-column="11" selection-end-line="6" selection-end-column="24" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -540,38 +616,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/UserGroupForms/templates/userSignup.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/UserGroupForms/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-292">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="561">
+          <caret line="33" column="32" lean-forward="false" selection-start-line="33" selection-start-column="32" selection-end-line="33" selection-end-column="32" />
           <folding>
             <element signature="e#0#49#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/UserGroupForms/urls.py">
+    <entry file="file://$PROJECT_DIR$/UserGroupForms/templates/uploadReport.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/UserGroupForms/templates/groupSignup.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="30" column="7" lean-forward="true" selection-start-line="30" selection-start-column="7" selection-end-line="30" selection-end-column="7" />
+        <state relative-caret-position="289">
+          <caret line="17" column="27" lean-forward="false" selection-start-line="17" selection-start-column="27" selection-end-line="17" selection-end-column="27" />
           <folding />
         </state>
       </provider>

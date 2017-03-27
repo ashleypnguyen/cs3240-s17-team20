@@ -36,10 +36,10 @@ def uploadReport(request):
 
         if form.is_valid():
             form.save()
-            return render(request, 'showReport.html')
+            return render(request, 'uploadReport.html')
     else:
         form = ReportForm()
-    return render(request, 'showReport.html', {'form': form})
+    return render(request, 'uploadReport.html', {'form': form})
 
 
 def groupSignup(request):
