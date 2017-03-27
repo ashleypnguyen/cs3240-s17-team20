@@ -1,5 +1,7 @@
 from django.shortcuts import render, HttpResponse
 from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from django.template import loader
 from .forms import ReportForm
 from .forms import UserForm
 from .forms import createGroupForm
@@ -29,18 +31,25 @@ def userSignup(request):
         form = UserForm()
         return render(request, 'userSignup.html', {'form': form})
 
-
 def uploadReport(request):
+
     if request.method == 'POST':
+        #handle request later
+
         form = ReportForm(request.POST, request.FILES)
 
         if form.is_valid():
-            form.save()
-            return render(request, 'uploadReport.html')
+            return render(request, 'showReport.html', {
+            'report_file_name': form.cleaned_data['report_file_name'],
+            'company_name': form.cleaned_data['company_name'],
+            'current_projects': form.cleaned_data['current_projects']
+        })
+
     else:
         form = ReportForm()
-    return render(request, 'uploadReport.html', {'form': form})
+    return render(request, 'uploadReport.html', {'form': form});
 
+#def viewReport(request)link from upload to report id. ex. http:127.800.000/showReport/viewReport/reportid/1
 
 def groupSignup(request):
     if request.method == "POST":

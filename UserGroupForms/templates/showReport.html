@@ -1,19 +1,29 @@
-<h4>Thanks for uploading your report.</h4>
-<table>
-<tr>
-<td>
-	Report Name:
-</td>
-<td>
- 	{{ name }}
-</td>
-</tr>
-<tr>
-<td>
-	Company Name:
-</td>
-<td>
-	{{ company_name }}
-</td>
-</tr>
-</table>
+<!DOCTYPE html>
+<html lang="en">
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+</form>
+<head>
+    <meta charset="UTF-8">
+    <title>Upload Report Successful</title>
+</head>
+<body>
+<h2>Thank you for uploading your report.</h2>
+<form method="post" action="/getdata/">
+    <table>
+        <tr>
+            <td>Report Name</td>
+            <td><strong>{{ report_file_name }}</strong></td>
+        </tr>
+        <tr>
+            <td>Company Name</td>
+            <td><strong>{{ company_name }}</strong></td>
+        </tr>
+        <tr>
+            <td>Current Projects</td>
+            <td><strong>{{ current_projects }}</strong></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

@@ -1,6 +1,8 @@
 from django.db import models
 
 # Create your models here.
+
+# Validate form objects and print error message to template
 class User(models.Model):
     first_name = models.CharField(max_length=20)
     last_name  = models.CharField(max_length=20)
@@ -23,4 +25,5 @@ class Group(models.Model):
     group_name = models.CharField(max_length=20)
     add_members = models.CharField(max_length=100)
     remove_members = models.CharField(max_length=100)
+
 
