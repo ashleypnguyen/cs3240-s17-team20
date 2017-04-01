@@ -61,3 +61,6 @@ def groupSignup(request):
         form = UserForm()
         # return HttpResponse("Invalid input")
         return render(request, 'groupSignup.html', {'form': form})
+
+def base(request):
+    return render(request, 'base.html')
