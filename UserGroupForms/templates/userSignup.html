@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+{% include 'header.html' %}
+
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
@@ -48,40 +49,73 @@
 	</script>
 </head>
 <body>
-<h2>Welcome new users! Register below. </h2>
-<form method="POST" action="/getdata/" onsubmit="return validInfo()">
-	<table>
-		<tr>
-			<td>Enter your first name:</td>
-			<td><input type="text" name="first_name" id="first_name">
-		</tr>
-		<tr>
-			<td>Enter your last name:</td>
-			<td><input type="text" name="last_name" id="last_name">
-		<tr>
-			<td>Create a username</td>
-			<td><input type="text" name="user_name" id="user_name">
-		</tr>
-		<tr>
-			<td>Create a password</td>
-			<td><input type="password" name="password" id="pword"></td>
-		</tr>
-		<tr>
-			<td>What type of user are you?</td>
-			<td>
-			<select name="user_type" id="user_type">
+
+
+<div class="container" style="min-width:200px;max-width:600px;margin-right:auto;margin-left:auto;padding-left:15px;padding-right:15px;">
+    <form method="POST" action="/showReport/" onsubmit="return validInfo()" class="form-uploadReport">
+
+            {% csrf_token %}
+
+            <h2 class="form-signin-heading">Welcome new users! Register below...</h2>
+
+        <label for="first_name" class="sr-only">First Name</label>
+        <input type="text" id="first_name" class="form-control" placeholder="First Name" required autofocus><br>
+
+        <label for="last_name" class="sr-only">Last Name</label>
+        <input type="text" id="last_name" class="form-control" placeholder="Last Name" required><br>
+
+        <label for="user_name" class="sr-only">Username</label>
+        <input type="text" id="user_name" class="form-control" placeholder="Username" required><br>
+
+        <label for="pword" class="sr-only">Password</label>
+        <input type="password" id="pword" class="form-control" placeholder="Password" required><br>
+
+		<label for="user_type" class="col-lg-2control-label"><h5>Type of User:</h5></label>
+        <select id="user_type" placeholder="Type of User" required>
 			<option value="company">Company</option>
 			<option value="investor">Investor</option>
 			<option value="sm">Site-Manager</option>
-			</select>
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<button>Submit Form</button>
-			</td>
-		</tr>
-	</table>
-</form>
+		</select><br>
+
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+
+        </form>
+
+<!--<h2>Welcome new users! Register below. </h2>-->
+<!--<form method="POST" action="/getdata/" onsubmit="return validInfo()">-->
+	<!--<table>-->
+		<!--<tr>-->
+			<!--<td>Enter your first name:</td>-->
+			<!--<td><input type="text" name="first_name" id="first_name">-->
+		<!--</tr>-->
+		<!--<tr>-->
+			<!--<td>Enter your last name:</td>-->
+			<!--<td><input type="text" name="last_name" id="last_name">-->
+		<!--<tr>-->
+			<!--<td>Create a username</td>-->
+			<!--<td><input type="text" name="user_name" id="user_name">-->
+		<!--</tr>-->
+		<!--<tr>-->
+			<!--<td>Create a password</td>-->
+			<!--<td><input type="password" name="password" id="pword"></td>-->
+		<!--</tr>-->
+		<!--<tr>-->
+			<!--<td>What type of user are you?</td>-->
+			<!--<td>-->
+			<!--<select name="user_type" id="user_type">-->
+			<!--<option value="company">Company</option>-->
+			<!--<option value="investor">Investor</option>-->
+			<!--<option value="sm">Site-Manager</option>-->
+			<!--</select>-->
+			<!--</td>-->
+		<!--</tr>-->
+		<!--<tr>-->
+			<!--<td>-->
+				<!--<button>Submit Form</button>-->
+			<!--</td>-->
+		<!--</tr>-->
+	<!--</table>-->
+<!--</form>-->
 </body>
 </html>

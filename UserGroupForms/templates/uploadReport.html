@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+{% include 'header.html' %}
+
+
 <html lang="en">
     <head>
     <meta charset="UTF-8">
@@ -54,35 +56,66 @@
 	</script>
     </head>
 <body>
-<p>Upload your report below.</p>
-<form method="POST" action="/showReport/" onsubmit="return validInfo()">
-    {% csrf_token %}
-<table>
-    <tr> <td>Report Name: </td>
-    <td><input type="text" name="report_file_name" id="report_file_name"></td>
-    </tr>
-    <tr><td> Report File: </td>
-    <td> <input type = "file" name = "report_file" id="report_file"></td>
-    </tr>
-    <tr><td>Company Name: </td>
-    <td> <input type="text" name = "company_name" id="company_name"></td>
-    </tr>
-    <tr><td>Company Street Address: </td>
-    <td><input type="text" name = "company_location" id="company_location"></td>
-    </tr>
-    <tr> <td> Company Country: </td>
-    <td> <input type="text" name = "company_country" id="company_country"></td>
-    </tr>
-    <tr><td> Current Projects: </td>
-    <td> <input type="text" name="current_projects" id="current_projects"></td>
-    </tr>
-    <tr>
-        <td>
-			<input type="submit" id="submit" value="Submit">
-		</td>
-    </tr>
-</table>
-</form>
+
+<div class="container" style="min-width:200px;max-width:600px;margin-right:auto;margin-left:auto;padding-left:15px;padding-right:15px;">
+    <form method="POST" action="/showReport/" onsubmit="return validInfo()" class="form-uploadReport">
+
+            {% csrf_token %}
+
+            <h2 class="form-signin-heading">Upload Report</h2>
+
+        <label for="report_file_name" class="sr-only">Report Filename</label>
+        <input type="text" id="report_file_name" class="form-control" placeholder="Report Name" required autofocus><br>
+
+        <label for="report_file" class="sr-only">Upload File</label>
+        <input type="file" id="report_file" class="form-control" placeholder="Choose File" required><br>
+
+        <label for="company_name" class="sr-only">Company Name</label>
+        <input type="text" id="company_name" class="form-control" placeholder="Company Name" required><br>
+
+        <label for="company_location" class="sr-only">Company Street Address</label>
+        <input type="text" id="company_location" class="form-control" placeholder="Company Street Address" required><br>
+
+        <label for="company_country" class="sr-only">Company Country</label>
+        <input type="text" id="company_country" class="form-control" placeholder="Company Country" required><br>
+
+        <label for="current_projects" class="sr-only">Current Projects</label>
+        <input type="text" id="current_projects" class="form-control" placeholder="Current Projects" required><br>
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+
+        </form>
+</div>
+<!--<table>-->
+    <!--<tr> <td>Report Name: </td>-->
+    <!--<td><input type="text" name="report_file_name" id="report_file_name"></td>-->
+    <!--</tr>-->
+    <!--<tr><td> Report File: </td>-->
+    <!--<td> <input type = "file" name = "report_file" id="report_file"></td>-->
+    <!--</tr>-->
+    <!--<tr><td>Company Name: </td>-->
+    <!--<td> <input type="text" name = "company_name" id="company_name"></td>-->
+    <!--</tr>-->
+    <!--<tr><td>Company Street Address: </td>-->
+    <!--<td><input type="text" name = "company_location" id="company_location"></td>-->
+    <!--</tr>-->
+    <!--<tr> <td> Company Country: </td>-->
+    <!--<td> <input type="text" name = "company_country" id="company_country"></td>-->
+    <!--</tr>-->
+    <!--<tr><td> Current Projects: </td>-->
+    <!--<td> <input type="text" name="current_projects" id="current_projects"></td>-->
+    <!--</tr>-->
+    <!--<tr>-->
+        <!--<td>-->
+			<!--<input type="submit" id="submit" value="Submit">-->
+		<!--</td>-->
+    <!--</tr>-->
+<!--</table>-->
+
 </body>
-</form>
+
 </html>
+
+
+
+
