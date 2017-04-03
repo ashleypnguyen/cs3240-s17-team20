@@ -1,15 +1,22 @@
 from django import forms
 from django.views import generic
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .models import User
+from django.contrib.auth.models import User
 from .models import Report
 from .models import Group
-
+from .models import UserProfile
 
 class UserForm(forms.ModelForm):
+    password = forms.CharField(widget=forms.PasswordInput())
+
     class Meta:
         model = User
-        fields = ('first_name', 'last_name', 'user_name', 'password', 'user_type')
+        fields = ('first_name', 'last_name', 'username', 'password')
+
+class UserProfileForm(forms.ModelForm):
+    class Meta:
+        model = UserProfile
+        fields = ('website', 'picture')
 
 class ReportForm(forms.ModelForm):
     class Meta:
