@@ -64,3 +64,6 @@ def groupSignup(request):
 
 def base(request):
     return render(request, 'base.html')
+
+def showReport(request):
+    return render(request, 'showReport.html')

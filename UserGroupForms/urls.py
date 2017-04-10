@@ -7,5 +7,5 @@ urlpatterns = [
     url(r'^groupSignup/', views.groupSignup),
     url(r'^uploadReport/', views.uploadReport),
     url(r'^base/', views.base),
-    #url(r'^showReport/', views.uploadReport),
+    url(r'^showReport/', views.showReport),
 ]
