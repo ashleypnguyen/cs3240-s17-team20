@@ -1,6 +1,6 @@
 {% load static %}
 
-<!DOCTYPE html>
+
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -32,9 +32,9 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
-
-  <body>
-
+      <!-- image -->
+  <body background="{% static 'img/base2.jpg' %}">
+    <!--image -->
     <!-- Fixed navbar -->
     <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container">
@@ -51,7 +51,8 @@
           <ul class="nav navbar-nav">
             <li class="active"><a href="http://localhost:8000/base">Home</a></li>
             <li><a href="http://localhost:8000/userSignup/">User Signup</a></li>
-            <li><a href="http://127.0.0.1:8000/groupHome/">Create Group</a></li>
+            <li><a href="http://127.0.0.1:8000/groupHome/">Group Signup</a></li>
+            <li><a href="http://localhost:8000/uploadReport/">Upload Report</a></li>
             <li><a href="http://localhost:8000/showReport/">View Reports</a></li>
             <li><a href="#notYetImplemented">File Encryption/Decryption App</a></li>
             <!--
@@ -97,6 +98,11 @@
       </div>
 
     </div> <!-- /container -->
+            <div class="row" id="header">
+            <div class="col-xs-12">
+                <img class="img-responsive" src="" />
+            </div>
+        </div>
 
 
     <!-- Bootstrap core JavaScript

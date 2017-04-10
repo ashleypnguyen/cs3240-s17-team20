@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
  <nav class="navbar navbar-default navbar-static-top">
       <div class="container">
         <div class="navbar-header">
@@ -39,7 +40,10 @@
         </div><!--/.nav-collapse -->
       </div>
     </nav>
+
   <nav class="navbar navbar-default navbar-fixed-top">
+<!-- Image option!
+<body background="{% static 'img/base.jpg' %}"> </body> -->
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -53,8 +57,9 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li class="active"><a href="http://localhost:8000/base">Home</a></li>
-            <li><a href="http://localhost:8000/userSignup/">Signup</a></li>
-            <li><a href="http://localhost:8000/groupSignup/">Create Group</a></li>
+            <li><a href="http://localhost:8000/userSignup/">User Signup</a></li>
+            <li><a href="http://localhost:8000/groupHome/">Group Signup</a></li>
+            <li><a href="http://localhost:8000/uploadReport/">Upload Report</a></li>
             <li><a href="http://localhost:8000/showReport/">View Reports</a></li>
             <li><a href="#notYetImplemented">File Encryption/Decryption App</a></li>
             <!--
