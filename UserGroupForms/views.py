@@ -67,3 +67,9 @@ def base(request):
 
 def showReport(request):
     return render(request, 'showReport.html')
+
+def groupHome(request):
+    return render(request, 'groupHome.html')
+
+def groupLogin(request):
+    return render(request, 'groupLogin.html')

@@ -24,6 +24,8 @@ class Report(models.Model):
 
 class Group(models.Model):
     group_name = models.CharField(max_length=20)
+    group_email = models.CharField(max_length=50)
+    group_password = models.CharField(max_length=30)
     add_members = models.CharField(max_length=100)
     remove_members = models.CharField(max_length=100)
 
