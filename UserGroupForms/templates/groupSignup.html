@@ -37,28 +37,33 @@
 
 
 <body>
-
-
-
-
  <div class="container" style="min-width:200px;max-width:600px;margin-right:auto;margin-left:auto;padding-left:15px;padding-right:15px;">
     <form method="POST" action="/getdata/" onsubmit="return validInfo()">
-      <form class="form-signin">
-        <h2 class="form-signin-heading">Group Signup</h2>
+      <form>
 
-        <label for="group_name" class="sr-only">Group Name</label>
-        <input type="text" id="group_name" class="form-control" placeholder="Group Name" required autofocus><br>
+        <div class="form-group">
+    <label for="group_name">Group Name: </label>
+    <input type="group_name" class="form-control" id="group_name" placeholder="Group Name">
+  </div>
 
-        <label for="add_members" class="sr-only">Add Members</label>
-        <input type="text" id="add_members" class="form-control" placeholder="Add Members" required><br>
+  <div class="form-group">
+    <label for="group_email">Primary Contact Email Address: </label>
+    <input type="text" class="form-control" id="group_email" placeholder="mst3k@example.com">
+  </div>
 
-        <label for="remove_members" class="sr-only">Remove Members</label>
-        <input type="text" id="remove_members" class="form-control" placeholder="Remove Members" required><br>
+  <div class="form-group">
+    <label for="group_password" class="sr-only">Group Password: </label>
+        <input type="password" id="group_password" class="form-control" placeholder="Password" required><br>
+  </div>
 
+        <div class="form-group">
+    <label for="add_members">Add member emails, separated by a comma: </label>
+    <input type="text" class="form-control" id="add_members" placeholder="mst3k@example.com, jane.doe@example.com">
+  </div>
 
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
-      </form>
-
+  <button type="submit" class="btn btn-default">Submit</button>
+</form>
+</form>
  </div>
 
 <!--<h1 id="forms">Group Signup</h1>-->
@@ -83,6 +88,7 @@
 		<!--</tr>-->
 	<!--</table>-->
 <!--</form>-->
+
 </body>
 </html>
 
@@ -111,8 +117,6 @@
     <!--&lt;!&ndash; Custom styles for this template &ndash;&gt;-->
     <!--&lt;!&ndash;<link href="navbar-fixed-top.css" rel="stylesheet">&ndash;&gt;-->
 	  <!--<link href="{% static 'css/navbar-fixed-top.css' %}" rel="stylesheet">-->
-
-
 
   <!--</head>-->
 
