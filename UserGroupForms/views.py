@@ -39,7 +39,7 @@ def uploadReport(request):
             return render(request, 'showReport.html')
     else:
         form = ReportForm()
-    return render(request, 'showReport.html', {'form': form})
+    return render(request, 'uploadReport.html', {'form': form})
 
 
 def groupSignup(request):
@@ -50,5 +50,4 @@ def groupSignup(request):
             return HttpResponse("The group has been created!")
     else:
         form = UserForm()
-        # return HttpResponse("Invalid input")
         return render(request, 'groupSignup.html', {'form': form})
