@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.contrib.auth.models import Group
 
 # Create your models here.
 
@@ -24,11 +25,16 @@ class Report(models.Model):
     business_type = models.CharField(max_length = 30)
     current_projects = models.CharField(max_length= 200)
 
-class Group(models.Model):
-    group_name = models.CharField(max_length=20)
-    group_email = models.CharField(max_length=50)
-    group_password = models.CharField(max_length=30)
-    add_members = models.CharField(max_length=100)
-    remove_members = models.CharField(max_length=100)
+# class Group(models.Model):
+#     group = models.OneToOneField(Group)
+#     def __unicode__(self):
+#         return self.group.name
+
+# class Group(models.Model):
+#     group_name = models.CharField(max_length=20)
+#     group_email = models.CharField(max_length=50)
+#     group_password = models.CharField(max_length=30)
+#     add_members = models.CharField(max_length=100)
+#     remove_members = models.CharField(max_length=100)
 
 

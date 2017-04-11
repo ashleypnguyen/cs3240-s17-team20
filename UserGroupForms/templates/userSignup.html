@@ -59,7 +59,7 @@
 
 <div class="container" style="min-width:200px;max-width:600px;margin-right:auto;margin-left:auto;padding-left:15px;padding-right:15px;">
     {% include 'header.html' %}
-    <form id="user_form" method="POST" action="/admin/" onsubmit="return validInfo()">
+    <form id="user_form" method="POST" action="/userSignup/" onsubmit="return validInfo()">
 
             {% csrf_token %}
 

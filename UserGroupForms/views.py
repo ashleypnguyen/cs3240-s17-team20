@@ -4,12 +4,10 @@ from django.views.decorators.csrf import csrf_exempt
 from django.core.context_processors import csrf
 from django.template import loader
 from .forms import ReportForm
-from .forms import UserForm
-from .forms import createGroupForm
-from .models import User
+from .models import User, Group
 from .models import Report
-from .models import Group
-from .forms import UserForm, UserProfileForm
+#from .models import Group
+from .forms import UserForm, UserProfileForm, createGroupForm
 from django.forms.models import model_to_dict
 from django.shortcuts import render_to_response
 from django.template import RequestContext
@@ -74,17 +72,25 @@ def uploadReport(request):
 
 def groupSignup(request):
     if request.method == "POST":
-        form = UserForm(data=request.POST)
-        if (form.is_valid()):
-            form.save()
-            return HttpResponse("The group has been created!")
+        form = createGroupForm(data=request.POST)
+        if form.is_valid():
+            group = form.save()
+            group.save()
+            return HttpResponseRedirect('/confirmGroup/')
+
+        else:
+            print(form.errors)
     else:
-        form = UserForm()
+        form = createGroupForm()
         # return HttpResponse("Invalid input")
-        return render(request, 'groupSignup.html', {'form': form})
+        #user.groups.add in views.py
+    return render(request, 'groupSignup.html', {'form': form})
 
 def base(request):
     return render(request, 'base.html')
+
+def confirmGroup(request):
+    return render(request, 'confirmGroup.html')
 
 def showReport(request):
     return render(request, 'showReport.html')
@@ -101,7 +107,6 @@ def register(request):
     if request.method == 'POST':
         user_form = UserForm(data=request.POST)
         profile_form = UserProfileForm(data=request.POST)
-
         if user_form.is_valid() and profile_form.is_valid():
             # Save the user's form data to the database.
             user = user_form.save()
@@ -118,6 +123,7 @@ def register(request):
             # Since we need to set the user attribute ourselves, we set commit=False.
             # This delays saving the model until we're ready to avoid integrity problems.
             registered = True
+            return HttpResponseRedirect('/confirmUser/')
 
         else:
             print(user_form.errors, profile_form.errors)

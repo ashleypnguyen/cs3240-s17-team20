@@ -45,32 +45,35 @@
 <body onload="changeActive()">
  <div class="container" style="min-width:200px;max-width:600px;margin-right:auto;margin-left:auto;padding-left:15px;padding-right:15px;">
      {% include 'header.html' %}
-    <form method="POST" action="/getdata/" onsubmit="return validInfo()">
-      <form>
+    <form method="POST" action="/groupSignup/" onsubmit="return validInfo()">
+           {% csrf_token %}
 
         <div class="form-group">
             <h2 class="form-signin-heading">Welcome new groups! Register below...</h2>
-    <label for="group_name">Group Name: </label>
-    <input type="group_name" class="form-control" id="group_name" placeholder="Group Name">
+            {{ form.as_p }}
+    <!--<label for="group_name">Group Name: </label>-->
+    <!--<input type="group_name" class="form-control" id="group_name" placeholder="Group Name">-->
+            <!---->
   </div>
 
-  <div class="form-group">
-    <label for="group_email">Primary Contact Email Address: </label>
-    <input type="text" class="form-control" id="group_email" placeholder="mst3k@example.com">
-  </div>
+  <!--<div class="form-group">-->
+    <!--<label for="group_email">Primary Contact Email Address: </label>-->
+    <!--<input type="text" class="form-control" id="group_email" placeholder="mst3k@example.com">-->
+  <!--</div>-->
 
-  <div class="form-group">
-    <label for="group_password">Group Password: </label>
-        <input type="password" id="group_password" class="form-control" placeholder="Password" required><br>
-  </div>
+  <!--<div class="form-group">-->
+    <!--<label for="group_password">Group Password: </label>-->
+        <!--<input type="password" id="group_password" class="form-control" placeholder="Password" required><br>-->
+  <!--</div>-->
 
-        <div class="form-group">
-    <label for="add_members">Add member emails, separated by a comma: </label>
-    <input type="text" class="form-control" id="add_members" placeholder="mst3k@example.com, jane.doe@example.com">
-  </div>
+        <!--<div class="form-group">-->
+    <!--<label for="add_members">Add member emails, separated by a comma: </label>-->
+    <!--<input type="text" class="form-control" id="add_members" placeholder="mst3k@example.com, jane.doe@example.com">-->
+  <!--</div>-->
 
-  <button type="submit" class="btn btn-default">Submit</button>
-</form>
+  <!--<button type="submit" class="btn btn-default">Submit</button>-->
+          <input type="submit" name="submit" value="Register"/>
+
 </form>
  </div>
 

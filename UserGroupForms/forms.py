@@ -1,9 +1,8 @@
 from django import forms
 from django.views import generic
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 from .models import Report
-from .models import Group
 from .models import UserProfile
 
 class UserForm(forms.ModelForm):
@@ -29,11 +28,8 @@ class ReportForm(forms.ModelForm):
                   'company_location', 'company_country', 'business_type', 'current_projects', )
 
 class createGroupForm(forms.ModelForm):
+    Select_Users_To_Add_To_Group = forms.ModelMultipleChoiceField(queryset=User.objects.all())
+    #depending on company/investor/site manage - see certain users not all()
     class Meta:
         model = Group
-        fields = ('group_name', 'add_members', 'remove_members')
-
-#class editGroupForm(forms.ModelForm):
-    #class Meta:
-    #    model = edit_group
-    #    fields = ('group_name', 'add_members', 'remove_members', 'delete_group')
+        fields = ('name', 'Select_Users_To_Add_To_Group',)
