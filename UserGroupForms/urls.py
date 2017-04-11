@@ -10,4 +10,6 @@ urlpatterns = [
     url(r'^showReport/', views.showReport),
     url(r'^groupHome/',views.groupHome),
     url(r'^groupLogin/',views.groupLogin),
+    url(r'^register/$', views.register, name='register'),
+    url(r'^login/$', views.user_login, name='login')
 ]

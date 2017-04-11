@@ -57,25 +57,8 @@
             {% csrf_token %}
 
             <h2 class="form-signin-heading">Welcome new users! Register below...</h2>
-
-        <label for="first_name" class="sr-only">First Name</label>
-        <input type="text" id="first_name" class="form-control" placeholder="First Name" required autofocus><br>
-
-        <label for="last_name" class="sr-only">Last Name</label>
-        <input type="text" id="last_name" class="form-control" placeholder="Last Name" required><br>
-
-        <label for="user_name" class="sr-only">Username</label>
-        <input type="text" id="user_name" class="form-control" placeholder="Username" required><br>
-
-        <label for="pword" class="sr-only">Password</label>
-        <input type="password" id="pword" class="form-control" placeholder="Password" required><br>
-
-		<label for="user_type" class="col-lg-2control-label"><h5>Type of User:</h5></label>
-        <select id="user_type" placeholder="Type of User" required>
-			<option value="company">Company</option>
-			<option value="investor">Investor</option>
-			<option value="sm">Site-Manager</option>
-		</select><br>
+            {{ user_form.as_p }}
+            {{ profile_form.as_p }}
 
 
         <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
