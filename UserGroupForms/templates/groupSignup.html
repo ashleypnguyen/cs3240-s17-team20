@@ -1,31 +1,161 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Group Signup</title>
-</head>
-<body>
-<h2>Group Signup</h2>
-<form method="POST" action="/getdata/">
-	<table>
-		<tr>
-			<td>Enter your group name:</td>
-			<td><input type="text" name="group_name">
-		</tr>
-		<tr>
-			<td>Add Members</td>
-			<td><input type="text" name="add_members">
-		<tr>
-			<td>Remove Members</td>
-			<td><input type="text" name="remove_members">
-		</tr>
+	<script language="JavaScript">
+		function validInfo() {
+			var groupName = document.getElementById("group_name").value;
+			var addMembers = document.getElementById("add_members").value;
+			var removeMembers = document.getElementById("remove_members").value;
+			var errorMessage = "";
+			var errors = 0;
+			if (groupName == ""){
+			    errorMessage += "Please enter your group name. ";
+				errors++;
+			}
 
-		<tr>
-			<td>
-				<button>Submit Group</button>
-			</td>
-		</tr>
-	</table>
-</form>
-</body>
+			if (addMembers == "" && removeMembers == ""){
+			    errorMessage += "Please enter the members you would like to add or remove to the group";
+				errors++;
+			}
+
+			if (errors > 0){
+			    alert(errorMessage);
+				return false;
+			} else {
+			    return true;
+			}
+        }
+
+        function changeActive(){
+            var oldActive = document.getElementsByClassName("active")[0];
+            var newActive = document.getElementById("nav-group-signup");
+            newActive.className = "active";
+            oldActive.className = "inactive";
+        }
+
+	</script>
+</head>
+
 </html>
+
+
+<body onload="changeActive()">
+ <div class="container" style="min-width:200px;max-width:600px;margin-right:auto;margin-left:auto;padding-left:15px;padding-right:15px;">
+     {% include 'header.html' %}
+    <form method="POST" action="/getdata/" onsubmit="return validInfo()">
+      <form>
+
+        <div class="form-group">
+            <h2 class="form-signin-heading">Welcome new groups! Register below...</h2>
+    <label for="group_name">Group Name: </label>
+    <input type="group_name" class="form-control" id="group_name" placeholder="Group Name">
+  </div>
+
+  <div class="form-group">
+    <label for="group_email">Primary Contact Email Address: </label>
+    <input type="text" class="form-control" id="group_email" placeholder="mst3k@example.com">
+  </div>
+
+  <div class="form-group">
+    <label for="group_password">Group Password: </label>
+        <input type="password" id="group_password" class="form-control" placeholder="Password" required><br>
+  </div>
+
+        <div class="form-group">
+    <label for="add_members">Add member emails, separated by a comma: </label>
+    <input type="text" class="form-control" id="add_members" placeholder="mst3k@example.com, jane.doe@example.com">
+  </div>
+
+  <button type="submit" class="btn btn-default">Submit</button>
+</form>
+</form>
+ </div>
+
+ </body>
+</html>
+
+<!--<h1 id="forms">Group Signup</h1>-->
+<!--<form method="POST" action="/getdata/" onsubmit="return validInfo()">-->
+	<!--<table>-->
+		<!--<tr>-->
+			<!--<td>Enter your group name:</td>-->
+			<!--<td><input type="text" name="group_name" id="group_name">-->
+		<!--</tr>-->
+		<!--<tr>-->
+			<!--<td>Add Members</td>-->
+			<!--<td><input type="text" name="add_members" id="add_members">-->
+		<!--<tr>-->
+			<!--<td>Remove Members</td>-->
+			<!--<td><input type="text" name="remove_members" id="remove_members">-->
+		<!--</tr>-->
+
+		<!--<tr>-->
+			<!--<td>-->
+				<!--<input type="submit" id="submit" value="Submit">-->
+			<!--</td>-->
+		<!--</tr>-->
+	<!--</table>-->
+<!--</form>-->
+
+
+
+<!--{% load static %}-->
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+  <!--<head>-->
+    <!--<meta charset="utf-8">-->
+    <!--<meta http-equiv="X-UA-Compatible" content="IE=edge">-->
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+    <!--&lt;!&ndash; The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags &ndash;&gt;-->
+    <!--<meta name="description" content="">-->
+    <!--<meta name="author" content="">-->
+    <!--<link rel="icon" href="../../favicon.ico">-->
+
+    <!--<title>Fixed Top Navbar Example for Bootstrap</title>-->
+
+    <!--&lt;!&ndash; Bootstrap core CSS &ndash;&gt;-->
+	<!--&lt;!&ndash;<link href="../../dist/css/bootstrap.min.css" rel="stylesheet">&ndash;&gt;-->
+    <!--<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">-->
+
+    <!--&lt;!&ndash; IE10 viewport hack for Surface/desktop Windows 8 bug &ndash;&gt;-->
+    <!--&lt;!&ndash;<link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">&ndash;&gt;-->
+
+    <!--&lt;!&ndash; Custom styles for this template &ndash;&gt;-->
+    <!--&lt;!&ndash;<link href="navbar-fixed-top.css" rel="stylesheet">&ndash;&gt;-->
+	  <!--<link href="{% static 'css/navbar-fixed-top.css' %}" rel="stylesheet">-->
+
+  <!--</head>-->
+
+  <!--<body>-->
+
+     <!--Fixed navbar -->
+
+    <!--<div class="container">-->
+
+      <!--&lt;!&ndash; Main component for a primary marketing message or call to action &ndash;&gt;-->
+      <!--<div class="jumbotron">-->
+        <!--<h1>Navbar example</h1>-->
+        <!--<p>This example is a quick exercise to illustrate how the default, static and fixed to top navbar work. It includes the responsive CSS and HTML, so it also adapts to your viewport and device.</p>-->
+        <!--<p>To see the difference between static and fixed top navbars, just scroll.</p>-->
+        <!--<p>-->
+          <!--<a class="btn btn-lg btn-primary" href="../../components/#navbar" role="button">View navbar docs &raquo;</a>-->
+        <!--</p>-->
+      <!--</div>-->
+
+    <!--</div> &lt;!&ndash; /container &ndash;&gt;-->
+
+
+    <!--&lt;!&ndash; Bootstrap core JavaScript-->
+    <!--================================================== &ndash;&gt;-->
+    <!--&lt;!&ndash; Placed at the end of the document so the pages load faster &ndash;&gt;-->
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>-->
+    <!--<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>-->
+    <!--<script src="../../dist/js/bootstrap.min.js"></script>-->
+    <!--&lt;!&ndash; IE10 viewport hack for Surface/desktop Windows 8 bug &ndash;&gt;-->
+    <!--<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>-->
+  <!--</body>-->
+<!--</html>-->

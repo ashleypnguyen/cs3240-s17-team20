@@ -83,6 +83,15 @@ DATABASES = {
     }
 }
 
+#static files
+STATICFILES_DIRS = (
+
+    # Put strings here, like "/home/html/static" or "C:/www/django/static".
+    # Always use forward slashes, even on Windows.
+    # Don't forget to use absolute paths, not relative paths.
+    'C:/Users/student/Documents/CS3240Project/cs3240-s17-team20/cs3240project/static',
+    #'/Users/ashleynguyen/PycharmProjects/cs3240-s17-team20/cs3240-s17-team20/cs3240-s17-team20/cs3240-s17-team20/cs3240project/static',
+)
 
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
@@ -119,4 +128,6 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 STATIC_URL = '/static/'
+

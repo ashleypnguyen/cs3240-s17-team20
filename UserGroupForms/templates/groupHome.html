@@ -1,0 +1,27 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <title></title>
+    <script language="JavaScript">
+        function changeActive(){
+            var oldActive = document.getElementsByClassName("active")[0];
+            var newActive = document.getElementById("nav-group-signup");
+            newActive.className = "active";
+            oldActive.className = "inactive";
+        }
+    </script>
+</head>
+
+<div class="container" style="min-width:200px;max-width:600px;margin-right:auto;margin-left:auto;padding-left:15px;padding-right:15px;">
+  <body onload="changeActive()">
+  {% include 'header.html' %}
+    <h2 class="form-signin-heading">Welcome Groups, register or login below.</h2>
+    <a type="submit" class = "btn btn-default" href="http://localhost:8000/groupSignup/"><button>Click to Register</button></a>
+    <a href="http://localhost:8000/groupLogin/"><button>Click to Login</button></a>
+</body>
+</div>
+
+</html>

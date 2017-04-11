@@ -1,0 +1,93 @@
+{% load static %}
+
+<html lang="en">
+
+ <nav class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Project name</a>
+        </div>
+        <div id="navbar1" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class=""><a href="#">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li role="separator" class="divider"></li>
+                <li class="dropdown-header">Nav header</li>
+                <li><a href="#">Separated link</a></li>
+                <li><a href="#">One more separated link</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="../navbar/">Default</a></li>
+            <li class=""><a href="./">Static top <span class="sr-only">(current)</span></a></li>
+            <li><a href="../navbar-fixed-top/">Fixed top</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+  <nav class="navbar navbar-default navbar-fixed-top">
+<!-- Image option!g
+<body background="{% static 'img/base.jpg' %}"> </body> -->
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#" style="pointer-events: none; cursor: default;">Lokahi Fintech</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active" id="nav-home"><a href="http://localhost:8000/base">Home</a></li>
+            <li class="inactive" id="nav-user-signup"><a href="http://localhost:8000/userSignup/">User Signup</a></li>
+            <li class="inactive" id="nav-group-signup"><a href="http://localhost:8000/groupHome/">Group Signup</a></li>
+            <li class="inactive" id="nav-upload-report"><a href="http://localhost:8000/uploadReport/">Upload Report</a></li>
+            <li class="inactive" id="nav-view-reports"><a href="http://localhost:8000/showReport/">View Reports</a></li>
+            <li><a href="#notYetImplemented">File Encryption/Decryption App</a></li>
+            <!--
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li role="separator" class="divider"></li>
+                <li class="dropdown-header">Nav header</li>
+                <li><a href="#">Separated link</a></li>
+                <li><a href="#">One more separated link</a></li>
+              </ul>
+            </li>
+            -->
+          </ul>
+          <!--
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="../navbar/">Default</a></li>
+            <li><a href="../navbar-static-top/">Static top</a></li>
+            <li class="active"><a href="./">Fixed top <span class="sr-only">(current)</span></a></li>
+          </ul>
+          -->
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+  <!-- -->
+  <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'css/navbar-fixed-top.css' %}" rel="stylesheet">
+
+

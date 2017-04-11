@@ -1,44 +1,112 @@
-<!DOCTYPE html>
+
+
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Create User</title>
+	<title>Welcome new users, register here.</title>
+	<script language="JavaScript">
+	function validInfo() {
+			var firstName = document.getElementById("first_name").value;
+			var lastName = document.getElementById("last_name").value;
+			var userName = document.getElementById("user_name").value;
+			var pword = document.getElementById("pword").value;
+			var userType = document.getElementById("user_type").value;
+			var errorMessage = "";
+			var errors = 0;
+			if (firstName == ""){
+			    errorMessage += "Please enter your first or given name. ";
+				errors++;
+			}
+
+			if (lastName == ""){
+			    errorMessage += "Please enter your last or family name. ";
+				errors++;
+			}
+
+			//we may need to add something that checks the database to see if the username is already taken
+			if (userName == ""){
+			    errorMessage += "Please enter you username. ";
+				errors += 1;
+            }
+
+            if (pword == ""){
+			    errorMessage += "Please enter a secure password. ";
+				errors++;
+            }
+
+            if (userType == ""){
+                errorMessage += "Please choose a user type";
+                error++;
+			}
+
+			if (errors > 0){
+			    alert(errorMessage);
+				return false;
+			} else {
+			    return true;
+			}
+        }
+
+        function changeActive(){
+            var oldActive = document.getElementsByClassName("active")[0];
+            var newActive = document.getElementById("nav-user-signup");
+            newActive.className = "active";
+            oldActive.className = "inactive";
+        }
+	</script>
 </head>
-<body>
-<h2>Create User</h2>
-<form method="POST" action="/getdata/">
-	<table>
-		<tr>
-			<td>Enter your first name:</td>
-			<td><input type="text" name="first_name">
-		</tr>
-		<tr>
-			<td>Enter your last name:</td>
-			<td><input type="text" name="last_name">
-		<tr>
-			<td>Create a username</td>
-			<td><input type="text" name="user_name">
-		</tr>
-		<tr>
-			<td>Create a password</td>
-			<td><input type="text" name="password"></td>
-		</tr>
-		<tr>
-			<td>What type of user are you?</td>
-			<td>
-			<select name="user_type">
-			<option value="type1"></option>
-			<option value="type2"></option>
-			<option value="type3"></option>
-			</select>
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<button>Submit Form</button>
-			</td>
-		</tr>
-	</table>
-</form>
+<body onload="changeActive()">
+
+
+<div class="container" style="min-width:200px;max-width:600px;margin-right:auto;margin-left:auto;padding-left:15px;padding-right:15px;">
+    {% include 'header.html' %}
+    <form method="POST" action="/showReport/" onsubmit="return validInfo()" class="form-uploadReport">
+
+            {% csrf_token %}
+
+            <h2 class="form-signin-heading">Welcome new users! Register below...</h2>
+            {{ user_form.as_p }}
+            {{ profile_form.as_p }}
+
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+
+        </form>
+
+<!--<h2>Welcome new users! Register below. </h2>-->
+<!--<form method="POST" action="/getdata/" onsubmit="return validInfo()">-->
+	<!--<table>-->
+		<!--<tr>-->
+			<!--<td>Enter your first name:</td>-->
+			<!--<td><input type="text" name="first_name" id="first_name">-->
+		<!--</tr>-->
+		<!--<tr>-->
+			<!--<td>Enter your last name:</td>-->
+			<!--<td><input type="text" name="last_name" id="last_name">-->
+		<!--<tr>-->
+			<!--<td>Create a username</td>-->
+			<!--<td><input type="text" name="user_name" id="user_name">-->
+		<!--</tr>-->
+		<!--<tr>-->
+			<!--<td>Create a password</td>-->
+			<!--<td><input type="password" name="password" id="pword"></td>-->
+		<!--</tr>-->
+		<!--<tr>-->
+			<!--<td>What type of user are you?</td>-->
+			<!--<td>-->
+			<!--<select name="user_type" id="user_type">-->
+			<!--<option value="company">Company</option>-->
+			<!--<option value="investor">Investor</option>-->
+			<!--<option value="sm">Site-Manager</option>-->
+			<!--</select>-->
+			<!--</td>-->
+		<!--</tr>-->
+		<!--<tr>-->
+			<!--<td>-->
+				<!--<button>Submit Form</button>-->
+			<!--</td>-->
+		<!--</tr>-->
+	<!--</table>-->
+<!--</form>-->
 </body>
 </html>

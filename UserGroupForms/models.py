@@ -1,12 +1,15 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
-class User(models.Model):
-    first_name = models.CharField(max_length=20)
-    last_name  = models.CharField(max_length=20)
-    user_name = models.CharField(max_length=30)
-    password = models.CharField(max_length=30)
+
+# Validate form objects and print error message to template
+class UserProfile(models.Model):
+    user = models.OneToOneField(User)
     user_type = models.CharField(max_length=30)
+
+    def __unicode__(self):
+        return self.user.username
 
 class Report(models.Model):
     time_created = models.DateTimeField(auto_now_add=True)
@@ -21,6 +24,9 @@ class Report(models.Model):
 
 class Group(models.Model):
     group_name = models.CharField(max_length=20)
+    group_email = models.CharField(max_length=50)
+    group_password = models.CharField(max_length=30)
     add_members = models.CharField(max_length=100)
     remove_members = models.CharField(max_length=100)
+
 

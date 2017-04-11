@@ -1,19 +1,86 @@
-<h4>Thanks for uploading your report.</h4>
-<table>
-<tr>
-<td>
-	Report Name:
-</td>
-<td>
- 	{{ name }}
-</td>
-</tr>
-<tr>
-<td>
-	Company Name:
-</td>
-<td>
-	{{ company_name }}
-</td>
-</tr>
+
+
+<html lang="en">
+<form method="post" enctype="multipart/form-dat a">
+    {% csrf_token %}
+</form>
+<head>
+    <meta charset="UTF-8">
+    <title>View Reports</title>
+
+   <script language="JavaScript">
+
+     function changeActive(){
+            var oldActive = document.getElementsByClassName("active")[0];
+            var newActive = document.getElementById("nav-view-reports");
+            newActive.className = "active";
+            oldActive.className = "inactive";
+        }
+
+   </script>
+</head>
+<body onload="changeActive()">
+{% include 'header.html' %}
+<center>
+<form class="form-wrapper cf">
+  	<input type="text" placeholder="Search here..." required>
+	  <button type="submit">Search</button>
+</form>
+</center><br>
+<form method="post" action="/getdata/">
+    <table class="table table-striped table-hover ">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Report</th>
+      <th>Notes</th>
+      <th>Date Uploaded</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>Report 1</td>
+      <td>First Report...</td>
+      <td>April 1, 2017</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Report 2</td>
+      <td>Column content</td>
+      <td>4/2/17</td>
+    </tr>
+    <tr class="info">
+      <td>3</td>
+      <td>Report 3</td>
+      <td>Column content</td>
+      <td>4/2/17</td>
+    </tr>
+    <tr class="success">
+      <td>4</td>
+      <td>Report 1</td>
+      <td>Column content</td>
+      <td>4/2/17</td>
+    </tr>
+    <tr class="danger">
+      <td>5</td>
+      <td>Report 1</td>
+      <td>Column content</td>
+      <td>Column content</td>
+    </tr>
+    <tr class="warning">
+      <td>6</td>
+      <td>Report 1</td>
+      <td>Column content</td>
+      <td>Column content</td>
+    </tr>
+    <tr class="active">
+      <td>7</td>
+      <td>Column content</td>
+      <td>Column content</td>
+      <td>Column content</td>
+    </tr>
+  </tbody>
 </table>
+</body>
+</html>
