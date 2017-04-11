@@ -1,4 +1,3 @@
-{% include 'header.html' %}
 
 
 <html lang="en">
@@ -9,11 +8,19 @@
     <meta charset="UTF-8">
     <title>View Reports</title>
 
-    <style>
+   <script language="JavaScript">
 
-    </style>
+     function changeActive(){
+            var oldActive = document.getElementsByClassName("active")[0];
+            var newActive = document.getElementById("nav-view-reports");
+            newActive.className = "active";
+            oldActive.className = "inactive";
+        }
+
+   </script>
 </head>
-<body>
+<body onload="changeActive()">
+{% include 'header.html' %}
 <center>
 <form class="form-wrapper cf">
   	<input type="text" placeholder="Search here..." required>

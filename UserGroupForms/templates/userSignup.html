@@ -1,4 +1,4 @@
-{% include 'header.html' %}
+
 
 <html lang="en">
 <head>
@@ -46,12 +46,20 @@
 			    return true;
 			}
         }
+
+        function changeActive(){
+            var oldActive = document.getElementsByClassName("active")[0];
+            var newActive = document.getElementById("nav-user-signup");
+            newActive.className = "active";
+            oldActive.className = "inactive";
+        }
 	</script>
 </head>
-<body>
+<body onload="changeActive()">
 
 
 <div class="container" style="min-width:200px;max-width:600px;margin-right:auto;margin-left:auto;padding-left:15px;padding-right:15px;">
+    {% include 'header.html' %}
     <form method="POST" action="/showReport/" onsubmit="return validInfo()" class="form-uploadReport">
 
             {% csrf_token %}
