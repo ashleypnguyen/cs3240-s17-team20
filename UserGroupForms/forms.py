@@ -7,11 +7,15 @@ from .models import Group
 from .models import UserProfile
 
 class UserForm(forms.ModelForm):
+    #first_name = forms.CharField()
+    #last_name = forms.CharField()
+    #email = forms.EmailField()
+    #username = forms.CharField()
     password = forms.CharField(widget=forms.PasswordInput())
 
     class Meta:
         model = User
-        fields = ('first_name', 'last_name', 'username', 'password')
+        fields = ('first_name', 'last_name', 'username', 'password', 'email')
 
 class UserProfileForm(forms.ModelForm):
     class Meta:
