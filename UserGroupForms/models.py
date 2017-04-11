@@ -6,10 +6,12 @@ from django.contrib.auth.models import User
 # Validate form objects and print error message to template
 class UserProfile(models.Model):
     user = models.OneToOneField(User)
-    user_type = models.CharField(max_length=30)
+    user_type = models.BooleanField(default=False) #user is either admin or not
 
     def __unicode__(self):
         return self.user.username
+    #inheriting from Django Model
+    #username, password, email, is active/online
 
 class Report(models.Model):
     time_created = models.DateTimeField(auto_now_add=True)

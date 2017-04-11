@@ -1,5 +1,3 @@
-
-
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
@@ -55,26 +53,31 @@
         }
 	</script>
 </head>
-<body onload="changeActive()">
 
+<!--<div class="container" style="min-width:200px;max-width:600px;margin-right:auto;margin-left:auto;padding-left:15px;padding-right:15px;">-->
+<body onload="changeActive()">
 
 <div class="container" style="min-width:200px;max-width:600px;margin-right:auto;margin-left:auto;padding-left:15px;padding-right:15px;">
     {% include 'header.html' %}
-    <form method="POST" action="/showReport/" onsubmit="return validInfo()" class="form-uploadReport">
+    <form id="user_form" method="POST" action="/admin/" onsubmit="return validInfo()">
 
             {% csrf_token %}
 
-            <h2 class="form-signin-heading">Welcome new users! Register below...</h2>
+            <h2 class="form-signin-heading">User Registration</h2>
             {{ user_form.as_p }}
             {{ profile_form.as_p }}
 
-
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+		<input type="submit" name="submit" value="Register"/>
+        <!--<button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>-->
 
         </form>
+	</div>
+</body>
+</html>
 
 <!--<h2>Welcome new users! Register below. </h2>-->
-<!--<form method="POST" action="/getdata/" onsubmit="return validInfo()">-->
+<!--<form method="POST" action="/userSignup/" onsubmit="return validInfo()">-->
+	<!--{% csrf_token %}-->
 	<!--<table>-->
 		<!--<tr>-->
 			<!--<td>Enter your first name:</td>-->
@@ -85,11 +88,11 @@
 			<!--<td><input type="text" name="last_name" id="last_name">-->
 		<!--<tr>-->
 			<!--<td>Create a username</td>-->
-			<!--<td><input type="text" name="user_name" id="user_name">-->
+			<!--<td><input type="text" name="user_name" id="username">-->
 		<!--</tr>-->
 		<!--<tr>-->
 			<!--<td>Create a password</td>-->
-			<!--<td><input type="password" name="password" id="pword"></td>-->
+			<!--<td><input type="password" name="password" id="password"></td>-->
 		<!--</tr>-->
 		<!--<tr>-->
 			<!--<td>What type of user are you?</td>-->
@@ -103,10 +106,8 @@
 		<!--</tr>-->
 		<!--<tr>-->
 			<!--<td>-->
-				<!--<button>Submit Form</button>-->
+				<!--<button type="submit" class = "btn btn-success" href="http://localhost:8000/confirmUser/">Submit</button>-->
 			<!--</td>-->
 		<!--</tr>-->
 	<!--</table>-->
 <!--</form>-->
-</body>
-</html>
