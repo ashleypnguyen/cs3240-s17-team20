@@ -3,7 +3,7 @@ from django.conf.urls import url
 from . import views
 
 urlpatterns = [
-    url(r'^userSignup/', 'UserGroupForms.views.register', name = 'userSignup'),
+    url(r'^userSignup/', views.register),
     url(r'^groupSignup/', views.groupSignup),
     url(r'^uploadReport/', views.uploadReport),
     url(r'^base/', views.base),
