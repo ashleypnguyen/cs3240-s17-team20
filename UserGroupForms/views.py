@@ -1,7 +1,7 @@
 from django.shortcuts import render, HttpResponse
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-from django.core.context_processors import csrf
+#from django.core.context_processors import csrf
 from django.template import loader
 from .forms import ReportForm
 from .models import User, Group

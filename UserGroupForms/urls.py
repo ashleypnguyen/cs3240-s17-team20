@@ -15,4 +15,5 @@ urlpatterns = [
     url(r'^confirmUser/',views.confirmUser),
     url(r'^confirmGroup/',views.confirmGroup),
 
+
 ]

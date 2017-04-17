@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form method="POST" action="/createmessage/" onsubmit="return validInfo()">
+        {% csrf_token %}
+
+
+        <table>
+            <tr>
+                <td>From:</td>
+                <td><input type="text" name="from_name" id="from_name">
+            </tr>
+            <tr>
+                <td>To:</td>
+                <td><input type="text" name="to_name" id="to_name">
+            <tr>
+                <td>Message:</td>
+                <td><input type="text" name="message_content" id="message_content">
+            </tr>
+
+            <input type="submit" name ="submit">
+
+        </table>
+    </form>
+
+</body>
+</html>

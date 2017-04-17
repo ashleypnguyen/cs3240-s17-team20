@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--onsubmit="return validInfo()"-->
+<form method = "POST" action="/deletemessages/" >
+    {% csrf_token %}
+{% for Message in messages %}
+<h2> From: {{Message.sender}}</h2>
+<h2> To: {{Message.recipient}}</h2>
+<h3> Message Body: {{Message.messagebody}}</h3>
+<input type="checkbox" name="deletebox" value={{Message.messagebody}} >Delete
+    {% endfor %}
+    <br>
+    <br>
+
+    <input type = "submit" name = "submit" >
+</form>
+
+</body>
+</html>
