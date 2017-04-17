@@ -2,13 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Send Message</title>
 </head>
 <body>
+ <div class="container" style="min-width:200px;max-width:600px;margin-right:auto;margin-left:auto;padding-left:15px;padding-right:15px;">
+     {% include 'header.html' %}
     <form method="POST" action="/createmessage/" onsubmit="return validInfo()">
         {% csrf_token %}
 
-
+        <h2 class="form-signin-heading">Messenger</h2>
         <table>
             <tr>
                 <td>From:</td>
@@ -17,15 +19,20 @@
             <tr>
                 <td>To:</td>
                 <td><input type="text" name="to_name" id="to_name">
+            <br>
             <tr>
                 <td>Message:</td>
-                <td><input type="text" name="message_content" id="message_content">
-            </tr>
+            <td><textarea type="text" size="50" name="message_content" autofocus="autofocus" id="message_content"></textarea>
 
-            <input type="submit" name ="submit">
+            </tr>
+            </br>
 
         </table>
+        <br><input type="submit" class="btn btn-success" name ="submit"></br>
+        <br><a type="button" class = "btn btn-primary" href="http://localhost:8000/viewmessages/">View Messages</a></br>
     </form>
+
+  </div>
 
 </body>
 </html>
