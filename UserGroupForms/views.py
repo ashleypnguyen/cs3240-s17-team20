@@ -11,7 +11,7 @@ from .forms import UserForm, UserProfileForm, createGroupForm
 from django.forms.models import model_to_dict
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
 
 # Create your views here.
@@ -87,7 +87,22 @@ def groupSignup(request):
     return render(request, 'groupSignup.html', {'form': form})
 
 def base(request):
-    return render(request, 'base.html')
+    if request.method == "GET":
+        return render(request, 'base.html', {'badLogin': 0})
+    else:
+        username = request.POST['username']
+        password = request.POST['pass']
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return render(request, 'base.html', {'badLogin': 0})
+        else:
+            return render(request, 'base.html', {'badLogin': 1})
+
+
+def loggingOut(request):
+    logout(request)
+    return render(request, 'base.html', {'badLogin': 0})
 
 def confirmGroup(request):
     return render(request, 'confirmGroup.html')
