@@ -6,7 +6,7 @@ urlpatterns = [
     url(r'^userSignup/', views.register),
     url(r'^groupSignup/', views.groupSignup),
     url(r'^uploadReport/', views.uploadReport),
-    url(r'^index/', views.base),
+    url(r'^base/', views.base),
     url(r'^showReport/', views.showReport),
     url(r'^groupHome/',views.groupHome),
     url(r'^groupLogin/',views.groupLogin),
