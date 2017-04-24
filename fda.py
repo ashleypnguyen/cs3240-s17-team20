@@ -50,7 +50,6 @@ with requests.Session() as s:
     payload['reportid'] = reportid
 
     p2 = s.post(host + '/mailingsystem/fdadisplayreport', data = payload)
-        parse = p2.text
     parse2 = p2.text
     myList = parse2.split('\n')
     file1 = ""
