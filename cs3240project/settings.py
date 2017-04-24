@@ -92,7 +92,7 @@ if os.environ.get('DATABASE_URL'):
 	DATABASES['default'].update(db_from_env)
 
 DATABASE_URL="postgres://eygmtcjxyoddtr:ca5788308c92011bbac23ea683a47bf1e362d3d8cd01aad7be29fc903fff03b9@ec2-184-73-199-72.compute-1.amazonaws.com:5432/de9ou8nek4c2qp"
-export (DATABASE_URL)
+
 
 #static files
 # STATICFILES_DIRS = (
