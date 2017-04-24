@@ -109,16 +109,16 @@ STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 STATIC_URL = '/static/'
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
-STATICFILES_DIRS = (
-
-    # Put strings here, like "/home/html/static" or "C:/www/django/static".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
-    #os.path.join(BASE_DIR, 'static')
-    #'/Users/Nader/CS3240/cs3240-s17-team20/static',
-    'C:/Users/student/Documents/CS3240Project/cs3240-s17-team20/cs3240project/static',
-    #'/Users/ashleynguyen/PycharmProjects/cs3240-s17-team20/cs3240-s17-team20/cs3240-s17-team20/cs3240-s17-team20/cs3240project/static',
-)
+# STATICFILES_DIRS = (
+#
+#     # Put strings here, like "/home/html/static" or "C:/www/django/static".
+#     # Always use forward slashes, even on Windows.
+#     # Don't forget to use absolute paths, not relative paths.
+#     #os.path.join(BASE_DIR, 'static')
+#     #'/Users/Nader/CS3240/cs3240-s17-team20/static',
+#     'C:/Users/student/Documents/CS3240Project/cs3240-s17-team20/cs3240project/static',
+#     #'/Users/ashleynguyen/PycharmProjects/cs3240-s17-team20/cs3240-s17-team20/cs3240-s17-team20/cs3240-s17-team20/cs3240project/static',
+# )
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
 
