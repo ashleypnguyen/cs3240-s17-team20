@@ -25,7 +25,9 @@ SECRET_KEY = '6(ri+i!%emkku*u%-$f1k1#-0&4m9aou^e#e(h7w0@6ch#9o7&'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'fintech-s17-team20.herokuapp.com',
+]
 
 
 # Application definition
