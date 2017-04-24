@@ -66,6 +66,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.core.context_processors.request',
             ],
         },
     },
@@ -90,8 +91,8 @@ if os.environ.get('DATABASE_URL'):
 	db_from_env = dj_database_url.config(conn_max_age=500)
 	DATABASES['default'].update(db_from_env)
 
-DATABASE_URL=postgres://eygmtcjxyoddtr:ca5788308c92011bbac23ea683a47bf1e362d3d8cd01aad7be29fc903fff03b9@ec2-184-73-199-72.compute-1.amazonaws.com:5432/de9ou8nek4c2qp
-	export DATABASE_URL
+DATABASE_URL="postgres://eygmtcjxyoddtr:ca5788308c92011bbac23ea683a47bf1e362d3d8cd01aad7be29fc903fff03b9@ec2-184-73-199-72.compute-1.amazonaws.com:5432/de9ou8nek4c2qp"
+export (DATABASE_URL)
 
 #static files
 # STATICFILES_DIRS = (
@@ -107,7 +108,16 @@ DATABASE_URL=postgres://eygmtcjxyoddtr:ca5788308c92011bbac23ea683a47bf1e362d3d8c
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 STATIC_URL = '/static/'
+STATICFILES_DIRS = (
 
+    # Put strings here, like "/home/html/static" or "C:/www/django/static".
+    # Always use forward slashes, even on Windows.
+    # Don't forget to use absolute paths, not relative paths.
+    #os.path.join(BASE_DIR, 'static')
+    #'/Users/Nader/CS3240/cs3240-s17-team20/static',
+    'C:/Users/student/Documents/CS3240Project/cs3240-s17-team20/cs3240project/static',
+    #'/Users/ashleynguyen/PycharmProjects/cs3240-s17-team20/cs3240-s17-team20/cs3240-s17-team20/cs3240-s17-team20/cs3240project/static',
+)
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
 

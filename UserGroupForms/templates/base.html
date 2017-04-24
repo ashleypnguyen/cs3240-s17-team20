@@ -31,9 +31,14 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <script language="JavaScript">
+        function badLogin() {
+            alert("Invalid Username or Password");
+        }
+    </script>
   </head>
       <!-- image -->
-  <body background="{% static 'img/base2.jpg' %}">
+  <body background="{% static 'img/base2.jpg' %}" {% if badLogin %} onload="badLogin()" {% endif %}>
     <!--image -->
     <!-- Fixed navbar -->
     <nav class="navbar navbar-default navbar-fixed-top">
@@ -55,7 +60,9 @@
             <li><a href="http://localhost:8000/uploadReport/">Upload Report</a></li>
             <li><a href="http://localhost:8000/showReport/">View Reports</a></li>
             <li><a href="http://localhost:8000/createmessage/">Messenger</a></li>
-            <li><a href="#notYetImplemented">File Encryption/Decryption App</a></li>
+            <li><a href="#notYetImplemented">Encrypt/Decrypt</a></li>
+            {% if user.username != "" %} <li><a href="http://localhost:8000/logout">Logout</a></li> {% endif %}
+            <li><a style="pointer-events: none; cursor: default">{{user.username}}</a></li>
             <!--
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
@@ -90,12 +97,17 @@
         <p>If you are already a member please sign-in below or if you are unregistered please use the link above to signup. Or if you would like to remain a guest feel free to use our encryption/decryption services without needing to signup.</p>
         <p>
           <!--<a class="btn btn-lg btn-primary" href="../../components/#navbar" role="button">View navbar docs &raquo;</a> -->
-          <form method="post" action="userSignIn">
-            <input type="text" placeholder="Username" id="username">
-            <input type="password" placeholder="Password" id="pass">
+        {% if user.username == "" %}
+          <form method="post" action="/base/">
+            {% csrf_token %}
+            <input type="text" placeholder="Username" id="username" name="username">
+            <input type="password" placeholder="Password" id="pass" name="pass">
             <input type="submit" id="submit" value="Submit">
           </form>
         </p>
+        {%else%}
+        <p>Logged in as: {{user.username}}</p>
+        {%endif%}
       </div>
 
     </div> <!-- /container -->

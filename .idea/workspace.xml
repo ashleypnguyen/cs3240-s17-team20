@@ -2,11 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e3473fa8-62ca-43c0-9190-952cb1a5399c" name="Default" comment="">
+<<<<<<< HEAD
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Procfile" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/UserGroupForms/templates/register.html" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/requirements.txt" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/runtime.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+=======
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/UserGroupForms/templates/base.html" afterPath="$PROJECT_DIR$/UserGroupForms/templates/base.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/UserGroupForms/templates/header.html" afterPath="$PROJECT_DIR$/UserGroupForms/templates/header.html" />
+>>>>>>> 567cd7b489dcb35c6c6a4dbcab1b81d353633fad
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/UserGroupForms/urls.py" afterPath="$PROJECT_DIR$/UserGroupForms/urls.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/UserGroupForms/views.py" afterPath="$PROJECT_DIR$/UserGroupForms/views.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cs3240project/settings.py" afterPath="$PROJECT_DIR$/cs3240project/settings.py" />
@@ -25,6 +30,7 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+<<<<<<< HEAD
       <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/UserGroupForms/views.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -33,15 +39,31 @@
               <folding>
                 <element signature="e#0#49#0" expanded="true" />
               </folding>
+=======
+      <file leaf-file-name="viewmessages.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mailingsystem/templates/viewmessages.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="408">
+              <caret line="24" column="29" lean-forward="true" selection-start-line="24" selection-start-column="29" selection-end-line="24" selection-end-column="29" />
+              <folding />
+>>>>>>> 567cd7b489dcb35c6c6a4dbcab1b81d353633fad
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file leaf-file-name="forms.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/UserGroupForms/forms.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="550">
               <caret line="27" column="21" lean-forward="false" selection-start-line="27" selection-start-column="21" selection-end-line="27" selection-end-column="21" />
+=======
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mailingsystem/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="629">
+              <caret line="48" column="0" lean-forward="true" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
+>>>>>>> 567cd7b489dcb35c6c6a4dbcab1b81d353633fad
               <folding />
             </state>
           </provider>
@@ -50,15 +72,23 @@
       <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/UserGroupForms/urls.py">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="275">
               <caret line="13" column="37" lean-forward="false" selection-start-line="13" selection-start-column="37" selection-end-line="13" selection-end-column="37" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
+=======
+            <state relative-caret-position="324">
+              <caret line="64" column="12" lean-forward="true" selection-start-line="64" selection-start-column="12" selection-end-line="64" selection-end-column="111" />
+              <folding>
+                <element signature="n#style#0;n#a#0;n#li#8;n#ul#0;n#div#1;n#div#0;n#nav#1;n#html#0;n#!!top" expanded="true" />
+>>>>>>> 567cd7b489dcb35c6c6a4dbcab1b81d353633fad
               </folding>
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/UserGroupForms/models.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -66,66 +96,129 @@
               <caret line="40" column="0" lean-forward="false" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
+=======
+      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/UserGroupForms/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="272">
+              <caret line="16" column="39" lean-forward="true" selection-start-line="16" selection-start-column="39" selection-end-line="16" selection-end-column="39" />
+              <folding>
+                <element signature="e#0#32#0" expanded="true" />
+>>>>>>> 567cd7b489dcb35c6c6a4dbcab1b81d353633fad
               </folding>
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file leaf-file-name="tests.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/UserGroupForms/tests.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
+=======
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/UserGroupForms/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1751">
+              <caret line="103" column="4" lean-forward="false" selection-start-line="103" selection-start-column="4" selection-end-line="103" selection-end-column="4" />
+              <folding>
+                <element signature="e#0#49#0" expanded="true" />
+              </folding>
+>>>>>>> 567cd7b489dcb35c6c6a4dbcab1b81d353633fad
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file leaf-file-name="login.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/UserGroupForms/templates/login.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="575">
               <caret line="23" column="7" lean-forward="false" selection-start-line="23" selection-start-column="7" selection-end-line="23" selection-end-column="7" />
+=======
+      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/cs3240project/settings.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="504">
+              <caret line="68" column="57" lean-forward="false" selection-start-line="68" selection-start-column="57" selection-end-line="68" selection-end-column="57" />
+>>>>>>> 567cd7b489dcb35c6c6a4dbcab1b81d353633fad
               <folding />
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file leaf-file-name="Procfile" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Procfile">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="41" lean-forward="false" selection-start-line="0" selection-start-column="41" selection-end-line="0" selection-end-column="41" />
+=======
+      <file leaf-file-name="userSignup.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/UserGroupForms/templates/userSignup.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="635">
+              <caret line="66" column="23" lean-forward="true" selection-start-line="66" selection-start-column="23" selection-end-line="66" selection-end-column="23" />
+>>>>>>> 567cd7b489dcb35c6c6a4dbcab1b81d353633fad
               <folding />
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file leaf-file-name="runtime.txt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/runtime.txt">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="12" lean-forward="false" selection-start-line="0" selection-start-column="12" selection-end-line="0" selection-end-column="12" />
+=======
+      <file leaf-file-name="uploadReport.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/UserGroupForms/templates/uploadReport.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="17">
+              <caret line="84" column="0" lean-forward="false" selection-start-line="84" selection-start-column="0" selection-end-line="84" selection-end-column="0" />
+>>>>>>> 567cd7b489dcb35c6c6a4dbcab1b81d353633fad
               <folding />
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file leaf-file-name="requirements.txt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/requirements.txt">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="100">
               <caret line="4" column="9" lean-forward="false" selection-start-line="4" selection-start-column="9" selection-end-line="4" selection-end-column="9" />
               <folding />
+=======
+      <file leaf-file-name="base.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/UserGroupForms/templates/base.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="144">
+              <caret line="62" column="60" lean-forward="false" selection-start-line="62" selection-start-column="60" selection-end-line="62" selection-end-column="60" />
+              <folding>
+                <element signature="n#style#0;n#a#0;n#li#8;n#ul#0;n#div#1;n#div#0;n#nav#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
+>>>>>>> 567cd7b489dcb35c6c6a4dbcab1b81d353633fad
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file leaf-file-name="settings.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/cs3240project/settings.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="734">
               <caret line="125" column="0" lean-forward="false" selection-start-line="106" selection-start-column="23" selection-end-line="125" selection-end-column="0" />
+=======
+      <file leaf-file-name="apps.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/UserGroupForms/apps.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+>>>>>>> 567cd7b489dcb35c6c6a4dbcab1b81d353633fad
               <folding />
             </state>
           </provider>
@@ -201,6 +294,7 @@
         <option value="$PROJECT_DIR$/mailingsystem/forms.py" />
         <option value="$PROJECT_DIR$/mailingsystem/urls.py" />
         <option value="$PROJECT_DIR$/mailingsystem/views.py" />
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/UserGroupForms/templates/header.html" />
         <option value="$PROJECT_DIR$/UserGroupForms/templates/base.html" />
         <option value="$PROJECT_DIR$/mailingsystem/templates/createmessage.html" />
@@ -211,6 +305,15 @@
         <option value="$PROJECT_DIR$/runtime.txt" />
         <option value="$PROJECT_DIR$/requirements.txt" />
         <option value="$PROJECT_DIR$/cs3240project/settings.py" />
+=======
+        <option value="$PROJECT_DIR$/mailingsystem/templates/createmessage.html" />
+        <option value="$PROJECT_DIR$/mailingsystem/templates/viewmessages.html" />
+        <option value="$PROJECT_DIR$/cs3240project/settings.py" />
+        <option value="$PROJECT_DIR$/UserGroupForms/urls.py" />
+        <option value="$PROJECT_DIR$/UserGroupForms/templates/header.html" />
+        <option value="$PROJECT_DIR$/UserGroupForms/templates/base.html" />
+        <option value="$PROJECT_DIR$/UserGroupForms/views.py" />
+>>>>>>> 567cd7b489dcb35c6c6a4dbcab1b81d353633fad
       </list>
     </option>
   </component>
@@ -221,8 +324,15 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
+<<<<<<< HEAD
     <option name="width" value="1918" />
     <option name="height" value="1030" />
+=======
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1616" />
+    <option name="height" value="876" />
+>>>>>>> 567cd7b489dcb35c6c6a4dbcab1b81d353633fad
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -242,8 +352,11 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+<<<<<<< HEAD
       <pane id="Scratches" />
       <pane id="Scope" />
+=======
+>>>>>>> 567cd7b489dcb35c6c6a4dbcab1b81d353633fad
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -368,6 +481,11 @@
           </PATH>
         </subPane>
       </pane>
+<<<<<<< HEAD
+=======
+      <pane id="Scope" />
+      <pane id="Scratches" />
+>>>>>>> 567cd7b489dcb35c6c6a4dbcab1b81d353633fad
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -645,10 +763,17 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
+<<<<<<< HEAD
     <frame x="0" y="0" width="1918" height="1030" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23997891" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+=======
+    <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.175" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+>>>>>>> 567cd7b489dcb35c6c6a4dbcab1b81d353633fad
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32876712" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -706,6 +831,16 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+<<<<<<< HEAD
+=======
+    <entry file="file://$PROJECT_DIR$/cs3240-s17-team20/cs3240-s17-team20/cs3240-s17-team20/cs3240-s17-team20/UserGroupForms/templates/groupLogin.html" />
+    <entry file="file://$PROJECT_DIR$/cs3240-s17-team20/cs3240-s17-team20/cs3240-s17-team20/cs3240-s17-team20/UserGroupForms/templates/groupSignup.html" />
+    <entry file="file://$PROJECT_DIR$/cs3240-s17-team20/cs3240-s17-team20/UserGroupForms/templates/userSignup.html" />
+    <entry file="file://$PROJECT_DIR$/cs3240-s17-team20/cs3240-s17-team20/cs3240-s17-team20/cs3240-s17-team20/UserGroupForms/templates/base.html" />
+    <entry file="file://$PROJECT_DIR$/cs3240-s17-team20/cs3240-s17-team20/cs3240-s17-team20/cs3240-s17-team20/UserGroupForms/templates/header.html" />
+    <entry file="file://$PROJECT_DIR$/cs3240-s17-team20/cs3240-s17-team20/cs3240-s17-team20/cs3240-s17-team20/UserGroupForms/templates/showReport.html" />
+    <entry file="file://$PROJECT_DIR$/cs3240-s17-team20/cs3240-s17-team20/cs3240-s17-team20/cs3240-s17-team20/UserGroupForms/templates/groupHome.html" />
+>>>>>>> 567cd7b489dcb35c6c6a4dbcab1b81d353633fad
     <entry file="file://$PROJECT_DIR$/cs3240-s17-team20/cs3240-s17-team20/cs3240-s17-team20/cs3240-s17-team20/UserGroupForms/__init__.py" />
     <entry file="file://$PROJECT_DIR$/cs3240-s17-team20/cs3240-s17-team20/cs3240-s17-team20/cs3240-s17-team20/UserGroupForms/templates/login.html" />
     <entry file="file://$PROJECT_DIR$/cs3240-s17-team20/cs3240-s17-team20/cs3240-s17-team20/cs3240-s17-team20/UserGroupForms/apps.py" />
@@ -731,6 +866,7 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/cs3240project/urls.py">
+<<<<<<< HEAD
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="8" column="6" lean-forward="true" selection-start-line="8" selection-start-column="5" selection-end-line="8" selection-end-column="6" />
@@ -759,6 +895,8 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/mailingsystem/forms.py">
+=======
+>>>>>>> 567cd7b489dcb35c6c6a4dbcab1b81d353633fad
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
@@ -781,27 +919,60 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/mailingsystem/migrations/0001_initial.py">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="200">
+=======
+        <state relative-caret-position="120">
+>>>>>>> 567cd7b489dcb35c6c6a4dbcab1b81d353633fad
           <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/UserGroupForms/templates/showReport.html">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="625">
           <caret line="25" column="61" lean-forward="false" selection-start-line="25" selection-start-column="61" selection-end-line="25" selection-end-column="61" />
+=======
+        <state relative-caret-position="425">
+          <caret line="25" column="61" lean-forward="false" selection-start-line="25" selection-start-column="61" selection-end-line="25" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/UserGroupForms/templates/groupHome.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="25" column="7" lean-forward="false" selection-start-line="25" selection-start-column="7" selection-end-line="25" selection-end-column="7" />
+          <folding />
+>>>>>>> 567cd7b489dcb35c6c6a4dbcab1b81d353633fad
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/UserGroupForms/templates/confirmGroup.html">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+=======
+        <state relative-caret-position="85">
+          <caret line="7" column="25" lean-forward="false" selection-start-line="7" selection-start-column="25" selection-end-line="7" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mailingsystem/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding />
+>>>>>>> 567cd7b489dcb35c6c6a4dbcab1b81d353633fad
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/UserGroupForms/templates/base.html">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="1400">
           <caret line="56" column="72" lean-forward="false" selection-start-line="56" selection-start-column="72" selection-end-line="56" selection-end-column="72" />
         </state>
@@ -818,11 +989,51 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1550">
           <caret line="62" column="81" lean-forward="false" selection-start-line="62" selection-start-column="81" selection-end-line="62" selection-end-column="81" />
+=======
+        <state relative-caret-position="136">
+          <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mailingsystem/apps.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/UserGroupForms/templates/confirmGroup.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/UserGroupForms/templates/groupSignup.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="296">
+          <caret line="27" column="21" lean-forward="false" selection-start-line="27" selection-start-column="21" selection-end-line="27" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mailingsystem/templates/createmessage.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="4" lean-forward="false" selection-start-line="5" selection-start-column="4" selection-end-line="12" selection-end-column="13" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+          </folding>
+>>>>>>> 567cd7b489dcb35c6c6a4dbcab1b81d353633fad
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/UserGroupForms/templates/groupHome.html">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="625">
           <caret line="25" column="7" lean-forward="false" selection-start-line="25" selection-start-column="7" selection-end-line="25" selection-end-column="7" />
         </state>
@@ -846,18 +1057,46 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+=======
+        <state relative-caret-position="221">
+          <caret line="13" column="11" lean-forward="true" selection-start-line="13" selection-start-column="11" selection-end-line="13" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/UserGroupForms/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="27" column="29" lean-forward="true" selection-start-line="27" selection-start-column="29" selection-end-line="27" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/UserGroupForms/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="9" column="30" lean-forward="false" selection-start-line="9" selection-start-column="30" selection-end-line="9" selection-end-column="30" />
+          <folding />
+>>>>>>> 567cd7b489dcb35c6c6a4dbcab1b81d353633fad
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/UserGroupForms/templates/uploadReport.html">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="-100">
           <caret line="72" column="28" lean-forward="true" selection-start-line="72" selection-start-column="28" selection-end-line="72" selection-end-column="28" />
+=======
+        <state relative-caret-position="17">
+          <caret line="84" column="0" lean-forward="false" selection-start-line="84" selection-start-column="0" selection-end-line="84" selection-end-column="0" />
+          <folding />
+>>>>>>> 567cd7b489dcb35c6c6a4dbcab1b81d353633fad
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/UserGroupForms/templates/userSignup.html">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="983">
           <caret line="75" column="7" lean-forward="true" selection-start-line="75" selection-start-column="7" selection-end-line="75" selection-end-column="7" />
         </state>
@@ -871,6 +1110,23 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/UserGroupForms/__init__.py">
+=======
+        <state relative-caret-position="635">
+          <caret line="66" column="23" lean-forward="true" selection-start-line="66" selection-start-column="23" selection-end-line="66" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mailingsystem/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="629">
+          <caret line="48" column="0" lean-forward="true" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/UserGroupForms/apps.py">
+>>>>>>> 567cd7b489dcb35c6c6a4dbcab1b81d353633fad
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -899,6 +1155,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/UserGroupForms/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="950">
@@ -913,10 +1170,17 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+=======
+    <entry file="file://$PROJECT_DIR$/mailingsystem/templates/viewmessages.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="24" column="29" lean-forward="true" selection-start-line="24" selection-start-column="29" selection-end-line="24" selection-end-column="29" />
+>>>>>>> 567cd7b489dcb35c6c6a4dbcab1b81d353633fad
           <folding />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/UserGroupForms/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="275">
@@ -941,10 +1205,17 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="575">
           <caret line="23" column="7" lean-forward="false" selection-start-line="23" selection-start-column="7" selection-end-line="23" selection-end-column="7" />
+=======
+    <entry file="file://$PROJECT_DIR$/cs3240project/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="504">
+          <caret line="68" column="57" lean-forward="false" selection-start-line="68" selection-start-column="57" selection-end-line="68" selection-end-column="57" />
+>>>>>>> 567cd7b489dcb35c6c6a4dbcab1b81d353633fad
           <folding />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/Procfile">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -974,6 +1245,45 @@
         <state relative-caret-position="734">
           <caret line="125" column="0" lean-forward="false" selection-start-line="106" selection-start-column="23" selection-end-line="125" selection-end-column="0" />
           <folding />
+=======
+    <entry file="file://$PROJECT_DIR$/UserGroupForms/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="39" lean-forward="true" selection-start-line="16" selection-start-column="39" selection-end-line="16" selection-end-column="39" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/UserGroupForms/templates/header.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="64" column="12" lean-forward="true" selection-start-line="64" selection-start-column="12" selection-end-line="64" selection-end-column="111" />
+          <folding>
+            <element signature="n#style#0;n#a#0;n#li#8;n#ul#0;n#div#1;n#div#0;n#nav#1;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/UserGroupForms/templates/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="62" column="60" lean-forward="false" selection-start-line="62" selection-start-column="60" selection-end-line="62" selection-end-column="60" />
+          <folding>
+            <element signature="n#style#0;n#a#0;n#li#8;n#ul#0;n#div#1;n#div#0;n#nav#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/UserGroupForms/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1751">
+          <caret line="103" column="4" lean-forward="false" selection-start-line="103" selection-start-column="4" selection-end-line="103" selection-end-column="4" />
+          <folding>
+            <element signature="e#0#49#0" expanded="true" />
+          </folding>
+>>>>>>> 567cd7b489dcb35c6c6a4dbcab1b81d353633fad
         </state>
       </provider>
     </entry>

@@ -14,6 +14,6 @@ urlpatterns = [
     url(r'^login/$', views.user_login),
     url(r'^confirmUser/',views.confirmUser),
     url(r'^confirmGroup/',views.confirmGroup),
-
+    url(r'^logout/', views.loggingOut),
 
 ]

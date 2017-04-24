@@ -60,8 +60,10 @@
             <li class="inactive" id="nav-group-signup"><a href="http://localhost:8000/groupHome/">Group Signup</a></li>
             <li class="inactive" id="nav-upload-report"><a href="http://localhost:8000/uploadReport/">Upload Report</a></li>
             <li class="inactive" id="nav-view-reports"><a href="http://localhost:8000/showReport/">View Reports</a></li>
-            <li><a href="http://localhost:8000/createmessage/">Messenger</a></li>
-            <li><a href="#notYetImplemented">File Encryption/Decryption App</a></li>
+            <li class="inactive" id="nav-message"><a href="http://localhost:8000/createmessage/">Messenger</a></li>
+            <li><a href="#notYetImplemented">Encrypt/Decrypt</a></li>
+            {% if user.username != "" %} <li><a href="http://localhost:8000/logout">Logout</a></li> {% endif %}
+            <li><a style="pointer-events: none; cursor: default">{{user.username}}</a></li>
             <!--
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>

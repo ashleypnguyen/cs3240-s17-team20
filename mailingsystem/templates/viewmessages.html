@@ -3,6 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>View Message</title>
+
+    <script language="JavaScript">
+        function changeActive(){
+            var oldActive = document.getElementsByClassName("active")[0];
+            var newActive = document.getElementById("nav-message");
+            newActive.className = "active";
+            oldActive.className = "inactive";
+        }
+    </script>
 </head>
 <body>
 <div class="container" style="min-width:200px;max-width:600px;margin-right:auto;margin-left:auto;padding-left:15px;padding-right:15px;">
