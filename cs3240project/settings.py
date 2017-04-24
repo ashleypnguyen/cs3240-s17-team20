@@ -77,24 +77,34 @@ WSGI_APPLICATION = 'cs3240project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, '../../db.sqlite3'),
-    }
+       	'ENGINE': 'django.db.backends.sqlite3',
+       	'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+ 		}
 }
 
-#static files
-STATICFILES_DIRS = (
+if os.environ.get('DATABASE_URL'):
+	import dj_database_url
+	db_from_env = dj_database_url.config(conn_max_age=500)
+	DATABASES['default'].update(db_from_env)
 
-    # Put strings here, like "/home/html/static" or "C:/www/django/static".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
-    #os.path.join(BASE_DIR, 'static')
-    #'/Users/Nader/CS3240/cs3240-s17-team20/static',
-    #'C:/Users/student/Documents/CS3240Project/cs3240-s17-team20/cs3240project/static',
-    '/Users/ashleynguyen/PycharmProjects/cs3240-s17-team20/cs3240-s17-team20/cs3240-s17-team20/cs3240-s17-team20/cs3240project/static',
-)
+
+#static files
+# STATICFILES_DIRS = (
+#
+#     # Put strings here, like "/home/html/static" or "C:/www/django/static".
+#     # Always use forward slashes, even on Windows.
+#     # Don't forget to use absolute paths, not relative paths.
+#     #os.path.join(BASE_DIR, 'static')
+#     #'/Users/Nader/CS3240/cs3240-s17-team20/static',
+#     #'C:/Users/student/Documents/CS3240Project/cs3240-s17-team20/cs3240project/static',
+#     '/Users/ashleynguyen/PycharmProjects/cs3240-s17-team20/cs3240-s17-team20/cs3240-s17-team20/cs3240-s17-team20/cs3240project/static',
+# )
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
+STATIC_URL = '/static/'
 
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
