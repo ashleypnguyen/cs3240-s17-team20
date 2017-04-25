@@ -52,21 +52,42 @@ def confirmUser(request):
     return render(request, 'confirmUser.html')
 
 def uploadReport(request):
-    if request.method == 'POST':
-        #handle request later
+    # user_name = request.user
+    # UserProfile = user.userprofile
 
-        form = ReportForm(request.POST, request.FILES)
+    if request.method == 'POST':
+
+        #handle request later
+        # sender = request.POST.get('from_name', '')
+        # recipient = request.POST.get('to_name', '' )
+        # messagebody = request.POST.get('message_content','')
+        #
+        # messageObj=Message(sender=sender, recipient=recipient, messagebody=messagebody)
+        #
+        # messageObj.save()
+
+        files = request.FILES.getlist('report_file')
+        report_form = ReportForm(request.POST, request.FILES)
 
         if form.is_valid():
-            return render(request, 'showReport.html', {
-            'report_file_name': form.cleaned_data['report_file_name'],
-            'company_name': form.cleaned_data['company_name'],
-            'current_projects': form.cleaned_data['current_projects']
-        })
+            report = report_form.save()
+
+            for f in files:
+                newFile = multipleFiles(f)
+                newFile.save()
+                report.report_file.add(newFile)
+
+            report.save()
+            return HttpResponse('VALID!')
+        #     {
+        #     'report_file_name': form.cleaned_data['report_file_name'],
+        #     'company_name': form.cleaned_data['company_name'],
+        #     'current_projects': form.cleaned_data['current_projects']
+        # }
 
     else:
-        form = ReportForm()
-    return render(request, 'uploadReport.html', {'form': form});
+        report_form = ReportForm()
+    return render(request, 'uploadReport.html', {'report_form': report_form});
 
 #def viewReport(request)link from upload to report id. ex. http:127.800.000/showReport/viewReport/reportid/1
 
