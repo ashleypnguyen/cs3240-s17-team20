@@ -13,6 +13,7 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
+from django.contrib.postgres.search import SearchVector
 
 # Create your views here.
 def viewUser(request, user_id):
@@ -188,3 +189,11 @@ def user_login(request):
         # No context variables to pass to the template system, hence the
         # blank dictionary object...
         return render_to_response('login.html', {}, context)
+
+def user_search(request):
+    tag = request.POST['tag']
+    context = RequestContext(request)
+    searched = User.objects.annotate(
+        search=SearchVector('first_name', 'last_name', 'username', 'email'),
+    ).filter(search=tag)
+    render_to_response('search.html', {'searched' : searched}, context)

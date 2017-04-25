@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+{% include 'header.html' %}
+<html lang="en">
+<head>
+
+</head>
+<body>
+<form class="form-wrapper cf", method="post", action="/search/">
+  	<input type="text" name = "tag" placeholder="Search here..." required>
+	  <button type="submit">Search</button>
+
+</form>
+<table>
+{% for item in searched %}
+    <tr>
+        <td>{{item.username}}</td>
+        <td>{{item.first_name}}</td>
+        <td>{{item.last_name}}</td>
+        <td>{{item.email}}</td>
+    </tr>
+{% end for %}
+</table>
+</body>
+</html>
