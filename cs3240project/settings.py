@@ -25,7 +25,9 @@ SECRET_KEY = '6(ri+i!%emkku*u%-$f1k1#-0&4m9aou^e#e(h7w0@6ch#9o7&'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'fintech-s17-team20.herokuapp.com',
+]
 
 
 # Application definition
@@ -50,6 +52,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 )
 
 ROOT_URLCONF = 'cs3240project.urls'
@@ -66,7 +69,10 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+<<<<<<< HEAD
                 # 'django.core.context_processors.request',
+=======
+>>>>>>> 17a0043f530ca3b54c715a8c8806eeef1376f5bb
             ],
         },
     },
@@ -78,15 +84,37 @@ WSGI_APPLICATION = 'cs3240project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, '../../db.sqlite3'),
-    }
+       	'ENGINE': 'django.db.backends.sqlite3',
+       	'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+ 		}
 }
 
+if os.environ.get('DATABASE_URL'):
+	import dj_database_url
+	db_from_env = dj_database_url.config(conn_max_age=500)
+	DATABASES['default'].update(db_from_env)
+
+
+
 #static files
+# STATICFILES_DIRS = (
+#
+#     # Put strings here, like "/home/html/static" or "C:/www/django/static".
+#     # Always use forward slashes, even on Windows.
+#     # Don't forget to use absolute paths, not relative paths.
+#     #os.path.join(BASE_DIR, 'static')
+#     #'/Users/Nader/CS3240/cs3240-s17-team20/static',
+#     #'C:/Users/student/Documents/CS3240Project/cs3240-s17-team20/cs3240project/static',
+#     '/Users/ashleynguyen/PycharmProjects/cs3240-s17-team20/cs3240-s17-team20/cs3240-s17-team20/cs3240-s17-team20/cs3240project/static',
+# )
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
+STATIC_URL = '/static/'
 STATICFILES_DIRS = (
+<<<<<<< HEAD
 
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
@@ -95,8 +123,21 @@ STATICFILES_DIRS = (
     '/Users/Nader/CS3240/cs3240-s17-team20/static',
     # 'C:/Users/student/Documents/CS3240Project/cs3240-s17-team20/cs3240project/static',
     #'/Users/ashleynguyen/PycharmProjects/cs3240-s17-team20/cs3240-s17-team20/cs3240-s17-team20/cs3240-s17-team20/cs3240project/static',
+=======
+    os.path.join(PROJECT_ROOT, 'static'),
+>>>>>>> 17a0043f530ca3b54c715a8c8806eeef1376f5bb
 )
 
+# STATICFILES_DIRS = (
+#
+#     # Put strings here, like "/home/html/static" or "C:/www/django/static".
+#     # Always use forward slashes, even on Windows.
+#     # Don't forget to use absolute paths, not relative paths.
+#     #os.path.join(BASE_DIR, 'static')
+#     #'/Users/Nader/CS3240/cs3240-s17-team20/static',
+#     'C:/Users/student/Documents/CS3240Project/cs3240-s17-team20/cs3240project/static',
+#     #'/Users/ashleynguyen/PycharmProjects/cs3240-s17-team20/cs3240-s17-team20/cs3240-s17-team20/cs3240-s17-team20/cs3240project/static',
+# )
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
 
@@ -131,6 +172,13 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
+<<<<<<< HEAD
 
 STATIC_ROOT = os.path.join(BASE_DIR, '/static/')
 STATIC_URL = '/static/'
+=======
+#
+# STATIC_ROOT = os.path.join(BASE_DIR, '/static/')
+# STATIC_URL = '/static/'
+
+>>>>>>> 17a0043f530ca3b54c715a8c8806eeef1376f5bb

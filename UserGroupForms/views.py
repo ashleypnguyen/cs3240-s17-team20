@@ -149,9 +149,7 @@ def register(request):
             user.set_password(user.password)
             user.save()
 
-            profile = profile_form.save(commit=False)
-            profile.user = user
-            profile.save()
+
             # Now we hash the password with the set_password method.
             # Once hashed, we can update the user object.
 

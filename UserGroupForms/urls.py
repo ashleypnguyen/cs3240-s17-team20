@@ -11,7 +11,7 @@ urlpatterns = [
     url(r'^groupHome/',views.groupHome),
     url(r'^groupLogin/',views.groupLogin),
     #url(r'^register/$', views.register, name='register'),
-    url(r'^login/$', views.user_login, name='login'),
+    url(r'^login/$', views.user_login),
     url(r'^confirmUser/',views.confirmUser),
     url(r'^confirmGroup/',views.confirmGroup),
     url(r'^logout/', views.loggingOut),
