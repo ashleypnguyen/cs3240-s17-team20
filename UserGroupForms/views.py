@@ -68,6 +68,7 @@ def uploadReport(request):
 
         files = request.FILES.getlist('report_file')
         report_form = ReportForm(request.POST, request.FILES)
+        reports = Report.objects.all()
 
         if form.is_valid():
             report = report_form.save()

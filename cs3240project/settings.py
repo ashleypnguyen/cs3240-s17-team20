@@ -27,6 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     'fintech-s17-team20.herokuapp.com',
+    '127.0.0.1',
+    'localhost',
 ]
 
 
@@ -69,10 +71,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-<<<<<<< HEAD
-                # 'django.core.context_processors.request',
-=======
->>>>>>> 17a0043f530ca3b54c715a8c8806eeef1376f5bb
+
             ],
         },
     },
@@ -114,7 +113,7 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (
-<<<<<<< HEAD
+
 
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
@@ -123,9 +122,8 @@ STATICFILES_DIRS = (
     '/Users/Nader/CS3240/cs3240-s17-team20/static',
     # 'C:/Users/student/Documents/CS3240Project/cs3240-s17-team20/cs3240project/static',
     #'/Users/ashleynguyen/PycharmProjects/cs3240-s17-team20/cs3240-s17-team20/cs3240-s17-team20/cs3240-s17-team20/cs3240project/static',
-=======
+
     os.path.join(PROJECT_ROOT, 'static'),
->>>>>>> 17a0043f530ca3b54c715a8c8806eeef1376f5bb
 )
 
 # STATICFILES_DIRS = (
@@ -172,13 +170,11 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
-<<<<<<< HEAD
+
 
 STATIC_ROOT = os.path.join(BASE_DIR, '/static/')
 STATIC_URL = '/static/'
-=======
+
 #
 # STATIC_ROOT = os.path.join(BASE_DIR, '/static/')
 # STATIC_URL = '/static/'
-
->>>>>>> 17a0043f530ca3b54c715a8c8806eeef1376f5bb

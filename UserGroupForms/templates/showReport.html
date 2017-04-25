@@ -28,6 +28,9 @@
 </form>
 </center><br>
 <form method="post" action="/getdata/">
+  {% csrf_token %}
+  {% for Report in reports %}
+
 
       <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
         <h1 class="page-header">View reports</h1>
@@ -39,21 +42,20 @@
         <p style="color:red"><b>{{ message }}</b></p>
         <table class="table table-hover" id="reportTable">
           <tr>
-            <th class="col-md-1">Name</th>
-            <th class="col-md-1">Created at</th>
-            <th class="col-md-2">Owner</th>
-            <th class="col-md-1">Short description</th>
-            <th class="col-md-2">Detailed description</th>
-            <th class="col-md-3">File(s)</th>
-            <th class="col-md-1">Private?</th>
-            <th class="col-md-1">Encrypted?</th>
+            <th class="col-md-1">Report File Name: {{ Report.report_file_name}}</th>
+            <th class="col-md-1">Comapany Name: {{ Report.company_name }}</th>
+            <th class="col-md-2">Company Phone: {{ Report.company_phone }}</th>
+            <th class="col-md-1">Company Location: {{ Report.company_location }}</th>
+            <th class="col-md-2">Company Country: {{ Report.company_country }}</th>
+            <th class="col-md-3">Business Type: {{ Report.business_type }}</th>
+            <th class="col-md-1">Current Projects: {{ Report.current_projects }}</th>
             <!-- {% if siteManager %}
             <th class="col-md-1">Delete?</th>
             {% endif %} -->
             <!-- <th class="col-md-1">Tags</th> -->
           </tr>
-          {% for report in authReportList %}
-          <tr>
+
+          <!-- <tr>
             <td><a href="/secureshare/reportpage/{{ report.id }}">{{ report.name }}</a></td>
             <td>{{ report.created_at }}</td>
             <td>{{ report.owner }}</td>
@@ -91,8 +93,7 @@
             {% if siteManager %}
             <td><a href="/secureshare/requestdeletereport/{{ report.id }}">Delete</a></td>
             {% endif %}
-          </tr>
-          {% endfor %}
+          </tr> -->
         </table>
       </div>
 
