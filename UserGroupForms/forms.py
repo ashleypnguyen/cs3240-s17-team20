@@ -1,9 +1,11 @@
 from django import forms
+from django.forms import ModelForm
 from django.views import generic
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.models import User, Group
 from .models import Report
 from .models import UserProfile
+# from uploads.core.models import Report
 
 class UserForm(forms.ModelForm):
     #first_name = forms.CharField()
@@ -22,10 +24,25 @@ class UserProfileForm(forms.ModelForm):
         fields = ('user_type',)
 
 class ReportForm(forms.ModelForm):
+    report_file_name = forms.CharField(required = False)
+    report_file =  forms.FileField(widget=forms.ClearableFileInput(attrs={'multpile':True}),required = False)
+    company_name = forms.CharField(required = False)
+    company_phone = forms.CharField(required = False)
+    company_location = forms.CharField(required = False)
+    company_country = forms.CharField(required = False)
+    business_type = forms.CharField(required = False)
+    current_projects = forms.CharField(required = False)
     class Meta:
         model = Report
         fields = ('report_file_name', 'report_file', 'company_name', 'company_phone',
                   'company_location', 'company_country', 'business_type', 'current_projects', )
+
+    # def save(self):
+    #     Report.objects.create(report_file_name="Bill")
+    # # # class Meta:
+    #     model = Report
+    #     fields = ('report_file_name', 'report_file', 'company_name', 'company_phone',
+    #               'company_location', 'company_country', 'business_type', 'current_projects', )
 
 class createGroupForm(forms.ModelForm):
     Select_Users_To_Add_To_Group = forms.ModelMultipleChoiceField(queryset=User.objects.all())
