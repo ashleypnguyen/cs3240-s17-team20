@@ -68,18 +68,17 @@ def uploadReport(request):
 
         files = request.FILES.getlist('report_file')
         report_form = ReportForm(request.POST, request.FILES)
-        reports = Report.objects.all()
 
-        if form.is_valid():
-            report = report_form.save()
+        if report_form.is_valid():
+            r = report_form.save()
 
             for f in files:
                 newFile = multipleFiles(f)
                 newFile.save()
-                report.report_file.add(newFile)
+                r.report_file.add(newFile)
 
-            report.save()
-            return HttpResponse('VALID!')
+            r.save()
+            return HttpResponse('base.html')
         #     {
         #     'report_file_name': form.cleaned_data['report_file_name'],
         #     'company_name': form.cleaned_data['company_name'],
@@ -130,7 +129,8 @@ def confirmGroup(request):
     return render(request, 'confirmGroup.html')
 
 def showReport(request):
-    return render(request, 'showReport.html')
+    reports = Report.objects.all()
+    return render(request, 'showReport.html', {'reports': reports})
 
 def groupHome(request):
     return render(request, 'groupHome.html')

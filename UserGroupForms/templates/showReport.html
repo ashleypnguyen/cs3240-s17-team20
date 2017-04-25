@@ -29,32 +29,71 @@
 </center><br>
 <form method="post" action="/getdata/">
   {% csrf_token %}
-  {% for Report in reports %}
+
 
 
       <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
         <h1 class="page-header">View reports</h1>
-
-        <p>This page allows you to view all reports that have been shared with you. You can access your own reports <a href="/secureshare/managereports/">here</a>.</p>
         <br><br>
-        <br><br>
-
-        <p style="color:red"><b>{{ message }}</b></p>
+  <!-- {% for Report in reports %}
+        <p style="color:red"><b></b></p>
         <table class="table table-hover" id="reportTable">
           <tr>
             <th class="col-md-1">Report File Name: {{ Report.report_file_name}}</th>
-            <th class="col-md-1">Comapany Name: {{ Report.company_name }}</th>
+            <th class="col-md-1">Company Name: {{ Report.company_name }}</th>
             <th class="col-md-2">Company Phone: {{ Report.company_phone }}</th>
             <th class="col-md-1">Company Location: {{ Report.company_location }}</th>
             <th class="col-md-2">Company Country: {{ Report.company_country }}</th>
             <th class="col-md-3">Business Type: {{ Report.business_type }}</th>
             <th class="col-md-1">Current Projects: {{ Report.current_projects }}</th>
+
             <!-- {% if siteManager %}
             <th class="col-md-1">Delete?</th>
             {% endif %} -->
             <!-- <th class="col-md-1">Tags</th> -->
-          </tr>
+          <!-- </tr> -->
+  <!-- {% endfor %} -->
 
+
+  <center>
+<!-- <form class="form-wrapper cf">
+  	<input type="text" placeholder="Search here..." required>
+	  <button type="submit">Search</button>
+</form> -->
+</center><br>
+<form method="post" action="/getdata/">
+    <table class="table table-striped table-hover ">
+  <thead>
+    <tr>
+
+      <th>Report Name</th>
+      <th>File</th>
+      <th>Company Name</th>
+      <th>Phone</th>
+      <th>Location</th>
+      <th>Country</th>
+      <th>Business Type</th>
+      <th>Current Projects</th>
+
+    </tr>
+  </thead>
+  <tbody>
+
+    {% for Report in reports %}
+    <tr>
+      <td>{{ Report.report_file_name}}</td>
+      <td>{{ Report.report_file}}</td>
+      <td>{{ Report.company_name }}</td>
+      <td>{{ Report.company_phone }}</td>
+      <td>{{  Report.company_location }}</td>
+      <td>{{  Report.company_country  }}</td>
+      <td>{{ Report.business_type }}</td>
+      <td>{{  Report.current_projects  }}</td>
+    </tr>
+
+      {% endfor %}
+  </tbody>
+</table>
           <!-- <tr>
             <td><a href="/secureshare/reportpage/{{ report.id }}">{{ report.name }}</a></td>
             <td>{{ report.created_at }}</td>
