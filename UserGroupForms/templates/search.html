@@ -6,6 +6,7 @@
 </head>
 <body>
 <form class="form-wrapper cf", method="post", action="/search/">
+    {% csrf_token %}
   	<input type="text" name = "tag" placeholder="Search here..." required>
 	  <button type="submit">Search</button>
 
