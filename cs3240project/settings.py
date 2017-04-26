@@ -119,8 +119,8 @@ STATICFILES_DIRS = (
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
     #os.path.join(BASE_DIR, 'static')
-    '/Users/Nader/CS3240/cs3240-s17-team20/static',
-    # 'C:/Users/student/Documents/CS3240Project/cs3240-s17-team20/cs3240project/static',
+   # '/Users/Nader/CS3240/cs3240-s17-team20/static',
+     'C:/Users/student/Documents/CS3240Project/cs3240-s17-team20/cs3240project/static',
     #'/Users/ashleynguyen/PycharmProjects/cs3240-s17-team20/cs3240-s17-team20/cs3240-s17-team20/cs3240-s17-team20/cs3240project/static',
 
     os.path.join(PROJECT_ROOT, 'static'),

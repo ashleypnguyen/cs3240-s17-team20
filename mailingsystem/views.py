@@ -24,9 +24,9 @@ def sendMessage(request):
 
           messageObj.save()
 
-          return HttpResponse("<h1>Success</h1>")
+          return render(request, 'createmessage.html', {'messageSent': 1})
     else:
-        return render(request, 'createmessage.html')
+        return render(request, 'createmessage.html', {'messageSent': 0})
 
 def viewMessage(request):
 

@@ -6,3 +6,4 @@ class Message(models.Model):
     sender = models.CharField(max_length = 20)
     recipient = models.CharField(max_length= 20)
     messagebody = models.CharField(max_length=1000)
+    read = models.BooleanField(default=False)

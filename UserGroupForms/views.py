@@ -57,15 +57,6 @@ def uploadReport(request):
 
     if request.method == 'POST':
 
-        #handle request later
-        # sender = request.POST.get('from_name', '')
-        # recipient = request.POST.get('to_name', '' )
-        # messagebody = request.POST.get('message_content','')
-        #
-        # messageObj=Message(sender=sender, recipient=recipient, messagebody=messagebody)
-        #
-        # messageObj.save()
-
         files = request.FILES.getlist('report_file')
         report_form = ReportForm(request.POST, request.FILES)
 
