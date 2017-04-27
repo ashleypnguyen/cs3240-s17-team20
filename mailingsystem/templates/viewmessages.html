@@ -28,7 +28,7 @@
         <br><header> From: {{Message.sender}} </header>
         <header> To: {{Message.recipient}}</header>
         <text> Message: {{Message.messagebody}}</text>
-        <input type="checkbox" name="deletebox" value={{Message.messagebody}}> Delete </br>
+        <input type="checkbox" name="deletebox" value="{{Message.messagebody}}"> Delete </br>
     {% endif %}
 {% endfor %}
 
@@ -44,6 +44,7 @@
         <br><header> From: {{Message.sender}} </header>
         <header> To: {{Message.recipient}}</header>
         <text> Message: {{Message.messagebody}}</text>
+  </br>
     {% endif %}
 {% endfor %}
   </div>

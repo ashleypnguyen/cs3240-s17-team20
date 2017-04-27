@@ -27,27 +27,6 @@ def viewUser(request, user_id):
             user_dict = model_to_dict(theUser)
             return JsonResponse({'status': True, 'resp': user_dict})
 
-# def userSignup(request):
-#     form = UserForm()
-#     is_registered = False
-#
-#     if request.method == "POST":
-#         form = UserForm(data=request.POST)
-#         if form.is_valid():
-#
-#             user = form.save() #will return a user type
-#             user.set_password(user.password) #taking from the form
-#             user.save()
-#             print(user.password)
-#             print(user)
-#             return HttpResponse('/base')
-#
-#     token = {}
-#     token.update(csrf(request))
-#     token['form'] = form
-#
-#     #return render_to_response('userSignup.html', RequestContext(request, token))
-#     return render(request, 'userSignup.html', token)
 
 def confirmUser(request):
     return render(request, 'confirmUser.html')
@@ -79,7 +58,13 @@ def uploadReport(request):
 
     else:
         report_form = ReportForm()
-    return render(request, 'uploadReport.html', {'report_form': report_form});
+        if request.user.username != "":
+            messages = Message.objects.all()
+            count = 0
+            for message in messages:
+                if message.recipient == request.user.username:
+                    count+=1
+    return render(request, 'uploadReport.html', {'report_form': report_form, 'num_Messages': count});
 
 #def viewReport(request)link from upload to report id. ex. http:127.800.000/showReport/viewReport/reportid/1
 
@@ -135,7 +120,13 @@ def confirmGroup(request):
 
 def showReport(request):
     reports = Report.objects.all()
-    return render(request, 'showReport.html', {'reports': reports})
+    if request.user.username != "":
+        messages = Message.objects.all()
+        count = 0
+        for message in messages:
+            if message.recipient == request.user.username:
+                count += 1
+    return render(request, 'showReport.html', {'reports': reports, 'num_Messages': count})
 
 def groupHome(request):
     return render(request, 'groupHome.html')
