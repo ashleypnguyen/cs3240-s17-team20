@@ -1,7 +1,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Welcome new users, register here.</title>
+	<title>User Signup</title>
 	<script language="JavaScript">
 	function validInfo() {
 			var firstName = document.getElementById("first_name").value;
@@ -59,18 +59,21 @@
 
 <div class="container" style="min-width:200px;max-width:600px;margin-right:auto;margin-left:auto;padding-left:15px;padding-right:15px;">
     {% include 'header.html' %}
+
     <form id="user_form" method="POST" action="/userSignup/" onsubmit="return validInfo()">
 
             {% csrf_token %}
-
+						<center>
             <h2 class="form-signin-heading">User Registration</h2>
+						</center>
             {{ user_form.as_p }}
             {{ profile_form.as_p }}
 
-		<input type="submit" class="btn btn-success" name="submit" value="Register"/>
+		<input type="submit" class="btn btn-success btn-lg" name="submit" value="Sign Up"/>
         <!--<button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>-->
 
-        </form>
+    </form>
+
 	</div>
 </body>
 </html>

@@ -93,17 +93,22 @@
 
       <!-- Main component for a primary marketing message or call to action -->
       <div class="jumbotron">
+        <center>
         <h1>Welcome To Lokahi Fintech!</h1>
         <p>If you are already a member please sign-in below or if you are unregistered please use the link above to signup. Or if you would like to remain a guest feel free to use our encryption/decryption services without needing to signup.</p>
-        <p>
+      </center>
+      <br>
           <!--<a class="btn btn-lg btn-primary" href="../../components/#navbar" role="button">View navbar docs &raquo;</a> -->
         {% if user.username == "" %}
+        <center>
           <form method="post" action="/base/">
             {% csrf_token %}
-            <input type="text" placeholder="Username" id="username" name="username">
+            <input type="text" placeholder="Username" id="username" name="username" >
+
             <input type="password" placeholder="Password" id="pass" name="pass">
-            <input type="submit" class="btn btn-primary" id="submit" value="Submit">
+            <input type="submit" class="btn btn-primary btn-lg" id="submit" value="Sign In">
           </form>
+        </center>
         </p>
         {%else%}
         <p>Logged in as: {{user.username}}</p>
