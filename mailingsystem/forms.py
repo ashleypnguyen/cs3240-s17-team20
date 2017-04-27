@@ -7,6 +7,7 @@ class MessageForm(forms.Form):
     from_name = forms.CharField()
     to_name = forms.CharField()
     message_content = forms.CharField()
+    encrypted = forms.BooleanField()
 
 #     # class Meta:
 #     #     model = Message

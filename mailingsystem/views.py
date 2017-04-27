@@ -10,23 +10,37 @@ from django.template import RequestContext
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponseRedirect, HttpResponse
 from .models import Message
+from django.contrib.auth.models import User
+from .messageEncrypt import encrypt_val, decrypt_val
+
+# from django.contrib.auth.decorators import login_required
 
 # Create your views here.
+#@login_reguired(login_url='/base/')
 def sendMessage(request):
-    #context = RequestContext(request)
-    if request.method == 'POST':
+    if request.user.username != "":
+        user_name = request.user
+        users = User.objects.all()
+        if request.method == 'POST':
 
-          sender = request.POST.get('from_name', '')
-          recipient = request.POST.get('to_name', '' )
-          messagebody = request.POST.get('message_content','')
+              sender = user_name
+              recipient = request.POST.get('to_name', '' )
+              messagebody = request.POST.get('message_content','')
+              encrypt = False
+              if request.POST.get('to_encrypt') == 'yes':
+                  encrypt = True
+              if encrypt:
+                  messagebody = encrypt_val(messagebody)
 
-          messageObj=Message(sender=sender, recipient=recipient, messagebody=messagebody)
+              messageObj=Message(sender=sender, recipient=recipient, messagebody=messagebody, encrypted=encrypt)
 
-          messageObj.save()
+              messageObj.save()
 
-          return render(request, 'createmessage.html', {'messageSent': 1})
+              return render(request, 'createmessage.html', {'messageSent': 1, 'users': users})
+        else:
+            return render(request, 'createmessage.html', {'messageSent': 0, 'users': users})
     else:
-        return render(request, 'createmessage.html', {'messageSent': 0})
+        return render(request, 'base.html', {'notLoggedIn': 1})
 
 def viewMessage(request):
 

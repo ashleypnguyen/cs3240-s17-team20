@@ -30,20 +30,37 @@
 
         <h2 class="form-signin-heading">Messenger</h2>
         <table>
-            <tr>
-                <td>From:</td>
-                <td><input type="text" name="from_name" id="from_name">
-            </tr>
+            <!--<tr>-->
+                <!--<td>From:</td>-->
+                <!--<td><input type="text" name="from_name" id="from_name">-->
+            <!--</tr>-->
             <tr>
                 <td>To:</td>
-                <td><input type="text" name="to_name" id="to_name">
+                <td>
+                    <select name="to_name" id="to_name">
+                        {%for user in users%}
+                        <option value="{{user.username}}">{{user.username}}</option>
+                        {%endfor%}
+                    </select>
+                </td>
             <br>
             <tr>
                 <td>Message:</td>
-            <td><textarea type="text" size="50" name="message_content" autofocus="autofocus" id="message_content"></textarea>
+            <td><textarea type="text" size="50" name="message_content" autofocus="autofocus" id="message_content"></textarea></td>
 
             </tr>
             </br>
+            <tr>
+                <td>
+                    Encrypt Message?
+                </td>
+                <td>
+                    <select name="to_encrypt" id="to_encrypt">
+                        <option value="no">No &nbsp&nbsp</option>
+                        <option value="yes">Yes &nbsp&nbsp</option>
+                    </select>
+                </td>
+            </tr>
 
         </table>
         <br><input type="submit" class="btn btn-success" name ="submit"></br>
@@ -51,7 +68,7 @@
     </form>
 
   </div>
-{% if user.%}
+
 
 </body>
 </html>

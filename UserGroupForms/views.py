@@ -13,6 +13,7 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
+from mailingsystem.models import Message
 
 # Create your views here.
 def viewUser(request, user_id):
@@ -100,14 +101,27 @@ def groupSignup(request):
 
 def base(request):
     if request.method == "GET":
-        return render(request, 'base.html', {'badLogin': 0})
+        if request.user.username != "":
+            messages = Message.objects.all()
+            count = 0
+            for message in messages:
+                if message.recipient == request.user.username:
+                    count+=1
+            return render(request, 'base.html', {'badLogin': 0, 'num_Messages': count})
+        else:
+            return render(request, 'base.html', {'badLogin': 0})
     else:
         username = request.POST['username']
         password = request.POST['pass']
         user = authenticate(username=username, password=password)
         if user is not None:
             login(request, user)
-            return render(request, 'base.html', {'badLogin': 0})
+            messages = Message.objects.all()
+            count = 0
+            for message in messages:
+                if message.recipient == request.user.username:
+                    count += 1
+            return render(request, 'base.html', {'badLogin': 0, 'num_Messages': count})
         else:
             return render(request, 'base.html', {'badLogin': 1})
 

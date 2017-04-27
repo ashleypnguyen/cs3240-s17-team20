@@ -7,3 +7,4 @@ class Message(models.Model):
     recipient = models.CharField(max_length= 20)
     messagebody = models.CharField(max_length=1000)
     read = models.BooleanField(default=False)
+    encrypted = models.BooleanField(default=False)
