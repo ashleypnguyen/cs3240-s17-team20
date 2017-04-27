@@ -214,10 +214,9 @@ def user_login(request):
         return render_to_response('login.html', {}, context)
 
 def user_search(request):
+    tag = ""
     if request.method == "POST":
         tag = request.POST.get('tag')
-    else:
-        tag = ""
     context = RequestContext(request)
     searched = User.objects.annotate(
         search=SearchVector('first_name', 'last_name', 'username', 'email'),
