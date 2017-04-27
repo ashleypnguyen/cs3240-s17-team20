@@ -14,6 +14,7 @@ from django.template import RequestContext
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.postgres.search import SearchVector
+from django.shortcuts import render
 
 # Create your views here.
 def viewUser(request, user_id):
@@ -221,4 +222,5 @@ def user_search(request):
     searched = User.objects.annotate(
         search=SearchVector('first_name', 'last_name', 'username', 'email'),
     ).filter(search=tag)
-    return render_to_response("register.html", {'searched' : searched, }, context_instance=RequestContext(request))
+    return
+    render(request, "search.html", {'searched' : searched})
