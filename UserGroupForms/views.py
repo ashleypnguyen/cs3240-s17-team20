@@ -222,4 +222,6 @@ def user_search(request):
     searched = User.objects.annotate(
         search=SearchVector('first_name', 'last_name', 'username', 'email'),
     ).filter(search=tag)
+    for item in searched:
+        print("1")
     return render(request, "search.html", {'searched' : searched})
