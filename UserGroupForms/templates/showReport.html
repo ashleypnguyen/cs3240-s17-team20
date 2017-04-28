@@ -16,118 +16,72 @@
 </head>
 <body onload="changeActive()">
 {% include 'header.html' %}
-<center>
-<form class="form-wrapper cf">
-  	<input type="text" placeholder="Search here..." required>
-	  <button type="submit">Search</button>
-</form>
-</center><br>
+
+
 <form method="post" action="/getdata/">
   {% csrf_token %}
-      <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-        <h1 class="page-header">View reports</h1>
+      <div class="container">
+        <div class="text-center"><h1 class="page-header">View reports</h1></div>
+          <form class="text-center">
+
+              <!--SEARCH BAR -->
+  	<style>
+input[type=text] {
+    width: 130px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    background-image: url('searchicon.png');
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+
+input[type=text]:focus {
+    width: 100%;
+}
+</style>
+</head>
+<body>
+
+<h6><i>Search by Company Name</i></h6>
+
+<form>
+  <input type="text" name="search" placeholder="Search..">
+
+    <!--  ################ ADD SEARCH FUNCTIONALITY HERE ############## -->
+</form>
+<!--END SEARCH BAR -->
+
+    </form>
         <br><br>
-  <!-- {% for Report in reports %}
-        <p style="color:red"><b></b></p>
-        <table class="table table-hover" id="reportTable">
-          <tr>
-            <th class="col-md-1">Report File Name: {{ Report.report_file_name}}</th>
-            <th class="col-md-1">Company Name: {{ Report.company_name }}</th>
-            <th class="col-md-2">Company Phone: {{ Report.company_phone }}</th>
-            <th class="col-md-1">Company Location: {{ Report.company_location }}</th>
-            <th class="col-md-2">Company Country: {{ Report.company_country }}</th>
-            <th class="col-md-3">Business Type: {{ Report.business_type }}</th>
-            <th class="col-md-1">Current Projects: {{ Report.current_projects }}</th>
 
-            <!-- {% if siteManager %}
-            <th class="col-md-1">Delete?</th>
-            {% endif %} -->
-            <!-- <th class="col-md-1">Tags</th> -->
-          <!-- </tr> -->
-  <!-- {% endfor %} -->
-
-
-
-<!-- <form class="form-wrapper cf">
-  	<input type="text" placeholder="Search here..." required>
-	  <button type="submit">Search</button>
-</form> -->
-
-<form method="post" action='getdata'>
   {% csrf_token %}
-    <table class="table table-striped table-hover" style="text-center">
-  <thead>
-    <tr>
-      <th>File</th>
-      <th>Company Name</th>
-      <th>Phone</th>
-      <th>Location</th>
-      <th>Country</th>
-      <th>Business Type</th>
-      <th>Current Projects</th>
-
-    </tr>
-  </thead>
-  <tbody>
-
-    {% for r in allReports %}
-    <tr>
+          <div class="text-center">
+          <h4><strong>Click to Download & View Report</strong></h4>
+          </div>
+  <div class="list-group">
+      {% for r in allReports %}
         {% for f in r.poodle.all %}
-        <td>
-          <a href="{{ f.files.url }}"> {{ f.files.url }} </a>
-      </td>
 
-        {% endfor %}
-      <td>{{ r.company_name }}</td>
-      <td>{{ r.company_phone }}</td>
-      <td>{{  r.company_location }}</td>
-      <td>{{  r.company_country  }}</td>
-      <td>{{ r.business_type }}</td>
-      <td>{{  r.current_projects  }}</td>
-    </tr>
+      <a href="{{ f.files.url }}" download class="list-group-item list-group-item-action list-group-item-info flex-column align-items-start">
+          <strong>{{ f.files.name }}</strong> </a>
+    <div class="d-flex w-100 justify-content-between">
+      <h6 class="mb-1"></h6>
+    </div>
+    <p class="mb-1">{{r.company_name}}</p>
+          <p class="mb-1">{{r.company_location}}</p>
+          <p class="mb-1">{{r.company_country}}</p>
+      <p class="mb-1">{{r.company_phone}}</p>
+        <small>{{r.current_projects}}</small>
       {% endfor %}
-
-  </tbody>
-</table>
-          <!-- <tr>
-            <td><a href="/secureshare/reportpage/{{ report.id }}">{{ report.name }}</a></td>
-            <td>{{ report.created_at }}</td>
-            <td>{{ report.owner }}</td>
-            <td>{{ report.short_description }}</td>
-            <td>{{ report.detailed_description }}</td>
-            <td>
-              {% if report.encrypt %}
-              {{ report.file1 }}<br>
-              {% else %}
-              <a href="/secureshare/requestfiledownload/{{ report.id }}/{{ report.file1 }}">{{ report.file1 }}</a><br>
-              {% endif %}
-              {% if report.encrypt %}
-              {{ report.file2 }}<br>
-              {% else %}
-              <a href="/secureshare/requestfiledownload/{{ report.id }}/{{ report.file2 }}">{{ report.file2 }}</a><br>
-              {% endif %}
-              {% if report.encrypt %}
-              {{ report.file3 }}<br>
-              {% else %}
-              <a href="/secureshare/requestfiledownload/{{ report.id }}/{{ report.file3 }}">{{ report.file3 }}</a><br>
-              {% endif %}
-              {% if report.encrypt %}
-              {{ report.file4 }}<br>
-              {% else %}
-              <a href="/secureshare/requestfiledownload/{{ report.id }}/{{ report.file4 }}">{{ report.file4 }}</a><br>
-              {% endif %}
-              {% if report.encrypt %}
-              {{ report.file5 }}<br>
-              {% else %}
-              <a href="/secureshare/requestfiledownload/{{ report.id }}/{{ report.file5 }}">{{ report.file5 }}</a><br>
-              {% endif %}
-            </td>
-            <td>{{ report.private }}</td>
-            <td>{{ report.encrypt }}</td>
-            {% if siteManager %}
-            <td><a href="/secureshare/requestdeletereport/{{ report.id }}">Delete</a></td>
-            {% endif %}
-          </tr> -->
+      {% endfor %}
+  </div>
+</div>
         </table>
       </div>
 

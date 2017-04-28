@@ -49,11 +49,6 @@ def uploadReport(request):
 
         for f in request.FILES.getlist('htmlFile'):
             reportFile = File.objects.create(files = f)
-            #reportFile = File()
-            #theReport.report_file_2.add(reportFile)
-            #reportFile.files = f
-            #reportFile.reportFiles = theReport
-            #reportFile.save()
             theReport.poodle.add(reportFile)
         theReport.save()
         return HttpResponseRedirect("base.html")

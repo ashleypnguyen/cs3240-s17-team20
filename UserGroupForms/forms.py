@@ -5,6 +5,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.models import User, Group
 from .models import Report
 from .models import UserProfile
+from django_countries.fields import CountryField
 # from uploads.core.models import Report
 
 class UserForm(forms.ModelForm):
@@ -33,6 +34,7 @@ class ReportForm(forms.ModelForm):
     # business_type = forms.CharField(required = False)
     # current_projects = forms.CharField(required = False)
     # poodle = models.ManyToManyField('File', blank = True)
+    #current_projects = forms.ChoiceField(choices=[(x, x) for x in range(0, 100)])
 
     class Meta:
         model = Report
