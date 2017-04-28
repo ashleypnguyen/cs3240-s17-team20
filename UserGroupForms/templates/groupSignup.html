@@ -49,8 +49,12 @@
            {% csrf_token %}
 
         <div class="form-group">
+
             <h2 class="form-signin-heading">Welcome new groups! Register below...</h2>
+
             {{ form.as_p }}
+
+
     <!--<label for="group_name">Group Name: </label>-->
     <!--<input type="group_name" class="form-control" id="group_name" placeholder="Group Name">-->
             <!---->
@@ -72,7 +76,7 @@
   <!--</div>-->
 
   <!--<button type="submit" class="btn btn-default">Submit</button>-->
-          <input type="submit" name="submit" value="Register"/>
+          <input type="submit" class = "btn btn-success btn-lg" name="submit" value="Register"/>
 
 </form>
  </div>

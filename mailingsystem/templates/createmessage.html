@@ -4,6 +4,16 @@
     <meta charset="UTF-8">
     <title>Send Message</title>
     <script language="JavaScript">
+
+        function loadedSent(){
+            changeActive();
+            sentAlert();
+        }
+
+        function sentAlert() {
+            alert("Your Message Has Been Sent!");
+        }
+
         function changeActive(){
             var oldActive = document.getElementsByClassName("active")[0];
             var newActive = document.getElementById("nav-message");
@@ -12,7 +22,7 @@
         }
     </script>
 </head>
-<body onload="changeActive()">
+<body {% if messageSent %} onload="loadedSent()" {% else %} onload="changeActive()" {% endif %}>
  <div class="container" style="min-width:200px;max-width:600px;margin-right:auto;margin-left:auto;padding-left:15px;padding-right:15px;">
      {% include 'header.html' %}
     <form method="POST" action="/createmessage/" onsubmit="return validInfo()">
@@ -20,27 +30,45 @@
 
         <h2 class="form-signin-heading">Messenger</h2>
         <table>
-            <tr>
-                <td>From:</td>
-                <td><input type="text" name="from_name" id="from_name">
-            </tr>
+            <!--<tr>-->
+                <!--<td>From:</td>-->
+                <!--<td><input type="text" name="from_name" id="from_name">-->
+            <!--</tr>-->
             <tr>
                 <td>To:</td>
-                <td><input type="text" name="to_name" id="to_name">
+                <td>
+                    <select name="to_name" id="to_name">
+                        {%for user in users%}
+                        <option value="{{user.username}}">{{user.username}}</option>
+                        {%endfor%}
+                    </select>
+                </td>
             <br>
             <tr>
                 <td>Message:</td>
-            <td><textarea type="text" size="50" name="message_content" autofocus="autofocus" id="message_content"></textarea>
+            <td><textarea type="text" size="50" name="message_content" autofocus="autofocus" id="message_content"></textarea></td>
 
             </tr>
             </br>
+            <tr>
+                <td>
+                    Encrypt Message?
+                </td>
+                <td>
+                    <select name="to_encrypt" id="to_encrypt">
+                        <option value="no">No &nbsp&nbsp</option>
+                        <option value="yes">Yes &nbsp&nbsp</option>
+                    </select>
+                </td>
+            </tr>
 
         </table>
         <br><input type="submit" class="btn btn-success" name ="submit"></br>
-        <br><a type="button" class = "btn btn-primary" href="http://fintech-s17-team20.herokuapp.com/viewmessages/">View Messages</a></br>
+        <br><a type="button" class = "btn btn-primary" href="http://localhost:8000/viewmessages/">View Messages</a></br>
     </form>
 
   </div>
+
 
 </body>
 </html>

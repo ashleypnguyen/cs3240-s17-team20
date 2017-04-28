@@ -54,14 +54,14 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="http://fintech-s17-team20.herokuapp.com/base">Home</a></li>
-            <li><a href="http://fintech-s17-team20.herokuapp.com/userSignup/">User Signup</a></li>
-            <li><a href="http://fintech-s17-team20.herokuapp.com/groupHome/">Group Signup</a></li>
-            <li><a href="http://fintech-s17-team20.herokuapp.com/uploadReport/">Upload Report</a></li>
-            <li><a href="http://fintech-s17-team20.herokuapp.com/showReport/">View Reports</a></li>
-            <li><a href="http://fintech-s17-team20.herokuapp.com/createmessage/">Messenger</a></li>
-            <li><a href="#notYetImplemented">Encrypt/Decrypt</a></li>
-            {% if user.username != "" %} <li><a href="http://fintech-s17-team20.herokuapp.com/logout">Logout</a></li> {% endif %}
+            <li class="active"><a href="http://localhost:8000/base">Home</a></li>
+            <li class="inactive" id="nav-user-signup"><a href="http://localhost:8000/userSignup/">User Signup</a></li>
+            <li class="inactive" id="nav-group-signup"><a href="http://localhost:8000/groupHome/">Group Signup</a></li>
+            <li class="inactive" id="nav-upload-report"><a href="http://localhost:8000/uploadReport/">Upload Report</a></li>
+            <li class="inactive" id="nav-view-reports"><a href="http://localhost:8000/showReport/">View Reports</a></li>
+            {% if user.username != "" %}<li class="inactive" id="nav-message"><a href="http://localhost:8000/createmessage/">Messenger ({{num_Messages}})</a></li>{% endif %}
+            <li class="inactive" id="ED"><a href="#notYetImplemented">Encrypt/Decrypt</a></li>
+            {% if user.username != "" %} <li><a href="http://localhost:8000/logout">Logout</a></li> {% endif %}
             <li><a style="pointer-events: none; cursor: default">{{user.username}}</a></li>
             <!--
             <li class="dropdown">
@@ -93,17 +93,22 @@
 
       <!-- Main component for a primary marketing message or call to action -->
       <div class="jumbotron">
+        <center>
         <h1>Welcome To Lokahi Fintech!</h1>
         <p>If you are already a member please sign-in below or if you are unregistered please use the link above to signup. Or if you would like to remain a guest feel free to use our encryption/decryption services without needing to signup.</p>
-        <p>
+      </center>
+      <br>
           <!--<a class="btn btn-lg btn-primary" href="../../components/#navbar" role="button">View navbar docs &raquo;</a> -->
         {% if user.username == "" %}
+        <center>
           <form method="post" action="/base/">
             {% csrf_token %}
-            <input type="text" placeholder="Username" id="username" name="username">
+            <input type="text" placeholder="Username" id="username" name="username" >
+
             <input type="password" placeholder="Password" id="pass" name="pass">
-            <input type="submit" id="submit" value="Submit">
+            <input type="submit" class="btn btn-primary btn-lg" id="submit" value="Sign In">
           </form>
+        </center>
         </p>
         {%else%}
         <p>Logged in as: {{user.username}}</p>

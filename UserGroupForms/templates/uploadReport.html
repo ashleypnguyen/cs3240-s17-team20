@@ -3,54 +3,54 @@
     <head>
     <meta charset="UTF-8">
     <title>Report Upload</title>
-    <!-- <script language="JavaScript">
-	function validInfo() {
-			var report_file_name = document.getElementById("report_file_name").value;
-			var report_file = document.getElementById("report_file").value;
-			var company_name = document.getElementById("company_name").value;
-			var company_location = document.getElementById("company_location").value;
-			var company_country = document.getElementById("company_country").value;
-			var current_projects = document.getElementById("current_projects").value;
-			var errorMessage = "";
-			var errors = 0;
-			if (report_file_name == ""){
-			    errorMessage += "Please enter the name you'd like your file to be saved under. ";
-				errors++;
-			}
-
-			if (report_file == ""){
-			    errorMessage += "Please choose a file to upload. ";
-				errors++;
-			}
-
-			//we may need to add something that checks the database to see if the username is already taken
-			if (company_name == ""){
-			    errorMessage += "Please enter your company's name. ";
-				errors += 1;
-            }
-
-            if (company_location == ""){
-			    errorMessage += "Please enter your company's street address. ";
-				errors++;
-            }
-
-            if (company_country == ""){
-                errorMessage += "Please enter the country that your company is located in. ";
-                errors++;
-			}
-
-			if (current_projects == ""){
-                errorMessage += "Please enter the country that your company is located in. ";
-                errors++;
-			}
-
-			if (errors > 0){
-			    alert(errorMessage);
-				return false;
-			} else {
-			    return true;
-			}
-        }
+     <script language="JavaScript">
+//	function validInfo() {
+//			var report_file_name = document.getElementById("report_file_name").value;
+//			var report_file = document.getElementById("report_file").value;
+//			var company_name = document.getElementById("company_name").value;
+//			var company_location = document.getElementById("company_location").value;
+//			var company_country = document.getElementById("company_country").value;
+//			var current_projects = document.getElementById("current_projects").value;
+//			var errorMessage = "";
+//			var errors = 0;
+//			if (report_file_name == ""){
+//			    errorMessage += "Please enter the name you'd like your file to be saved under. ";
+//				errors++;
+//			}
+//
+//			if (report_file == ""){
+//			    errorMessage += "Please choose a file to upload. ";
+//				errors++;
+//			}
+//
+//			//we may need to add something that checks the database to see if the username is already taken
+//			if (company_name == ""){
+//			    errorMessage += "Please enter your company's name. ";
+//				errors += 1;
+//            }
+//
+//            if (company_location == ""){
+//			    errorMessage += "Please enter your company's street address. ";
+//				errors++;
+//            }
+//
+//            if (company_country == ""){
+//                errorMessage += "Please enter the country that your company is located in. ";
+//                errors++;
+//			}
+//
+//			if (current_projects == ""){
+//                errorMessage += "Please enter the country that your company is located in. ";
+//                errors++;
+//			}
+//
+//			if (errors > 0){
+//			    alert(errorMessage);
+//				return false;
+////			} else {
+////			    return true;
+////			}
+//        }
 
 
 
@@ -62,7 +62,7 @@
         }
 
 
-	</script> -->
+	</script>
     </head>
 <body onload="changeActive()">
 
@@ -75,9 +75,11 @@
         <h2 class="form-signin-heading">Upload Report</h2>
 
             {{report_form.as_p}}
+
+            <input type ="file" name="htmlFile" multiple="multiple"/>
           </div>
 
-          <input type ="submit" name="submit" value="Upload"/>
+          <input type ="submit" class="btn btn-success" name="submit" value="Upload"/>
 
           </form>
           <p><a href="base.html"> Base</a></p>

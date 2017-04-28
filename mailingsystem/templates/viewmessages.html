@@ -13,29 +13,40 @@
         }
     </script>
 </head>
-<body>
-<div class="container" style="min-width:200px;max-width:600px;margin-right:auto;margin-left:auto;padding-left:15px;padding-right:15px;">
+
   <body onload="changeActive()">
+  <div class="container" style="min-width:200px;max-width:600px;margin-right:auto;margin-left:auto;padding-left:15px;padding-right:15px;">
 
   {% include 'header.html' %}
     <h2 class="form-signin-heading">View Messages</h2>
+  <h3>Received Messages</h3>
     <form method = "POST" action="/deletemessages/" >
 
     {% csrf_token %}
 {% for Message in messages %}
-
-<br><header> From: {{Message.sender}} </header>
-<header> To: {{Message.recipient}}</header>
-<text> Message: {{Message.messagebody}}</text>
-<input type="checkbox" name="deletebox" value={{Message.messagebody}}> Delete </br>
-    {% endfor %}
+    {%if Message.recipient == user.username%}
+        <br><header> From: {{Message.sender}} </header>
+        <header> To: {{Message.recipient}}</header>
+        <text> Message: {{Message.messagebody}}</text>
+        <input type="checkbox" name="deletebox" value="{{Message.messagebody}}"> Delete </br>
+    {% endif %}
+{% endfor %}
 
     <br>
     <br>
 
     <input type = "submit" class="btn btn-danger" value="Delete" name = "submit" >
 </form>
-</div>
 
-</body>
+  <h3>Sent Messages</h3>
+  {% for Message in messages %}
+    {%if Message.sender == user.username%}
+        <br><header> From: {{Message.sender}} </header>
+        <header> To: {{Message.recipient}}</header>
+        <text> Message: {{Message.messagebody}}</text>
+  </br>
+    {% endif %}
+{% endfor %}
+  </div>
+  </body>
 </html>
