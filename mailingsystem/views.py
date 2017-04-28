@@ -78,4 +78,3 @@ def deleteMessage(request):
 
     else:
         return render(request, 'viewmessages.html', {'messages': messages})
-

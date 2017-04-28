@@ -6,6 +6,7 @@ from django.template import loader
 from .forms import ReportForm
 from .models import User, Group
 from .models import Report
+from .models import File
 #from .models import Group
 from .forms import UserForm, UserProfileForm, createGroupForm
 from django.forms.models import model_to_dict
@@ -32,39 +33,75 @@ def confirmUser(request):
     return render(request, 'confirmUser.html')
 
 def uploadReport(request):
-    # user_name = request.user
-    # UserProfile = user.userprofile
+    report_form = ReportForm(request.POST, request.FILES)
 
     if request.method == 'POST':
 
-        files = request.FILES.getlist('report_file')
-        report_form = ReportForm(request.POST, request.FILES)
-
         if report_form.is_valid():
-            r = report_form.save()
+            theReport = Report()
+            theReport.company_name = report_form.cleaned_data.get('company_name')
+            theReport.company_phone = report_form.cleaned_data.get('company_phone')
+            theReport.company_location = report_form.cleaned_data.get('company_location')
+            theReport.company_country = report_form.cleaned_data.get('company_country')
+            theReport.business_type = report_form.cleaned_data.get('business_type')
+            theReport.current_projects = report_form.cleaned_data.get('current_projects')
+            theReport.save()
 
-            for f in files:
-                newFile = multipleFiles(f)
-                newFile.save()
-                r.report_file.add(newFile)
+        for f in request.FILES.getlist('htmlFile'):
+            reportFile = File.objects.create(files = f)
+            #reportFile = File()
+            #theReport.report_file_2.add(reportFile)
+            #reportFile.files = f
+            #reportFile.reportFiles = theReport
+            #reportFile.save()
+            theReport.poodle.add(reportFile)
+        theReport.save()
+        return HttpResponseRedirect("base.html")
+    return render(request, 'uploadReport.html', {'report_form': report_form})
 
-            r.save()
-            return HttpResponse('base.html')
-        #     {
+def showReport(request):
+    allReports = Report.objects.all()
+
+    # for r in allReports:
+    #     listOfReports.append(r)
+    #     for rf in r.reportFiles.all():
+    #         fileList.append(rf)
+
+    return render(request, 'showReport.html', {'allReports': allReports})
+    # reports = Report.objects.all()
+    # if request.user.username != "":
+    #     messages = Message.objects.all()
+    #     count = 0
+    #     for message in messages:
+    #         if message.recipient == request.user.username:
+    #             count += 1
+    # return render(request, 'showReport.html', {'reports': reports, 'num_Messages': count})
+
+        #
+        #     r = report_form.save()
+        #
+        #     for f in files:
+        #         newFile = multipleFiles(f)
+        #         newFile.save()
+        #         r.report_file.add(newFile)
+        #
+        #     r.save()
+        #     return HttpResponse('base.html')
+        # #     {
         #     'report_file_name': form.cleaned_data['report_file_name'],
         #     'company_name': form.cleaned_data['company_name'],
         #     'current_projects': form.cleaned_data['current_projects']
         # }
-
-    else:
-        report_form = ReportForm()
-        if request.user.username != "":
-            messages = Message.objects.all()
-            count = 0
-            for message in messages:
-                if message.recipient == request.user.username:
-                    count+=1
-    return render(request, 'uploadReport.html', {'report_form': report_form, 'num_Messages': count});
+    #
+    # else:
+    #     report_form = ReportForm()
+    #     if request.user.username != "":
+    #         messages = Message.objects.all()
+    #         count = 0
+    #         for message in messages:
+    #             if message.recipient == request.user.username:
+    #                 count+=1
+    # return render(request, 'uploadReport.html', {'report_form': report_form, 'num_Messages': count});
 
 #def viewReport(request)link from upload to report id. ex. http:127.800.000/showReport/viewReport/reportid/1
 
@@ -117,16 +154,6 @@ def loggingOut(request):
 
 def confirmGroup(request):
     return render(request, 'confirmGroup.html')
-
-def showReport(request):
-    reports = Report.objects.all()
-    if request.user.username != "":
-        messages = Message.objects.all()
-        count = 0
-        for message in messages:
-            if message.recipient == request.user.username:
-                count += 1
-    return render(request, 'showReport.html', {'reports': reports, 'num_Messages': count})
 
 def groupHome(request):
     return render(request, 'groupHome.html')

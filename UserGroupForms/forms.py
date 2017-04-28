@@ -24,17 +24,19 @@ class UserProfileForm(forms.ModelForm):
         fields = ('user_type',)
 
 class ReportForm(forms.ModelForm):
-    report_file_name = forms.CharField(required = False)
-    report_file =  forms.FileField(widget=forms.ClearableFileInput(attrs={'multpile':True}),required = False)
-    company_name = forms.CharField(required = False)
-    company_phone = forms.CharField(required = False)
-    company_location = forms.CharField(required = False)
-    company_country = forms.CharField(required = False)
-    business_type = forms.CharField(required = False)
-    current_projects = forms.CharField(required = False)
+    #report_file_name = forms.CharField(required = False)
+    #report_file =  forms.FileField(widget=forms.ClearableFileInput(attrs={'multiple':True}),required = False)
+    # company_name = forms.CharField(required = False)
+    # company_phone = forms.CharField(required = False)
+    # company_location = forms.CharField(required = False)
+    # company_country = forms.CharField(required = False)
+    # business_type = forms.CharField(required = False)
+    # current_projects = forms.CharField(required = False)
+    # poodle = models.ManyToManyField('File', blank = True)
+
     class Meta:
         model = Report
-        fields = ('report_file_name', 'report_file', 'company_name', 'company_phone',
+        fields = ('company_name', 'company_phone',
                   'company_location', 'company_country', 'business_type', 'current_projects', )
 
     # def save(self):

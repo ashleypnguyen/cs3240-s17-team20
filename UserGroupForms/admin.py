@@ -1,6 +1,7 @@
 from django.contrib import admin
-from UserGroupForms.models import UserProfile, Report
+from UserGroupForms.models import *
 
 # Register your models here.
-admin.site.register(UserProfile)
 admin.site.register(Report)
+admin.site.register(UserProfile)
+admin.site.register(File)
