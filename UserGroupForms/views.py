@@ -217,7 +217,6 @@ def user_search(request):
     tag = ""
     if request.method == "POST":
         tag = request.POST.get('tag')
-    context = RequestContext(request)
     result = User.objects.annotate(
         search=SearchVector('first_name', 'last_name', 'username', 'email'),
     ).filter(search=tag).values('first_name', 'last_name', 'username', 'email')
