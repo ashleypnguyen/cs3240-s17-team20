@@ -23,10 +23,9 @@
     <tbody>
 {% for item in searched %}
     <tr>
-        <td>{{item.username}}</td>
-        <td>{{item.first_name}}</td>
-        <td>{{item.last_name}}</td>
-        <td>{{item.email}}</td>
+        {% for i in item %}
+        <td>{{ i }}</td>
+        {% endfor %}
     </tr>
 {% endfor %}
     </tbody>
