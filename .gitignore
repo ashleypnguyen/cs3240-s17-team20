@@ -92,5 +92,5 @@ ENV/
 UserGroupForms/migrations/
 .idea/workspace.xml/
 
-documents/
+
 media/
