@@ -4,7 +4,7 @@ from django.views.decorators.csrf import csrf_exempt
 #from django.core.context_processors import csrf
 from django.template import loader
 from .forms import ReportForm
-from .models import User, Group
+from .models import User, Group, UserProfile
 from .models import Report
 from .models import File
 #from .models import Group
@@ -35,10 +35,16 @@ def confirmUser(request):
 def uploadReport(request):
     report_form = ReportForm(request.POST, request.FILES)
 
+    #if request.user.username != "":
+    user_name = request.user
+    users = UserProfile.objects.all().filter(user=user_name)[0]
+    print(users)
+
     if request.method == 'POST':
 
         if report_form.is_valid():
             theReport = Report()
+            theReport.created_by = users
             theReport.company_name = report_form.cleaned_data.get('company_name')
             theReport.company_phone = report_form.cleaned_data.get('company_phone')
             theReport.company_location = report_form.cleaned_data.get('company_location')
@@ -55,7 +61,11 @@ def uploadReport(request):
     return render(request, 'uploadReport.html', {'report_form': report_form})
 
 def showReport(request):
-    allReports = Report.objects.all()
+    #allReports = Report.objects.all()
+    user_name_2 = request.user
+    user_for_report = UserProfile.objects.all().filter(user=user_name_2)[0]
+    allReports = Report.objects.all().filter(created_by=user_for_report)
+
 
     # for r in allReports:
     #     listOfReports.append(r)
@@ -162,11 +172,22 @@ def register(request):
     if request.method == 'POST':
         user_form = UserForm(data=request.POST)
         profile_form = UserProfileForm(data=request.POST)
+
         if user_form.is_valid() and profile_form.is_valid():
             # Save the user's form data to the database.
+
             user = user_form.save()
             user.set_password(user.password)
             user.save()
+            #
+            # diffUser = User.objects.create_user(username, password=password)
+
+            newProfile=UserProfile()
+
+            newProfile.user=user
+            print(user)
+            #newProfile.user_type = False
+            newProfile.save()
 
 
             # Now we hash the password with the set_password method.
@@ -228,3 +249,11 @@ def user_login(request):
         # No context variables to pass to the template system, hence the
         # blank dictionary object...
         return render_to_response('login.html', {}, context)
+
+
+def my_user(request):
+    user = None
+    if request.user.is_authenticated():
+        user = request.user
+
+    return CustomUser.objects.all().filter(user=user)[0]

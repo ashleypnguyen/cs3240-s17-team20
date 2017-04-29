@@ -16,6 +16,7 @@ class UserProfile(models.Model):
 
 class Report(models.Model):
     time_created = models.DateTimeField(auto_now_add=True)
+    created_by = models.ForeignKey(UserProfile, on_delete=models.CASCADE, default=1)
     #report_file_name = models.CharField(max_length = 20, blank = True)
     company_name = models.CharField(max_length = 50, blank = True )
     company_phone = models.CharField(max_length=11, blank = True)
@@ -32,5 +33,3 @@ class File(models.Model):
     files = models.FileField(upload_to= 'documents/%Y/%m/%d/', blank = True, null = True)
     #file_url = models.CharField(max_length = 100, blank = True)
     report_for_file = models.ForeignKey(Report, related_name="reportFiles", blank = True,  null = True)
-
-

@@ -73,13 +73,13 @@ input[type=text]:focus {
     <div class="d-flex w-100 justify-content-between">
       <h6 class="mb-1"></h6>
     </div>
-    <p class="mb-1">{{r.company_name}}</p>
-          <p class="mb-1">{{r.company_location}}</p>
-          <p class="mb-1">{{r.company_country}}</p>
-      <p class="mb-1">{{r.company_phone}}</p>
-        <small>{{r.current_projects}}</small>
+        <b>Company Name:     </b>  <strong class="mb-1">{{r.company_name}} </strong> <br>
+        <b>Company Location: </b>  <strong class="mb-1">{{r.company_location}}</strong> <br>
+        <b>Company Country:  </b>  <strong class="mb-1">{{r.company_country}}</strong> <br>
+        <b>Company Phone:    </b>  <strong class="mb-1">{{r.company_phone}}</strong> <br>
+        <b>Current Projects: </b>  <small>{{r.current_projects}}</small> <br>
       {% endfor %}
-      {% endfor %}
+    {% endfor %}
   </div>
 </div>
         </table>
