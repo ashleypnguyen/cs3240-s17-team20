@@ -5,18 +5,18 @@ from django_countries.fields import CountryField
 
 # Validate form objects and print error message to template
 class UserProfile(models.Model):
-    COMPANY = 'COMP'
-    INVESTOR = 'INVE'
-    USER_TYPE_CHOICES = (
-        (COMPANY, 'Company'),
-        (INVESTOR, 'Investor'),
-       )
+    # COMPANY = 'COMP'
+    # INVESTOR = 'INVE'
+    # USER_TYPE_CHOICES = (
+    #     (COMPANY, 'Company'),
+    #     (INVESTOR, 'Investor'),
+    #    )
     user = models.OneToOneField(User)
-    user_type = models.CharField(
-        max_length=20,
-        choices=USER_TYPE_CHOICES,
-    )
-    #user_type = models.BooleanField(default=False) #user is either admin or not
+    # user_type = models.CharField(
+    #     max_length=20,
+    #     choices=USER_TYPE_CHOICES,
+    # )
+    user_type = models.BooleanField(default=False) #user is either admin or not
 
     def __unicode__(self):
         return self.user.username
