@@ -17,17 +17,17 @@
 <body onload="changeActive()">
 {% include 'header.html' %}
 
-
-<form method="post" action="/getdata/">
-  {% csrf_token %}
+<form  method="POST" action="/showReport/" onsubmit="return validInfo()">
+<!-- <form method="post" action="/getdata/">
+  {% csrf_token %} -->
       <div class="container">
         <div class="text-center"><h1 class="page-header">View reports</h1></div>
           <form class="text-center">
 
               <!--SEARCH BAR -->
-  	<style>
+<style>
 input[type=text] {
-    width: 130px;
+    width: 250px;
     box-sizing: border-box;
     border: 2px solid #ccc;
     border-radius: 4px;
@@ -48,16 +48,32 @@ input[type=text]:focus {
 </head>
 <body>
 
-<h6><i>Search by Company Name</i></h6>
+<div>
+<h4>Search Here:</h4>
 
-<form>
-  <input type="text" name="search" placeholder="Search..">
+<!-- <form  method="POST" action="/showReport/" onsubmit="return validInfo()"> -->
+  <input type="text" name="search_by_company_name" placeholder="Company Name..."> <br>
+  <input type="text" name="search_by_company_location" placeholder="Company Location..."><br>
+  <input type="text" name="search_by_company_country" placeholder="Company Country..."><br>
+  <input type="text" name="search_by_company_phone" placeholder="Company Phone..."><br>
+  <input type="text" name="search_by_business_type" placeholder="Business Type..."><br>
+  <input type="text" name="search_by_current_projects" placeholder="Current Projects..."><br>
+  <div class="col-lg-3">
+  <select class="form-control" name="select_and_or">
+  <option value="and">AND</option>
+  <option value="or">OR</option>
+</select><br>
+</div>
+  <input type ="submit" class="btn btn-success btn-lg" name="submit" value="Search"/>
+
 
     <!--  ################ ADD SEARCH FUNCTIONALITY HERE ############## -->
-</form>
+<!-- </form> -->
+
+</div>
 <!--END SEARCH BAR -->
 
-    </form>
+    <!-- </form> -->
         <br><br>
 
   {% csrf_token %}
@@ -85,5 +101,6 @@ input[type=text]:focus {
         </table>
       </div>
 
+</form>
 </body>
 </html>

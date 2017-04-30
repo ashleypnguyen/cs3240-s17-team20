@@ -15,6 +15,7 @@ from django.template import RequestContext
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
 from mailingsystem.models import Message
+from django.db.models import Q
 
 # Create your views here.
 def viewUser(request, user_id):
@@ -38,7 +39,7 @@ def uploadReport(request):
     #if request.user.username != "":
     user_name = request.user
     users = UserProfile.objects.all().filter(user=user_name)[0]
-    print(users)
+    # print(users)
 
     if request.method == 'POST':
 
@@ -66,6 +67,49 @@ def showReport(request):
     user_for_report = UserProfile.objects.all().filter(user=user_name_2)[0]
     allReports = Report.objects.all().filter(created_by=user_for_report)
 
+    if request.method == 'POST':
+
+        # return HttpResponse("POST WORKS")
+        search_by_company_name = request.POST['search_by_company_name']
+        search_by_company_location = request.POST['search_by_company_location']
+
+        search_by_company_country = request.POST['search_by_company_country']
+        search_by_company_phone = request.POST['search_by_company_phone']
+        search_by_current_projects = request.POST['search_by_current_projects']
+        search_by_business_type = request.POST['search_by_business_type']
+        select_and_or = request.POST['select_and_or']
+
+        # return HttpResponse("IT WORKS")
+        if(select_and_or=='and'):
+            if(search_by_company_name and not search_by_company_name==''):
+                allReports=allReports.filter(company_name = search_by_company_name)
+            if(search_by_company_location and not search_by_company_location==''):
+                allReports=allReports.filter(company_location = search_by_company_location)
+            if(search_by_company_country and not search_by_company_country==''):
+                allReports=allReports.filter(company_country = search_by_company_country)
+            if(search_by_company_phone and not search_by_company_phone==''):
+                allReports=allReports.filter(company_phone = search_by_company_phone)
+            if(search_by_business_type and not search_by_business_type==''):
+                allReports=allReports.filter(business_type = search_by_business_type)
+            if(search_by_current_projects and not search_by_current_projects==''):
+                allReports=allReports.filter(current_projects = search_by_current_projects)
+
+        elif(select_and_or=='or'):
+            query=Q()
+            if(search_by_company_name):
+                query |= Q(company_name=search_by_company_name)
+            if(search_by_company_location):
+                query |= Q(company_location=search_by_company_location)
+            if(search_by_company_country):
+                query |= Q(company_country=search_by_company_country)
+            if(search_by_company_phone):
+                query |= Q(company_phone=search_by_company_phone)
+            if(search_by_business_type):
+                query |= Q(business_type=search_by_business_type)
+            if(search_by_current_projects):
+                query |= Q(current_projects=search_by_current_projects)
+
+            allReports=allReports.filter(query)
 
     # for r in allReports:
     #     listOfReports.append(r)
