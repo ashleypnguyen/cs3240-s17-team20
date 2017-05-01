@@ -396,4 +396,4 @@ def sm(request):
         reports = Report.objects.all()
 
 
-    return render(request, 'search.html', {'reports' : reports})
+    return render(request, 'sitemanager.html', {'reports' : reports})
