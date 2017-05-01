@@ -213,7 +213,8 @@ def base(request):
         password = request.POST['pass']
         user = authenticate(username=username, password=password)
         if user is not None:
-            login(request, user)
+            if user.is_active:
+                login(request, user)
             messages = Message.objects.all()
             count = 0
             for message in messages:
@@ -249,6 +250,7 @@ def register(request):
 
             user = user_form.save()
             user.set_password(user.password)
+            user.is_active = True
             user.save()
             #
             # diffUser = User.objects.create_user(username, password=password)
@@ -346,22 +348,28 @@ def sm(request):
         if request.POST['sm_user'] != None:
             user = User.objects.get(username=request.POST['sm_user'])
             user.has_perm = True
+            user.save()
         if request.POST['new_group'] != None:
-            Group.objects.create(name=request.POST['new_group'])
+            group = Group.objects.create(name=request.POST['new_group'])
+            group.save()
         if request.POST['user_to_group'] != None and request.POST['group_for_user'] != None:
             user = User.objects.get(username=request.POST['user_to_group'])
             group = Group.objects.get(name=request.POST['group_for_user'])
             user.groups.add(group)
+            user.save()
         if request.POST['user_from_group'] != None and request.POST['group_remove_user'] != None:
             user = User.objects.get(username=request.POST['user_from_group'])
             group = Group.objects.get(name=request.POST['group_remove_user'])
             user.groups.remove(group)
+            user.save()
         if request.POST['suspended_user'] != None:
             user = User.objects.get(username=request.POST['suspended_user'])
-            user.username += 'SUSPENDED'
+            user.is_active = False
+            user.save()
         if request.POST['restored_user'] != None:
             user = User.objects.get(username=(request.POST['restored_user'] + 'SUSPENDED'))
-            user.username = User.objects.get(username=(request.POST['restored_user']))
+            user.is_active = True
+            user.save()
         if request.POST['access_reports'] != None:
             user = User.objects.get(username=(request.POST['access_reports']))
             reports = Report.objects.filter(created_by=user)
@@ -392,6 +400,7 @@ def sm(request):
                 report.current_projects = request.POST['new_current_projects']
             if request.POST['change_privacy_status']:
                 report.private = not report.private
+            report.save()
     else:
         reports = Report.objects.all()
 
