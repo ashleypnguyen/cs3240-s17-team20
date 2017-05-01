@@ -91,3 +91,6 @@ ENV/
 #generated files
 UserGroupForms/migrations/
 .idea/workspace.xml/
+
+documents/
+media/

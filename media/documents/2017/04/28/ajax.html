@@ -1,0 +1,33 @@
+<html>
+<head>
+    <script src="jquery-1.6.2.min.js" type="text/javascript"></script>
+    <script src="jquery-ui-1.8.16.custom.min.js" type="text/javascript"></script>
+    <title>Sailor Search</title>
+    <script>
+      $(document).ready(function() {
+      $( "#searchNameinput" ).change(function() {
+
+      $.ajax({
+      url: 'searchSailorName.php',
+      data: {searchName: $( "#searchNameinput" ).val()},
+      success: function(data){
+      $('#searchNameresult').html(data);
+
+      }
+      });
+      });
+
+      });
+      </script>
+</head>
+<body>
+  <h3>Search substring of sname in Sailors Table</h3>
+
+  <input class="xlarge" id="searchNameinput" type="search" size="30" placeholder="Sailor's Name Contains"/>
+
+  <div id="searchNameresult">Search Result</div>
+
+  <br/><br/>
+
+</body>
+</html>

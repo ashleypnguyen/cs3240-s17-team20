@@ -1,13 +1,21 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Congratulations, you have registered</title>
 </head>
-<body>
+<body background="{% static 'img/base2.jpg' %}">
 {% include 'header.html' %}
-<h2>Congratulations, you have registered!</h2>
+<div class="text-center">
+    <h2><font color="white">Congratulations, you have registered!</font></h2>
+</div>
+
  {% csrf_token %}
- <a href="http://fintech-s17-team20.herokuapp.com/admin/"><button>Testing: Click to check admin database</button></a>
+<br><br><br>
+ <div class = "text-center">
+ <a href="http://localhost:8000/base/"><button class="btn btn-success"> Click to continue logging in</button></a>
+</div>
 </body>
 </html>

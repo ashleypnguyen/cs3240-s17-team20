@@ -4,8 +4,9 @@ from django.views.decorators.csrf import csrf_exempt
 #from django.core.context_processors import csrf
 from django.template import loader
 from .forms import ReportForm
-from .models import User, Group
+from .models import User, Group, UserProfile
 from .models import Report
+from .models import File
 #from .models import Group
 from .forms import UserForm, UserProfileForm, createGroupForm
 from django.forms.models import model_to_dict
@@ -13,8 +14,8 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
-from django.contrib.postgres.search import SearchVector
-from django.shortcuts import render
+from mailingsystem.models import Message
+from django.db.models import Q
 
 # Create your views here.
 def viewUser(request, user_id):
@@ -28,69 +29,128 @@ def viewUser(request, user_id):
             user_dict = model_to_dict(theUser)
             return JsonResponse({'status': True, 'resp': user_dict})
 
-# def userSignup(request):
-#     form = UserForm()
-#     is_registered = False
-#
-#     if request.method == "POST":
-#         form = UserForm(data=request.POST)
-#         if form.is_valid():
-#
-#             user = form.save() #will return a user type
-#             user.set_password(user.password) #taking from the form
-#             user.save()
-#             print(user.password)
-#             print(user)
-#             return HttpResponse('/base')
-#
-#     token = {}
-#     token.update(csrf(request))
-#     token['form'] = form
-#
-#     #return render_to_response('userSignup.html', RequestContext(request, token))
-#     return render(request, 'userSignup.html', token)
 
 def confirmUser(request):
     return render(request, 'confirmUser.html')
 
 def uploadReport(request):
-    # user_name = request.user
-    # UserProfile = user.userprofile
+    report_form = ReportForm(request.POST, request.FILES)
+
+    #if request.user.username != "":
+    user_name = request.user
+    users = UserProfile.objects.all().filter(user=user_name)[0]
+    # print(users)
 
     if request.method == 'POST':
 
-        #handle request later
-        # sender = request.POST.get('from_name', '')
-        # recipient = request.POST.get('to_name', '' )
-        # messagebody = request.POST.get('message_content','')
+        if report_form.is_valid():
+            theReport = Report()
+            theReport.created_by = users
+            theReport.company_name = report_form.cleaned_data.get('company_name')
+            theReport.company_phone = report_form.cleaned_data.get('company_phone')
+            theReport.company_location = report_form.cleaned_data.get('company_location')
+            theReport.company_country = report_form.cleaned_data.get('company_country')
+            theReport.business_type = report_form.cleaned_data.get('business_type')
+            theReport.current_projects = report_form.cleaned_data.get('current_projects')
+            theReport.save()
+
+        for f in request.FILES.getlist('htmlFile'):
+            reportFile = File.objects.create(files = f)
+            theReport.poodle.add(reportFile)
+        theReport.save()
+        return HttpResponseRedirect("base.html")
+    return render(request, 'uploadReport.html', {'report_form': report_form})
+
+def showReport(request):
+    #allReports = Report.objects.all()
+    user_name_2 = request.user
+    user_for_report = UserProfile.objects.all().filter(user=user_name_2)[0]
+    allReports = Report.objects.all().filter(created_by=user_for_report)
+
+    if request.method == 'POST':
+
+        # return HttpResponse("POST WORKS")
+        search_by_company_name = request.POST['search_by_company_name']
+        search_by_company_location = request.POST['search_by_company_location']
+
+        search_by_company_country = request.POST['search_by_company_country']
+        search_by_company_phone = request.POST['search_by_company_phone']
+        search_by_current_projects = request.POST['search_by_current_projects']
+        search_by_business_type = request.POST['search_by_business_type']
+        select_and_or = request.POST['select_and_or']
+
+        # return HttpResponse("IT WORKS")
+        if(select_and_or=='and'):
+            if(search_by_company_name and not search_by_company_name==''):
+                allReports=allReports.filter(company_name = search_by_company_name)
+            if(search_by_company_location and not search_by_company_location==''):
+                allReports=allReports.filter(company_location = search_by_company_location)
+            if(search_by_company_country and not search_by_company_country==''):
+                allReports=allReports.filter(company_country = search_by_company_country)
+            if(search_by_company_phone and not search_by_company_phone==''):
+                allReports=allReports.filter(company_phone = search_by_company_phone)
+            if(search_by_business_type and not search_by_business_type==''):
+                allReports=allReports.filter(business_type = search_by_business_type)
+            if(search_by_current_projects and not search_by_current_projects==''):
+                allReports=allReports.filter(current_projects = search_by_current_projects)
+
+        elif(select_and_or=='or'):
+            query=Q()
+            if(search_by_company_name):
+                query |= Q(company_name=search_by_company_name)
+            if(search_by_company_location):
+                query |= Q(company_location=search_by_company_location)
+            if(search_by_company_country):
+                query |= Q(company_country=search_by_company_country)
+            if(search_by_company_phone):
+                query |= Q(company_phone=search_by_company_phone)
+            if(search_by_business_type):
+                query |= Q(business_type=search_by_business_type)
+            if(search_by_current_projects):
+                query |= Q(current_projects=search_by_current_projects)
+
+            allReports=allReports.filter(query)
+
+    # for r in allReports:
+    #     listOfReports.append(r)
+    #     for rf in r.reportFiles.all():
+    #         fileList.append(rf)
+
+    return render(request, 'showReport.html', {'allReports': allReports})
+    # reports = Report.objects.all()
+    # if request.user.username != "":
+    #     messages = Message.objects.all()
+    #     count = 0
+    #     for message in messages:
+    #         if message.recipient == request.user.username:
+    #             count += 1
+    # return render(request, 'showReport.html', {'reports': reports, 'num_Messages': count})
+
         #
-        # messageObj=Message(sender=sender, recipient=recipient, messagebody=messagebody)
+        #     r = report_form.save()
         #
-        # messageObj.save()
-
-        files = request.FILES.getlist('report_file')
-        report_form = ReportForm(request.POST, request.FILES)
-        reports = Report.objects.all()
-
-        if form.is_valid():
-            report = report_form.save()
-
-            for f in files:
-                newFile = multipleFiles(f)
-                newFile.save()
-                report.report_file.add(newFile)
-
-            report.save()
-            return HttpResponse('VALID!')
-        #     {
+        #     for f in files:
+        #         newFile = multipleFiles(f)
+        #         newFile.save()
+        #         r.report_file.add(newFile)
+        #
+        #     r.save()
+        #     return HttpResponse('base.html')
+        # #     {
         #     'report_file_name': form.cleaned_data['report_file_name'],
         #     'company_name': form.cleaned_data['company_name'],
         #     'current_projects': form.cleaned_data['current_projects']
         # }
-
-    else:
-        report_form = ReportForm()
-    return render(request, 'uploadReport.html', {'report_form': report_form});
+    #
+    # else:
+    #     report_form = ReportForm()
+    #     if request.user.username != "":
+    #         messages = Message.objects.all()
+    #         count = 0
+    #         for message in messages:
+    #             if message.recipient == request.user.username:
+    #                 count+=1
+    # return render(request, 'uploadReport.html', {'report_form': report_form, 'num_Messages': count});
 
 #def viewReport(request)link from upload to report id. ex. http:127.800.000/showReport/viewReport/reportid/1
 
@@ -112,14 +172,27 @@ def groupSignup(request):
 
 def base(request):
     if request.method == "GET":
-        return render(request, 'base.html', {'badLogin': 0})
+        if request.user.username != "":
+            messages = Message.objects.all()
+            count = 0
+            for message in messages:
+                if message.recipient == request.user.username:
+                    count+=1
+            return render(request, 'base.html', {'badLogin': 0, 'num_Messages': count})
+        else:
+            return render(request, 'base.html', {'badLogin': 0})
     else:
         username = request.POST['username']
         password = request.POST['pass']
         user = authenticate(username=username, password=password)
         if user is not None:
             login(request, user)
-            return render(request, 'base.html', {'badLogin': 0})
+            messages = Message.objects.all()
+            count = 0
+            for message in messages:
+                if message.recipient == request.user.username:
+                    count += 1
+            return render(request, 'base.html', {'badLogin': 0, 'num_Messages': count})
         else:
             return render(request, 'base.html', {'badLogin': 1})
 
@@ -130,9 +203,6 @@ def loggingOut(request):
 
 def confirmGroup(request):
     return render(request, 'confirmGroup.html')
-
-def showReport(request):
-    return render(request, 'showReport.html')
 
 def groupHome(request):
     return render(request, 'groupHome.html')
@@ -146,11 +216,22 @@ def register(request):
     if request.method == 'POST':
         user_form = UserForm(data=request.POST)
         profile_form = UserProfileForm(data=request.POST)
+
         if user_form.is_valid() and profile_form.is_valid():
             # Save the user's form data to the database.
+
             user = user_form.save()
             user.set_password(user.password)
             user.save()
+            #
+            # diffUser = User.objects.create_user(username, password=password)
+
+            newProfile=UserProfile()
+
+            newProfile.user=user
+            print(user)
+            #newProfile.user_type = False
+            newProfile.save()
 
 
             # Now we hash the password with the set_password method.
@@ -213,11 +294,10 @@ def user_login(request):
         # blank dictionary object...
         return render_to_response('login.html', {}, context)
 
-def user_search(request):
-    tag = ""
-    if request.method == "POST":
-        tag = request.POST.get('tag')
-    searched = User.objects.annotate(
-        search=SearchVector('first_name', 'last_name', 'username', 'email'),
-    ).filter(search=tag).values_list('first_name', 'last_name', 'username', 'email')
-    return render(request, "search.html", {'searched' : searched})
+
+def my_user(request):
+    user = None
+    if request.user.is_authenticated():
+        user = request.user
+
+    return CustomUser.objects.all().filter(user=user)[0]
