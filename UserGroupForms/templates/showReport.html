@@ -53,9 +53,12 @@ input[type=text]:focus {
 
 <!-- <form  method="POST" action="/showReport/" onsubmit="return validInfo()"> -->
   <input type="text" name="search_by_company_name" placeholder="Company Name..."> <br>
+    <input type="text" name="search_by_ceo_name" placeholder="CEO Name..."> <br>
+      <input type="text" name="search_by_company_phone" placeholder="Company Phone..."><br>
+      <input type="text" name="search_by_company_email" placeholder="Company Email..."><br>
   <input type="text" name="search_by_company_location" placeholder="Company Location..."><br>
   <input type="text" name="search_by_company_country" placeholder="Company Country..."><br>
-  <input type="text" name="search_by_company_phone" placeholder="Company Phone..."><br>
+  <input type="text" name="search_by_sector" placeholder="Sector..."><br>
   <input type="text" name="search_by_business_type" placeholder="Business Type..."><br>
   <input type="text" name="search_by_current_projects" placeholder="Current Projects..."><br>
   <div class="col-lg-3">
@@ -90,10 +93,15 @@ input[type=text]:focus {
       <h6 class="mb-1"></h6>
     </div>
         <b>Company Name:     </b>  <strong class="mb-1">{{r.company_name}} </strong> <br>
+        <b>CEO Name:         </b>  <strong class="mb-1">{{r.ceo_name}} </strong> <br>
+        <b>Company Phone:    </b>  <strong class="mb-1">{{r.company_phone}}</strong> <br>
+        <b>Company Email:    </b>  <strong class="mb-1">{{r.company_email}}</strong> <br>
         <b>Company Location: </b>  <strong class="mb-1">{{r.company_location}}</strong> <br>
         <b>Company Country:  </b>  <strong class="mb-1">{{r.company_country}}</strong> <br>
-        <b>Company Phone:    </b>  <strong class="mb-1">{{r.company_phone}}</strong> <br>
+        <b>Sector:  </b>  <strong class="mb-1">{{r.sector}}</strong> <br>
+        <b>Industry:  </b>  <strong class="mb-1">{{r.business_type}}</strong> <br>
         <b>Current Projects: </b>  <small>{{r.current_projects}}</small> <br>
+        <b>Private:</b>  <small>{{r.private}}</small> <br>
       {% endfor %}
     {% endfor %}
   </div>
