@@ -12,25 +12,14 @@
 
 </form>
 <table>
-    <thead>
-    <tr>
-        <th>Username</th>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>E-mail</th>
-    </tr>
-    </thead>
-    <tbody>
 {% for item in searched %}
-    <tr>
-        <b>{{item.username}}</b>
-        <b>{{item.first_name}}</b>
-        <b>{{item.last_name}}</b>
-        <b>{{item.email}}</b>
-        <br>
-    </tr>
+    <div>
+        <b>Username: </b>{{item.username}}<br>
+        <b>First Name: </b>{{item.first_name}}<br>
+        <b>Last Name: </b>{{item.last_name}}<br>
+        <b>Email: </b>{{item.email}}<br>
+    </div>
 {% endfor %}
-    </tbody>
 </table>
 </body>
 </html>
