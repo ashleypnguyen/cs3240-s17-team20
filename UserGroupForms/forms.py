@@ -49,8 +49,8 @@ class ReportForm(forms.ModelForm):
     #               'company_location', 'company_country', 'business_type', 'current_projects', )
 
 class createGroupForm(forms.ModelForm):
-    Select_Users_To_Add_To_Group = forms.ModelMultipleChoiceField(queryset=User.objects.all())
+    #Select_Users_To_Add_To_Group = forms.ModelMultipleChoiceField(queryset=User.objects.all())
     #depending on company/investor/site manage - see certain users not all()
     class Meta:
         model = Group
-        fields = ('name', 'Select_Users_To_Add_To_Group',)
+        fields = ('name',)

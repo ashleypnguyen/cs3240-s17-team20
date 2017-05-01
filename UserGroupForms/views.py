@@ -193,26 +193,6 @@ def showReport(request):
 
 #def viewReport(request)link from upload to report id. ex. http:127.800.000/showReport/viewReport/reportid/1
 
-def groupSignup(request):
-    messages = Message.objects.all()
-    count = 0
-    for message in messages:
-        if message.recipient == request.user.username:
-            count += 1
-    if request.method == "POST":
-        form = createGroupForm(data=request.POST)
-        if form.is_valid():
-            group = form.save()
-            group.save()
-            return HttpResponseRedirect('/confirmGroup/')
-
-        else:
-            print(form.errors)
-    else:
-        form = createGroupForm()
-        # return HttpResponse("Invalid input")
-        #user.groups.add in views.py
-    return render(request, 'groupSignup.html', {'form': form, 'num_Messages': count})
 
 def base(request):
     if request.method == "GET":
@@ -246,16 +226,54 @@ def loggingOut(request):
     logout(request)
     return render(request, 'base.html', {'badLogin': 0})
 
+############# GROUPS ###############
 def confirmGroup(request):
     return render(request, 'confirmGroup.html')
 
 def groupHome(request):
+    allGroups = Group.objects.all()
+    # user = User.objects.filter(username=request.user).first()
+    # profile = UserProfile.objects.get(user=request.user)
+    # groupList = user.groups.all()
+    # siteManager = UserProfile.objects.get(user_id=request.user.id).siteManager
+    #
+    # if profile.siteManager:
+    #     allGroups = Group.objects.all()
+    #     return render(request, 'groupHome.html',
+    #                   {'groupList': groupList, 'allGroups': allGroups, 'siteManager': siteManager})
+    return render(request, 'groupHome.html', {'allGroups': allGroups})
+
+    ### SOMEONE ELSES STUFF ####
+    # messages = Message.objects.all()
+    # count = 0
+    # for message in messages:
+    #     if message.recipient == request.user.username:
+    #         count += 1
+    # return render(request, 'groupHome.html', {'num_Messages': count})
+
+def groupSignup(request):
     messages = Message.objects.all()
     count = 0
     for message in messages:
         if message.recipient == request.user.username:
             count += 1
-    return render(request, 'groupHome.html', {'num_Messages': count})
+    if request.method == "POST":
+        form = createGroupForm(data=request.POST)
+        if form.is_valid():
+            group = form.save()
+            group.save()
+            return HttpResponseRedirect('/confirmGroup/')
+
+        else:
+            print(form.errors)
+    else:
+        form = createGroupForm()
+        # return HttpResponse("Invalid input")
+        #user.groups.add in views.py
+    return render(request, 'groupSignup.html', {'form': form, 'num_Messages': count})
+
+def groupLogin(request):
+    return render(request, 'groupLogin.html')
 
 def addUserToGroup(request, group_pk):
    if request.method == 'POST':
@@ -284,8 +302,20 @@ def addUserToGroup(request, group_pk):
            return render(request, 'groupHome.html',
                          {'allGroups': allGroups, 'message': "Added successfully."})
 
-def groupLogin(request):
-    return render(request, 'groupLogin.html')
+
+def deleteUserFromGroup(request, group_pk):
+   allGroups = Group.objects.all()
+   user = request.user
+   group = Group.objects.filter(id=group_pk)[0]
+
+   if not(user.groups.filter(id=group_pk).exists()):
+       return render(request, 'groupHome.html',
+                     {'allGroups': allGroups, 'message': "User does not belong to group, cannot remove."})
+
+   group.user_set.remove(request.user)
+   return render(request, 'groupHome.html',
+                 {'allGroups': allGroups, 'message': "Removed successfully."})
+
 
 def register(request):
     #context = RequestContext(request)
