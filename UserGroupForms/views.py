@@ -351,8 +351,7 @@ def my_user(request):
     if request.user.is_authenticated():
         user = request.user
 
-   return CustomUser.objects.all().filter(user=user)[0]
-    return CustomUser.objects.all().filter(user=user)[0]
+    return CustomUser.objects.get(username=user)
 
 def user_search(request):
     tag = ""
