@@ -17,6 +17,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from mailingsystem.models import Message
 from django.db.models import Q
 from django.contrib.postgres.search import SearchVector
+import requests
 
 # Create your views here.
 def viewUser(request, user_id):
@@ -350,6 +351,7 @@ def my_user(request):
     if request.user.is_authenticated():
         user = request.user
 
+   return CustomUser.objects.all().filter(user=user)[0]
     return CustomUser.objects.all().filter(user=user)[0]
 
 def user_search(request):
