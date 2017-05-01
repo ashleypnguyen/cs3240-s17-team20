@@ -14,10 +14,10 @@
 <table>
 {% for item in searched %}
     <div>
-        <b>Username: </b>{{item.username}}<br>
-        <b>First Name: </b>{{item.first_name}}<br>
-        <b>Last Name: </b>{{item.last_name}}<br>
-        <b>Email: </b>{{item.email}}<br>
+        <b>Username: </b><strong class="mb-1">{{item.username}}</strong><br>
+        <b>First Name: </b><strong class="mb-1">{{item.first_name}}</strong><br>
+        <b>Last Name: </b><strong class="mb-1">{{item.last_name}}</strong><br>
+        <b>Email: </b><strong class="mb-1">{{item.email}}</strong><br>
     </div>
 {% endfor %}
 </table>
