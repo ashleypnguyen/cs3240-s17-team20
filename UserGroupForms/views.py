@@ -308,6 +308,6 @@ def user_search(request):
     if request.method == 'POST':
         tag = request['tag']
     searched = User.objects.annotate(
-        search = SearchVector('blog__tagline', 'body_text'),
+        search = SearchVector('username', 'first_name', 'last_name', 'email'),
     ).filter(search=tag).values_list('username', 'first_name', 'last_name', 'email')
     return render(request,'search.hmtl', {'searched' : searched})
