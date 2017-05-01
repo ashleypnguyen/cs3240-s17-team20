@@ -394,58 +394,58 @@ def user_search(request):
 
 def sm(request):
     if request.method == "POST":
-        if request.POST['sm_user'] != None:
+        if request.POST['sm_user'] != "":
             user = User.objects.get(username=request.POST['sm_user'])
             user.is_staff = True
             user.save()
-        if request.POST['new_group'] != None:
+        if request.POST['new_group'] != "":
             group = Group.objects.create(name=request.POST['new_group'])
             group.save()
-        if request.POST['user_to_group'] != None and request.POST['group_for_user'] != None:
+        if request.POST['user_to_group'] != "" and request.POST['group_for_user'] != "":
             user = User.objects.get(username=request.POST['user_to_group'])
             group = Group.objects.get(name=request.POST['group_for_user'])
             user.groups.add(group)
             user.save()
-        if request.POST['user_from_group'] != None and request.POST['group_remove_user'] != None:
+        if request.POST['user_from_group'] != "" and request.POST['group_remove_user'] != "":
             user = User.objects.get(username=request.POST['user_from_group'])
             group = Group.objects.get(name=request.POST['group_remove_user'])
             user.groups.remove(group)
             user.save()
-        if request.POST['suspended_user'] != None:
+        if request.POST['suspended_user'] != "":
             user = User.objects.get(username=request.POST['suspended_user'])
             user.is_active = False
             user.save()
-        if request.POST['restored_user'] != None:
+        if request.POST['restored_user'] != "":
             user = User.objects.get(username=(request.POST['restored_user'] + 'SUSPENDED'))
             user.is_active = True
             user.save()
-        if request.POST['access_reports'] != None:
+        if request.POST['access_reports'] != "":
             user = User.objects.get(username=(request.POST['access_reports']))
             reports = Report.objects.filter(created_by=user)
         else:
             reports = Report.objects.all()
-        if request.POST['delete_report'] != None:
+        if request.POST['delete_report'] != "":
             report = Report.objects.get(company_name=request.POST['delete_report'])
             report.delete()
-        if request.POST['old_company_name'] != None:
+        if request.POST['old_company_name'] != "":
             report = Report.objects.get(company_name=request.POST['old_company'])
-            if request.POST['new_company_name'] != None:
+            if request.POST['new_company_name'] != "":
                 report.company_name = request.POST['new_company_name']
-            if request.POST['new_ceo_name'] != None:
+            if request.POST['new_ceo_name'] != "":
                 report.ceo_name = request.POST['new_ceo_name']
-            if request.POST['new_company_phone'] != None:
+            if request.POST['new_company_phone'] != "":
                 report.company_phone = request.POST['new_company_phone']
-            if request.POST['new_company_email'] != None:
+            if request.POST['new_company_email'] != "":
                 report.company_email = request.POST['new_company_email']
-            if request.POST['new_company_location'] != None:
+            if request.POST['new_company_location'] != "":
                 report.company_location = request.POST['new_company_location']
-            if request.POST['new_company_country'] != None:
+            if request.POST['new_company_country'] != "":
                 report.company_country = request.POST['new_company_country']
-            if request.POST['new_sector'] != None:
+            if request.POST['new_sector'] != "":
                 report.sector = request.POST['new_sector']
-            if request.POST['new_business_type'] != None:
+            if request.POST['new_business_type'] != "":
                 report.business_type = request.POST['new_business_type']
-            if request.POST['new_current_projects'] != None:
+            if request.POST['new_current_projects'] != "":
                 report.current_projects = request.POST['new_current_projects']
             if request.POST['change_privacy_status']:
                 report.private = not report.private
