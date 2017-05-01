@@ -42,6 +42,12 @@ def uploadReport(request):
     users = UserProfile.objects.all().filter(user=user_name).first()
     # print(users)
 
+    messages = Message.objects.all()
+    count = 0
+    for message in messages:
+        if message.recipient == request.user.username:
+            count += 1
+
     if request.method == 'POST':
 
         if report_form.is_valid():
@@ -64,13 +70,18 @@ def uploadReport(request):
             theReport.poodle.add(reportFile)
         theReport.save()
         return HttpResponseRedirect("base.html")
-    return render(request, 'uploadReport.html', {'report_form': report_form})
+    return render(request, 'uploadReport.html', {'report_form': report_form, 'num_Messages': count})
 
 def showReport(request):
     #allReports = Report.objects.all()
     user_name_2 = request.user
     user_for_report = UserProfile.objects.all().filter(user=user_name_2).first()
     allReports = Report.objects.all().filter(created_by=user_for_report)
+    messages = Message.objects.all()
+    count = 0
+    for message in messages:
+        if message.recipient == request.user.username:
+            count += 1
 
     if request.method == 'POST':
 
@@ -143,7 +154,7 @@ def showReport(request):
     #     for rf in r.reportFiles.all():
     #         fileList.append(rf)
 
-    return render(request, 'showReport.html', {'allReports': allReports})
+    return render(request, 'showReport.html', {'allReports': allReports, 'num_Messages': count})
     # reports = Report.objects.all()
     # if request.user.username != "":
     #     messages = Message.objects.all()
@@ -182,6 +193,11 @@ def showReport(request):
 #def viewReport(request)link from upload to report id. ex. http:127.800.000/showReport/viewReport/reportid/1
 
 def groupSignup(request):
+    messages = Message.objects.all()
+    count = 0
+    for message in messages:
+        if message.recipient == request.user.username:
+            count += 1
     if request.method == "POST":
         form = createGroupForm(data=request.POST)
         if form.is_valid():
@@ -195,7 +211,7 @@ def groupSignup(request):
         form = createGroupForm()
         # return HttpResponse("Invalid input")
         #user.groups.add in views.py
-    return render(request, 'groupSignup.html', {'form': form})
+    return render(request, 'groupSignup.html', {'form': form, 'num_Messages': count})
 
 def base(request):
     if request.method == "GET":
@@ -233,7 +249,12 @@ def confirmGroup(request):
     return render(request, 'confirmGroup.html')
 
 def groupHome(request):
-    return render(request, 'groupHome.html')
+    messages = Message.objects.all()
+    count = 0
+    for message in messages:
+        if message.recipient == request.user.username:
+            count += 1
+    return render(request, 'groupHome.html', {'num_Messages': count})
 
 def groupLogin(request):
     return render(request, 'groupLogin.html')
