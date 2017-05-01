@@ -44,8 +44,7 @@ INSTALLED_APPS = (
     'django.contrib.postgres',
     'UserGroupForms',
     'mailingsystem',
-    # 'django_countries',
-    'countries',
+    'django_countries',
 )
 
 MIDDLEWARE_CLASSES = (
