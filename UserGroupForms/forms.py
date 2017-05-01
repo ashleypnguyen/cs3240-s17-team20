@@ -38,8 +38,8 @@ class ReportForm(forms.ModelForm):
 
     class Meta:
         model = Report
-        fields = ('company_name', 'company_phone',
-                  'company_location', 'company_country', 'business_type', 'current_projects', )
+        fields = ('company_name', 'ceo_name', 'company_phone', 'company_email',
+                  'company_location', 'company_country', 'sector', 'business_type', 'current_projects', 'private', )
 
     # def save(self):
     #     Report.objects.create(report_file_name="Bill")

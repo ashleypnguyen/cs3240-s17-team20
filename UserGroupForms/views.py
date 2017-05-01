@@ -38,7 +38,7 @@ def uploadReport(request):
 
     #if request.user.username != "":
     user_name = request.user
-    users = UserProfile.objects.all().filter(user=user_name)[0]
+    users = UserProfile.objects.all().filter(user=user_name).first()
     # print(users)
 
     if request.method == 'POST':
@@ -47,11 +47,15 @@ def uploadReport(request):
             theReport = Report()
             theReport.created_by = users
             theReport.company_name = report_form.cleaned_data.get('company_name')
+            theReport.ceo_name = report_form.cleaned_data.get('ceo_name')
             theReport.company_phone = report_form.cleaned_data.get('company_phone')
+            theReport.company_email = report_form.cleaned_data.get('company_email')
             theReport.company_location = report_form.cleaned_data.get('company_location')
             theReport.company_country = report_form.cleaned_data.get('company_country')
+            theReport.sector = report_form.cleaned_data.get('sector')
             theReport.business_type = report_form.cleaned_data.get('business_type')
             theReport.current_projects = report_form.cleaned_data.get('current_projects')
+            theReport.private = report_form.cleaned_data.get('private')
             theReport.save()
 
         for f in request.FILES.getlist('htmlFile'):
@@ -64,33 +68,49 @@ def uploadReport(request):
 def showReport(request):
     #allReports = Report.objects.all()
     user_name_2 = request.user
-    user_for_report = UserProfile.objects.all().filter(user=user_name_2)[0]
+    user_for_report = UserProfile.objects.all().filter(user=user_name_2).first()
     allReports = Report.objects.all().filter(created_by=user_for_report)
 
     if request.method == 'POST':
 
         # return HttpResponse("POST WORKS")
         search_by_company_name = request.POST['search_by_company_name']
-        search_by_company_location = request.POST['search_by_company_location']
-
-        search_by_company_country = request.POST['search_by_company_country']
+        search_by_ceo_name = request.POST['search_by_ceo_name']
         search_by_company_phone = request.POST['search_by_company_phone']
-        search_by_current_projects = request.POST['search_by_current_projects']
+        search_by_company_email = request.POST['search_by_company_email']
+        search_by_company_location = request.POST['search_by_company_location']
+        search_by_company_country = request.POST['search_by_company_country']
+        search_by_sector = request.POST['search_by_sector']
         search_by_business_type = request.POST['search_by_business_type']
+        search_by_current_projects = request.POST['search_by_current_projects']
         select_and_or = request.POST['select_and_or']
 
         # return HttpResponse("IT WORKS")
         if(select_and_or=='and'):
             if(search_by_company_name and not search_by_company_name==''):
                 allReports=allReports.filter(company_name = search_by_company_name)
+
+            if (search_by_ceo_name and not search_by_ceo_name == ''):
+                allReports = allReports.filter(ceo_name=search_by_ceo_name)
+
+            if (search_by_company_phone and not search_by_company_phone == ''):
+                allReports = allReports.filter(company_phone=search_by_company_phone)
+
+            if (search_by_company_email and not search_by_company_email == ''):
+                allReports = allReports.filter(company_phone=search_by_company_email)
+
             if(search_by_company_location and not search_by_company_location==''):
                 allReports=allReports.filter(company_location = search_by_company_location)
+
             if(search_by_company_country and not search_by_company_country==''):
                 allReports=allReports.filter(company_country = search_by_company_country)
-            if(search_by_company_phone and not search_by_company_phone==''):
-                allReports=allReports.filter(company_phone = search_by_company_phone)
+
+            if (search_by_sector and not search_by_sector == ''):
+                allReports = allReports.filter(business_type=search_by_sector)
+
             if(search_by_business_type and not search_by_business_type==''):
                 allReports=allReports.filter(business_type = search_by_business_type)
+
             if(search_by_current_projects and not search_by_current_projects==''):
                 allReports=allReports.filter(current_projects = search_by_current_projects)
 
@@ -98,12 +118,18 @@ def showReport(request):
             query=Q()
             if(search_by_company_name):
                 query |= Q(company_name=search_by_company_name)
+            if (search_by_ceo_name):
+                query |= Q(company_name=search_by_ceo_name)
+            if (search_by_company_phone):
+                query |= Q(company_phone=search_by_company_phone)
+            if (search_by_company_email):
+                query |= Q(company_phone=search_by_company_email)
             if(search_by_company_location):
                 query |= Q(company_location=search_by_company_location)
             if(search_by_company_country):
                 query |= Q(company_country=search_by_company_country)
-            if(search_by_company_phone):
-                query |= Q(company_phone=search_by_company_phone)
+            if (search_by_sector):
+                query |= Q(company_phone=search_by_sector)
             if(search_by_business_type):
                 query |= Q(business_type=search_by_business_type)
             if(search_by_current_projects):
