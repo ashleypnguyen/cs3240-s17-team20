@@ -35,6 +35,7 @@ class UserProfile(models.Model):
     #username, password, email, is active/online
 
 
+
 class Report(models.Model):
     time_created = models.DateTimeField(auto_now_add=True)
     created_by = models.ForeignKey(UserProfile, on_delete=models.CASCADE, default=1, null = True)

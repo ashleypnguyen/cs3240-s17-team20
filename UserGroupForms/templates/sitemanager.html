@@ -6,7 +6,7 @@
     <title>Lokahi FinTech</title>
 </head>
 <body>
-{% if user.hasperm %}
+{% if user.has_perm %}
     <form class="form-wrapper cf", method="POST", action="/sitemanager/">
         {% csrf_token %}
         <b>Give User SM status</b>
