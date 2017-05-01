@@ -64,9 +64,16 @@ def deleteMessage(request):
     messages = Message.objects.all()
 
     if request.method == 'POST':
+        count = 0
+        enc_messages = request.POST.getlist('decryptbox')
+        for enc_text in enc_messages:
+            message = messages.filter(messagebody=enc_text)[0]
+            message.messagebody = decrypt_val(enc_text)
+            message.encrypted = False
+            message.save()
 
         checkbox = request.POST.getlist('deletebox')
-        count = 0
+
         for messagebody in checkbox:
             messages.filter(messagebody=messagebody).delete()
 

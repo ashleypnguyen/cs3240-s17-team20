@@ -16,5 +16,8 @@ def encrypt_val(clear_text):
 def decrypt_val(cipher_text):
     dec_secret = AES.new(MASTER_KEY[:32])
     raw_decrypted = dec_secret.decrypt(base64.b64decode(cipher_text))
-    clear_val = raw_decrypted.rstrip("\0")
+    clear_val = raw_decrypted.rstrip(b"\0")
+    clear_val = str(clear_val)
+    clear_val = clear_val[2:]
+    clear_val = clear_val[:-1]
     return clear_val
