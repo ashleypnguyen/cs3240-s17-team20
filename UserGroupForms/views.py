@@ -396,7 +396,7 @@ def sm(request):
     if request.method == "POST":
         if request.POST['sm_user'] != None:
             user = User.objects.get(username=request.POST['sm_user'])
-            user.has_perm = True
+            user.is_staff = True
             user.save()
         if request.POST['new_group'] != None:
             group = Group.objects.create(name=request.POST['new_group'])
