@@ -190,7 +190,7 @@ def base(request):
             messages = Message.objects.all()
             count = 0
             for message in messages:
-                if message.recipient == request.user.username:
+                if message.recipient != None and message.recipient == request.user.username:
                     count += 1
             return render(request, 'base.html', {'badLogin': 0, 'num_Messages': count})
         else:
