@@ -307,7 +307,10 @@ def user_search(request):
     tag = ""
     if request.method == 'POST':
         tag = request.POST['tag']
-    searched = User.objects.annotate(
-        search = SearchVector('username', 'first_name', 'last_name', 'email'),
-    ).filter(search=tag).values_list('username', 'first_name', 'last_name', 'email')
+    query = Q()
+    query |= Q(username__icontains=tag)
+    query |= Q(first_name__icontains=tag)
+    query |= Q(last_name__icontains=tag)
+    query |= Q(email__icontains=tag)
+    searched = User.objects.filter(query).values_list('username', 'first_name', 'last_name', 'email')
     return render(request, 'search.html', {'searched' : searched})
