@@ -17,12 +17,30 @@
 <div class="container" style="min-width:200px;max-width:600px;margin-right:auto;margin-left:auto;padding-left:15px;padding-right:15px;">
   <body onload="changeActive()">
   {% include 'header.html' %}
-    <center>
-    <h2 class="form-signin-heading">Group Registration</h2>
-    <center>
-    <p>Any user can add themselves to a group, you can remove yourself from a group.. (etc. add more info)</p>
-    <a type="submit" class = "btn btn-primary btn-lg" href="http://fintech-s17-team20.herokuapp.com/groupSignup/">Click to Register</a>
+    <h2 class="form-signin-heading"> Group Homepage </h2>
 
+     <p style="color:red"><b>{{ message }}</b></p>
+
+  <table class="table table-hover">
+            <tr>
+              <th class="col-md-8">Group</th>
+              <th class="col-md-2">Add a new user?</th>
+              <th class="col-md-2">Remove yourself?</th>
+            </tr>
+       {% for group in allGroups %}
+      <tr>
+          <td><a href="groupHome/{{ group.name }}"> {{ group.name }}</a></td>
+          <td>
+              <form id="login_form" method="post" action="/addUserToGroup/{{ group.id }}">
+              {% csrf_token %}
+              <input type="text" name="userHtml" class="form-control" placeholder="Username" required style="width: 400px;"><br>
+              </form>
+          </td>
+            <!--<td><input type="checkbox"><a href="/deleteUserFromGroup/{{ group.id }}">REMOVE</a></input></td>-->
+      </tr>
+            {% endfor %}
+  </table>
+      <a type="submit" class = "btn btn-primary btn-lg" href="/groupSignup/">Click to Create a New Group</a>
 </body>
 </div>
 

@@ -16,6 +16,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
 from mailingsystem.models import Message
 from django.db.models import Q
+import requests
 
 # Create your views here.
 def viewUser(request, user_id):
@@ -227,11 +228,53 @@ def loggingOut(request):
     logout(request)
     return render(request, 'base.html', {'badLogin': 0})
 
+############## GROUPS ###################
 def confirmGroup(request):
     return render(request, 'confirmGroup.html')
 
 def groupHome(request):
-    return render(request, 'groupHome.html')
+    allGroups = Group.objects.all()
+    # user = User.objects.filter(username=request.user).first()
+    # profile = UserProfile.objects.get(user=request.user)
+    # groupList = user.groups.all()
+    # siteManager = UserProfile.objects.get(user_id=request.user.id).siteManager
+    #
+    # if profile.siteManager:
+    #     allGroups = Group.objects.all()
+    #     return render(request, 'groupHome.html',
+    #                   {'groupList': groupList, 'allGroups': allGroups, 'siteManager': siteManager})
+    return render(request, 'groupHome.html', {'allGroups': allGroups})
+
+def addUserToGroup(request, group_pk):
+    if request.method == 'POST':
+        user = request.user
+        groupList = request.user.groups.all()
+
+        allGroups = Group.objects.all()
+        userToAddUsername = request.POST.get('userHtml')
+        userToAddList = User.objects.filter(username=userToAddUsername)
+        #siteManager = UserProfile.objects.get(user_id=request.user.id)
+
+        if len(userToAddList) == 0:
+            return render(request, 'groupHome.html',
+                          {'allGroups': allGroups, 'message': 'Couldn\'t find that user.'})
+
+        userToAdd = userToAddList[0]
+        if userToAdd.groups.filter(id=group_pk).exists():
+            return render(request, 'groupHome.html',
+                          {'allGroups': allGroups, 'message': "That user is already a member." })
+
+        else:
+            group = Group.objects.filter(id=group_pk)[0]
+            group.user_set.add(userToAdd)
+            #return render('groupHome.html', {'groupList': groupList, 'message': "Added successfully."})
+            #return HttpResponseRedirect(group.id)
+            return render(request, 'groupHome.html',
+                          {'allGroups': allGroups, 'message': "Added successfully."})
+
+
+# def deleteUserFromGroup(request, group_pk):
+
 
 def groupLogin(request):
     return render(request, 'groupLogin.html')

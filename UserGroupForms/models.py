@@ -16,7 +16,18 @@ class UserProfile(models.Model):
     #     max_length=20,
     #     choices=USER_TYPE_CHOICES,
     # )
-    user_type = models.BooleanField(default=False) #user is either admin or not
+    #user_type = models.BooleanField(default=False) #user is either admin or not
+    COMPANY = 'COMP'
+    INVESTOR = 'INVE'
+    USER_TYPE_CHOICES = (
+        (COMPANY, 'Company'),
+        (INVESTOR, 'Investor'),
+       )
+    user_type = models.CharField(
+        max_length=20,
+        choices=USER_TYPE_CHOICES,
+    )
+    siteManager = models.BooleanField(default=False)
 
     def __unicode__(self):
         return self.user.username
@@ -27,8 +38,6 @@ class UserProfile(models.Model):
 class Report(models.Model):
     time_created = models.DateTimeField(auto_now_add=True)
     created_by = models.ForeignKey(UserProfile, on_delete=models.CASCADE, default=1, null = True)
-
-    #report_file_name = models.CharField(max_length = 20, blank = True)
     company_name = models.CharField(max_length = 50, blank = True)
     ceo_name = models.CharField(max_length=50, blank=True)
     company_phone = models.CharField(max_length=11, blank = True)
@@ -39,7 +48,6 @@ class Report(models.Model):
     business_type = models.CharField(max_length = 30, blank = True)
     current_projects = models.CharField(max_length = 10, blank = True)
     private = models.BooleanField(default=False)
-
     uploaded_at = models.DateTimeField(auto_now_add=True, blank = True)
     poodle = models.ManyToManyField('File', blank = True)
 

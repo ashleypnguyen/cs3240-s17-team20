@@ -15,5 +15,6 @@ urlpatterns = [
     url(r'^confirmUser/',views.confirmUser),
     url(r'^confirmGroup/',views.confirmGroup),
     url(r'^logout/', views.loggingOut),
+    url(r'^addUserToGroup/(?P<group_pk>.*)$', views.addUserToGroup, name='addUserToGroup'),
 
 ]
