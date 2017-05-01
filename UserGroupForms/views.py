@@ -16,6 +16,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
 from mailingsystem.models import Message
 from django.db.models import Q
+from django.contrib.postgres.search import SearchVector
 
 # Create your views here.
 def viewUser(request, user_id):
@@ -190,7 +191,7 @@ def base(request):
             messages = Message.objects.all()
             count = 0
             for message in messages:
-                if message.recipient != None and message.recipient == request.user.username:
+                if message.recipient == request.user.username:
                     count += 1
             return render(request, 'base.html', {'badLogin': 0, 'num_Messages': count})
         else:
@@ -301,3 +302,12 @@ def my_user(request):
         user = request.user
 
     return CustomUser.objects.all().filter(user=user)[0]
+
+def user_search(request):
+    tag = ""
+    if request.method == 'POST':
+        tag = request['tag']
+    searched = User.objects.annotate(
+        search = SearchVector('blog__tagline', 'body_text'),
+    ).filter(search=tag).values_list('username', 'first_name', 'last_name', 'email')
+    return render(request,'search.hmtl', {'searched' : searched})
