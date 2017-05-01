@@ -6,6 +6,64 @@
 </head>
 <body>
 {% if user.hasperm %}
+    <form class="form-wrapper cf", method="POST", action="/sitemanager/">
+        {% csrf_token %}
+        <b>Give User SM status</b>
+        <input type="text" name = "sm_user" placeholder = "Username">
+        <b>Create New Group</b>
+        <input type="text" name = "new_group" placeholder = "Group Name">
+        <b>Add User to Group</b>
+        <input type="text" name = "user_to_group" placeholder="Username">
+        <input type="text" name = "group_for_user" placeholder = "Group Name">
+        <b>Delete User from Group</b>
+        <input type="text" name = "user_from_group" placeholder="Username">
+        <input type="text" name = "group_remove_user" placeholder="Group Name">
+        <b>Suspend a User</b>
+        <input type = "text" name = "suspended_user" placeholder = "Username">
+        <b>Restore a User</b>
+        <input type = "text" name = "restored_user" placeholder = "Username">
+        <b>Access a User's Reports</b>
+        <input type = "text" name = "access_reports" placeholder = "Username">
+        <b>Delete a Report</b>
+        <input type = "text" name = "delete_report" placeholder = "Company Name">
+        <b>Edit a Report</b>
+        <input type = "text" name = "old_company_name" placeholder = "Current Company Name">
+        <input type = "text" name = "new_company_name" placeholder = "New Company Name">
+        <input type = "text" name = "new_ceo_name" placeholder = "New Company Name">
+        <input type = "text" name = "new_company_phone" placeholder = "New Company Phone">
+        <input type = "text" name = "new_company_email" placeholder = "New Company Email">
+        <input type = "text" name = "new_company_location" placeholder = "New Company Location">
+        <input type = "text" name = "new_company_country" placeholder = "New Company Country">
+        <input type = "text" name = "new_sector" placeholder = "New Sector">
+        <input type = "text" name = "new_business_type" placeholder = "New Business Type">
+        <input type = "text" name = "new_current_projects" placeholder = "New Current Projects">
+        <b>Change Privacy Status?</b>
+        <input type = "checkbox" name = "change_privacy_status">
+        <button type="submit">Submit</button>
+    </form>
+
+ <div class="list-group">
+      {% for r in reports %}
+        {% for f in r.poodle.all %}
+
+      <a href="{{ f.files.url }}" download class="list-group-item list-group-item-action list-group-item-info flex-column align-items-start">
+          <strong>{{ f.files.name }}</strong> </a>
+    <div class="d-flex w-100 justify-content-between">
+      <h6 class="mb-1"></h6>
+    </div>
+        <b>Company Name:     </b>  <strong class="mb-1">{{r.company_name}} </strong> <br>
+        <b>CEO Name:         </b>  <strong class="mb-1">{{r.ceo_name}} </strong> <br>
+        <b>Company Phone:    </b>  <strong class="mb-1">{{r.company_phone}}</strong> <br>
+        <b>Company Email:    </b>  <strong class="mb-1">{{r.company_email}}</strong> <br>
+        <b>Company Location: </b>  <strong class="mb-1">{{r.company_location}}</strong> <br>
+        <b>Company Country:  </b>  <strong class="mb-1">{{r.company_country}}</strong> <br>
+        <b>Sector:  </b>  <strong class="mb-1">{{r.sector}}</strong> <br>
+        <b>Industry:  </b>  <strong class="mb-1">{{r.business_type}}</strong> <br>
+        <b>Current Projects: </b>  <small>{{r.current_projects}}</small> <br>
+        <b>Private:</b>  <small>{{r.private}}</small> <br>
+      {% endfor %}
+    {% endfor %}
+  </div>
 
 {% endif %}
 
