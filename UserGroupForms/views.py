@@ -306,7 +306,7 @@ def my_user(request):
 def user_search(request):
     tag = ""
     if request.method == 'POST':
-        tag = request['tag']
+        tag = request.POST['tag']
     searched = User.objects.annotate(
         search = SearchVector('username', 'first_name', 'last_name', 'email'),
     ).filter(search=tag).values_list('username', 'first_name', 'last_name', 'email')
