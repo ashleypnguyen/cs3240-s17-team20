@@ -35,6 +35,8 @@ def viewUser(request, user_id):
 def confirmUser(request):
     return render(request, 'confirmUser.html')
 
+
+########## REPORTS ##############
 def uploadReport(request):
     report_form = ReportForm(request.POST, request.FILES)
 
@@ -50,7 +52,6 @@ def uploadReport(request):
             count += 1
 
     if request.method == 'POST':
-
         if report_form.is_valid():
             theReport = Report()
             theReport.created_by = users
@@ -74,19 +75,26 @@ def uploadReport(request):
     return render(request, 'uploadReport.html', {'report_form': report_form, 'num_Messages': count})
 
 def showReport(request):
-    #allReports = Report.objects.all()
     user_name_2 = request.user
-    user_for_report = UserProfile.objects.all().filter(user=user_name_2).first()
-    allReports = Report.objects.all().filter(created_by=user_for_report)
+
+    ### MESSAGING STUFF ####
     messages = Message.objects.all()
     count = 0
     for message in messages:
         if message.recipient == request.user.username:
             count += 1
+    ### MESSAGING STUFF ####
+
+    # allows site manager to view all (including private) reports in database
+    if user_name_2.is_superuser:
+        allReports = Report.objects.all()
+        return render(request, 'showReport.html', {'allReports': allReports, 'num_Messages': count})
+
+
+    user_for_report = UserProfile.objects.all().filter(user=user_name_2).first()
+    allReports = Report.objects.all().filter(created_by=user_for_report, private=False)
 
     if request.method == 'POST':
-
-        # return HttpResponse("POST WORKS")
         search_by_company_name = request.POST['search_by_company_name']
         search_by_ceo_name = request.POST['search_by_ceo_name']
         search_by_company_phone = request.POST['search_by_company_phone']
@@ -150,48 +158,7 @@ def showReport(request):
 
             allReports=allReports.filter(query)
 
-    # for r in allReports:
-    #     listOfReports.append(r)
-    #     for rf in r.reportFiles.all():
-    #         fileList.append(rf)
-
     return render(request, 'showReport.html', {'allReports': allReports, 'num_Messages': count})
-    # reports = Report.objects.all()
-    # if request.user.username != "":
-    #     messages = Message.objects.all()
-    #     count = 0
-    #     for message in messages:
-    #         if message.recipient == request.user.username:
-    #             count += 1
-    # return render(request, 'showReport.html', {'reports': reports, 'num_Messages': count})
-
-        #
-        #     r = report_form.save()
-        #
-        #     for f in files:
-        #         newFile = multipleFiles(f)
-        #         newFile.save()
-        #         r.report_file.add(newFile)
-        #
-        #     r.save()
-        #     return HttpResponse('base.html')
-        # #     {
-        #     'report_file_name': form.cleaned_data['report_file_name'],
-        #     'company_name': form.cleaned_data['company_name'],
-        #     'current_projects': form.cleaned_data['current_projects']
-        # }
-    #
-    # else:
-    #     report_form = ReportForm()
-    #     if request.user.username != "":
-    #         messages = Message.objects.all()
-    #         count = 0
-    #         for message in messages:
-    #             if message.recipient == request.user.username:
-    #                 count+=1
-    # return render(request, 'uploadReport.html', {'report_form': report_form, 'num_Messages': count});
-
-#def viewReport(request)link from upload to report id. ex. http:127.800.000/showReport/viewReport/reportid/1
 
 
 def base(request):

@@ -22,7 +22,7 @@ class UserForm(forms.ModelForm):
 class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
-        fields = ('user_type', 'siteManager',)
+        fields = ('user_type',)
 
 class ReportForm(forms.ModelForm):
     #report_file_name = forms.CharField(required = False)

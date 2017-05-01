@@ -82,6 +82,7 @@ input[type=text]:focus {
   {% csrf_token %}
           <div class="text-center">
           <h4><strong>Click to Download & View Report</strong></h4>
+              <p style="color:red"><b>{{ query }}</b></p>
           </div>
   <div class="list-group">
       {% for r in allReports %}
