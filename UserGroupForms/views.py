@@ -312,5 +312,5 @@ def user_search(request):
     query |= Q(first_name__icontains=tag)
     query |= Q(last_name__icontains=tag)
     query |= Q(email__icontains=tag)
-    searched = User.objects.filter(query).values_list('username', 'first_name', 'last_name', 'email')
+    searched = User.objects.filter(query)
     return render(request, 'search.html', {'searched' : searched})
