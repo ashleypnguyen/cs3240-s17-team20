@@ -366,7 +366,7 @@ def sm(request):
             user = User.objects.get(username=(request.POST['access_reports']))
             reports = Report.objects.filter(created_by=user)
         else:
-            reports = []
+            reports = Report.objects.all()
         if request.POST['delete_report'] != None:
             report = Report.objects.get(company_name=request.POST['delete_report'])
             report.delete()
@@ -392,6 +392,8 @@ def sm(request):
                 report.current_projects = request.POST['new_current_projects']
             if request.POST['change_privacy_status']:
                 report.private = not report.private
+    else:
+        reports = Report.objects.all()
 
 
     return render(request, 'search.html', {'reports' : reports})
