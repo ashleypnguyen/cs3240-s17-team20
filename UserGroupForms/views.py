@@ -45,11 +45,13 @@ def uploadReport(request):
     users = UserProfile.objects.all().filter(user=user_name).first()
     # print(users)
 
+    ### MESSAGE STUFF DO NOT REMOVE #####
     messages = Message.objects.all()
     count = 0
     for message in messages:
         if message.recipient == request.user.username:
             count += 1
+    ### MESSAGE STUFF DO NOT REMOVE #####
 
     if request.method == 'POST':
         if report_form.is_valid():
@@ -77,13 +79,13 @@ def uploadReport(request):
 def showReport(request):
     user_name_2 = request.user
 
-    ### MESSAGING STUFF ####
+    ### MESSAGE STUFF DO NOT REMOVE #####
     messages = Message.objects.all()
     count = 0
     for message in messages:
         if message.recipient == request.user.username:
             count += 1
-    ### MESSAGING STUFF ####
+    ### MESSAGE STUFF DO NOT REMOVE #####
 
     # allows site manager to view all (including private) reports in database
     if user_name_2.is_superuser:
@@ -95,6 +97,7 @@ def showReport(request):
     allReports = Report.objects.all().filter(created_by=user_for_report, private=False)
 
     if request.method == 'POST':
+        search_by_time_created = request.POST['search_by_time_created']
         search_by_company_name = request.POST['search_by_company_name']
         search_by_ceo_name = request.POST['search_by_ceo_name']
         search_by_company_phone = request.POST['search_by_company_phone']
@@ -108,6 +111,9 @@ def showReport(request):
 
         # return HttpResponse("IT WORKS")
         if(select_and_or=='and'):
+            if (search_by_time_created and not search_by_time_created== ''):
+                allReports = allReports.filter(time_created=search_by_time_created)
+
             if(search_by_company_name and not search_by_company_name==''):
                 allReports=allReports.filter(company_name = search_by_company_name)
 
@@ -118,7 +124,7 @@ def showReport(request):
                 allReports = allReports.filter(company_phone=search_by_company_phone)
 
             if (search_by_company_email and not search_by_company_email == ''):
-                allReports = allReports.filter(company_phone=search_by_company_email)
+                allReports = allReports.filter(company_email=search_by_company_email)
 
             if(search_by_company_location and not search_by_company_location==''):
                 allReports=allReports.filter(company_location = search_by_company_location)
@@ -127,7 +133,7 @@ def showReport(request):
                 allReports=allReports.filter(company_country = search_by_company_country)
 
             if (search_by_sector and not search_by_sector == ''):
-                allReports = allReports.filter(business_type=search_by_sector)
+                allReports = allReports.filter(sector=search_by_sector)
 
             if(search_by_business_type and not search_by_business_type==''):
                 allReports=allReports.filter(business_type = search_by_business_type)
@@ -137,20 +143,22 @@ def showReport(request):
 
         elif(select_and_or=='or'):
             query=Q()
+            if (search_by_time_created):
+                query |= Q(time_created=search_by_time_created)
             if(search_by_company_name):
                 query |= Q(company_name=search_by_company_name)
             if (search_by_ceo_name):
-                query |= Q(company_name=search_by_ceo_name)
+                query |= Q(ceo_name=search_by_ceo_name)
             if (search_by_company_phone):
                 query |= Q(company_phone=search_by_company_phone)
             if (search_by_company_email):
-                query |= Q(company_phone=search_by_company_email)
+                query |= Q(company_email=search_by_company_email)
             if(search_by_company_location):
                 query |= Q(company_location=search_by_company_location)
             if(search_by_company_country):
                 query |= Q(company_country=search_by_company_country)
             if (search_by_sector):
-                query |= Q(company_phone=search_by_sector)
+                query |= Q(sector=search_by_sector)
             if(search_by_business_type):
                 query |= Q(business_type=search_by_business_type)
             if(search_by_current_projects):
@@ -199,6 +207,14 @@ def confirmGroup(request):
 
 def groupHome(request):
     allGroups = Group.objects.all()
+
+    ### MESSAGE STUFF DO NOT REMOVE #####
+    messages = Message.objects.all()
+    count = 0
+    for message in messages:
+        if message.recipient == request.user.username:
+            count += 1
+    ### MESSAGE STUFF DO NOT REMOVE #####
     # user = User.objects.filter(username=request.user).first()
     # profile = UserProfile.objects.get(user=request.user)
     # groupList = user.groups.all()
@@ -208,22 +224,17 @@ def groupHome(request):
     #     allGroups = Group.objects.all()
     #     return render(request, 'groupHome.html',
     #                   {'groupList': groupList, 'allGroups': allGroups, 'siteManager': siteManager})
-    return render(request, 'groupHome.html', {'allGroups': allGroups})
-
-    ### SOMEONE ELSES STUFF ####
-    # messages = Message.objects.all()
-    # count = 0
-    # for message in messages:
-    #     if message.recipient == request.user.username:
-    #         count += 1
-    # return render(request, 'groupHome.html', {'num_Messages': count})
+    return render(request, 'groupHome.html', {'allGroups': allGroups, 'num_Messages': count})
 
 def groupSignup(request):
+    ### MESSAGE STUFF DO NOT REMOVE #####
     messages = Message.objects.all()
     count = 0
     for message in messages:
         if message.recipient == request.user.username:
             count += 1
+    ### MESSAGE STUFF DO NOT REMOVE #####
+
     if request.method == "POST":
         form = createGroupForm(data=request.POST)
         if form.is_valid():
