@@ -28,14 +28,18 @@
         <br><header> From: {{Message.sender}} </header>
         <header> To: {{Message.recipient}}</header>
         <text> Message: {{Message.messagebody}}</text>
+        </br>
         <input type="checkbox" name="deletebox" value="{{Message.messagebody}}"> Delete </br>
+        {%if Message.encrypted%}
+        <input type="checkbox" name="decryptbox" value="{{Message.messagebody}}"> Decrypt </br>
+        {% endif %}
     {% endif %}
 {% endfor %}
 
     <br>
     <br>
 
-    <input type = "submit" class="btn btn-danger" value="Delete" name = "submit" >
+    <input type = "submit" class="btn btn-danger" value="Go!" name = "submit" >
 </form>
 
   <h3>Sent Messages</h3>
