@@ -13,7 +13,19 @@
         }
     </script>
 </head>
-
+<style>
+input[type=text] {
+    width: 400px;
+    box-sizing: border-box;
+    border: 10px solid #ccc;
+    border-radius: 2px;
+    font-size: 14px;
+    background-color: white;
+    background-image: url('searchicon.png');
+    background-position: 5px 10px;
+    padding: 12px 20px 12px 40px;
+}
+</style>
 <div class="container" style="min-width:200px;max-width:600px;margin-right:auto;margin-left:auto;padding-left:15px;padding-right:15px;">
   <body onload="changeActive()">
   {% include 'header.html' %}
@@ -33,14 +45,14 @@
           <td>
               <form id="login_form" method="post" action="/addUserToGroup/{{ group.id }}">
               {% csrf_token %}
-              <input type="text" name="userHtml" class="form-control" placeholder="Username" required style="width: 400px;"><br>
+              <input type="text" name="userHtml" class="form-control" placeholder="Type username then press enter" required><br>
               </form>
           </td>
             <td><a href="/deleteUserFromGroup/{{ group.id }}">REMOVE</a></td>
       </tr>
             {% endfor %}
   </table>
-      <a type="submit" class = "btn btn-primary btn-lg" href="/groupSignup/">Click to Create a New Group</a>
+      <a type="submit" class = "btn btn-success btn-lg" href="/groupSignup/">Click to Create a New Group</a>
 </body>
 </div>
 

@@ -36,6 +36,8 @@ def viewUser(request, user_id):
 def confirmUser(request):
     return render(request, 'confirmUser.html')
 
+def search(request):
+    return render(request, 'search.html')
 
 ########## REPORTS ##############
 def uploadReport(request):
@@ -105,7 +107,6 @@ def showReport(request):
             select_and_or = request.POST['select_and_or']
 
             if (select_and_or == 'and'):
-
                 # Ashley Add
                 if (search_by_date_created and not search_by_date_created == ''):  # Ashley Add
                     allReports = allReports.filter(date_created=search_by_date_created)  # Ashley Add
@@ -241,8 +242,12 @@ def showReport(request):
             allReports=allReports.filter(query)
     return render(request, 'showReport.html', {'allReports': allReports, 'num_Messages': count})
 
-################ ASHLEY ADD ###########
-# def deleteReport(request):
+def deleteReport(request, report_pk):
+    user_name_3 = request.user
+    if user_name_3.is_superuser:
+        #removedReports = Report.objects.filter(id=report_pk).delete()
+        removedFiles = File.objects.filter(id=report_pk).delete()
+        return render(request, 'showReport.html', {'removedFiles': removedFiles, 'message': "Report successfully deleted, please refresh page to view remaining reports."})
 
 def base(request):
     if request.method == "GET":
@@ -375,7 +380,6 @@ def addUserToGroup(request, group_pk):
            #return HttpResponseRedirect(group.id)
            return render(request, 'groupHome.html',
                          {'allGroups': allGroups, 'message': "Added successfully.", 'num_Messages': count})
-
 
 def deleteUserFromGroup(request, group_pk):
     ### MESSAGE STUFF DO NOT REMOVE #####

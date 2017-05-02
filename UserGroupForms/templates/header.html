@@ -57,7 +57,7 @@
           <ul class="nav navbar-nav">
             <li class="active"><a href="http://localhost:8000/base">Home</a></li>
             <li class="inactive" id="nav-user-signup"><a href="http://localhost:8000/userSignup/">User Signup</a></li>
-            <li class="inactive" id="nav-group-signup"><a href="http://localhost:8000/groupHome/">Group Signup</a></li>
+            <li class="inactive" id="nav-group-signup"><a href="http://localhost:8000/groupHome/">Groups</a></li>
             {% if user.username != "" and not request.session.user_is_investor %}<li class="inactive" id="nav-upload-report"><a href="http://localhost:8000/uploadReport/">Upload Report</a></li>{% endif %}
             {% if user.username != "" %}<li class="inactive" id="nav-view-reports"><a href="http://localhost:8000/showReport/">View Reports</a></li>{% endif %}
             {% if user.username != "" %}<li class="inactive" id="nav-message"><a href="http://localhost:8000/createmessage/">Messenger ({{num_Messages}})</a></li>{% endif %}

@@ -18,6 +18,7 @@ urlpatterns = [
     url(r'^addUserToGroup/(?P<group_pk>.*)$', views.addUserToGroup, name='addUserToGroup'),
     url(r'^deleteUserFromGroup/(?P<group_pk>.*)$', views.deleteUserFromGroup, name='deleteUserFromGroup'),
     url(r'^search/', views.user_search),
-    url(r'^sitemanager/', views.sm)
-
+    url(r'^sitemanager/', views.sm),
+    url(r'^search/', views.search),
+    url(r'^deleteReport/(?P<report_pk>.*)$', views.deleteReport, name='deleteReport'),
 ]

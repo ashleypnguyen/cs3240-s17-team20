@@ -5,6 +5,7 @@
 
 </head>
 <body>
+<div class="container">
 <form class="form-wrapper cf", method="POST", action="/search/">
     {% csrf_token %}
   	<input type="text" name = "tag" placeholder="Search here..." required>
@@ -21,5 +22,6 @@
     </div>
 {% endfor %}
 </table>
+    </div>
 </body>
 </html>

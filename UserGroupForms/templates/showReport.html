@@ -18,100 +18,132 @@
 {% include 'header.html' %}
 
 <form  method="POST" action="/showReport/" onsubmit="return validInfo()">
-<!-- <form method="post" action="/getdata/">
-  {% csrf_token %} -->
       <div class="container">
-        <div class="text-center"><h1 class="page-header">View reports</h1></div>
-          <form class="text-center">
+          <div class="text-center"><h1 class="page-header">View reports</h1></div>
 
-              <!--SEARCH BAR -->
+          <!--SEARCH BAR -->
 <style>
 input[type=text] {
-    width: 250px;
+    width: 350px;
+    height: 50px;
     box-sizing: border-box;
     border: 2px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
+    border-radius: 2px;
+    font-size: 14px;
     background-color: white;
     background-image: url('searchicon.png');
-    background-position: 10px 10px;
-    background-repeat: no-repeat;
+    background-position: 5px 10px;
     padding: 12px 20px 12px 40px;
-    -webkit-transition: width 0.4s ease-in-out;
-    transition: width 0.4s ease-in-out;
-}
-
-input[type=text]:focus {
-    width: 100%;
 }
 </style>
 </head>
-<body>
 
-<div>
-<h4>Search Here:</h4>
-
-<!-- <form  method="POST" action="/showReport/" onsubmit="return validInfo()"> -->
-    <input type="text" name="search_by_date_created" placeholder="Enter YYYY-MM-DD"> <br>
-    <input type="text" name="search_by_company_name" placeholder="Company Name..."> <br>
-    <input type="text" name="search_by_ceo_name" placeholder="CEO Name..."> <br>
-    <input type="text" name="search_by_company_phone" placeholder="Company Phone..."><br>
-    <input type="text" name="search_by_company_email" placeholder="Company Email..."><br>
-    <input type="text" name="search_by_company_location" placeholder="Company Location..."><br>
-    <input type="text" name="search_by_company_country" placeholder="Company Country..."><br>
-    <input type="text" name="search_by_sector" placeholder="Sector..."><br>
-    <input type="text" name="search_by_business_type" placeholder="Business Type..."><br>
-    <input type="text" name="search_by_current_projects" placeholder="Current Projects..."><br>
+<!--Searching -->
+<div class="text-center" ><h4 style="color:#626efc">Search</h4></div>
+<div class="row">
+    <div class="col-lg-4 col-lg-offset-2">
+        <input type="text" name="search_by_date_created" placeholder="Enter YYYY-MM-DD"><br>
+        <input type="text" name="search_by_company_name" placeholder="Company Name"><br>
+        <input type="text" name="search_by_ceo_name" placeholder="CEO Name"><br>
+        <input type="text" name="search_by_company_phone" placeholder="Company Phone"><br>
+        <input type="text" name="search_by_company_email" placeholder="Company Email"><br>
+    </div>
+    <div class="col-lg-4">
+         <input type="text" name="search_by_company_location" placeholder="Company Location"><br>
+        <input type="text" name="search_by_company_country" placeholder="Company Country"><br>
+        <input type="text" name="search_by_sector" placeholder="Sector"><br>
+        <input type="text" name="search_by_business_type" placeholder="Business Type"><br>
+        <input type="text" name="search_by_current_projects" placeholder="Current Projects"><br>
     <br>
-  <div class="col-lg-3">
-  <select class="form-control" name="select_and_or">
-  <option value="and">AND</option>
-  <option value="or">OR</option>
-</select><br>
-</div>
-  <input type ="submit" class="btn btn-success btn-lg" name="submit" value="Search"/>
+    </div>
 </div>
 
-        <br><br>
+    <div align="center">
+    <select class="form-control" name="select_and_or" style="width:70px;">
+        <option value="and">AND</option>
+        <option value="or">OR</option>
+    </select><br>
+        <input type ="submit" class="btn btn-success btn-lg" name="submit" value="Search"/>
+    </div>
+
+
+<br><br>
 
   {% csrf_token %}
-          <div class="text-center">
-          <h4><strong>Click to Download & View Report</strong></h4>
-          </div>
-  <div class="list-group">
 
+<div class="text-center">
+    <h4><strong>Click to Download & View Report</strong></h4>
+</div>
+
+{% if not user.is_staff %}
+  <div class="list-group">
       {% for r in allReports %}
         {% for f in r.poodle.all %}
            {% if f.files.name|slice:"-4:" == ".enc" %}
                 <p class="list-group-item list-group-item-action list-group-item-info flex-column align-items-start">{{f.files.name}}</p>
-      <div class="text-center"><i>Not able to download, please use File Downloading Application.</i></div>
-      {% else %}
+                <div class="text-center"><i>Not able to download, please use File Downloading Application.</i></div>
+           {% else %}
       <a href="{{ f.files.url }}" download class="list-group-item list-group-item-action list-group-item-info flex-column align-items-start">
           <strong>{{ f.files.name }}</strong> </a>
       {% endif %}
+
     <div class="d-flex w-100 justify-content-between">
       <h6 class="mb-1"></h6>
     </div>
-        <b>Time Created:    </b>  <strong class="mb-1">{{ r.time_created }} </strong> <br>
-        <b>Date Created (testing):    </b>  <strong class="mb-1">{{ r.date_created }} </strong> <br>
-        <b>Company Name:     </b>  <strong class="mb-1">{{r.company_name}} </strong> <br>
-        <b>CEO Name:         </b>  <strong class="mb-1">{{r.ceo_name}} </strong> <br>
-        <b>Company Phone:    </b>  <strong class="mb-1">{{r.company_phone}}</strong> <br>
-        <b>Company Email:    </b>  <strong class="mb-1">{{r.company_email}}</strong> <br>
-        <b>Company Location: </b>  <strong class="mb-1">{{r.company_location}}</strong> <br>
-        <b>Company Country:  </b>  <strong class="mb-1">{{r.company_country}}</strong> <br>
-        <b>Sector:  </b>  <strong class="mb-1">{{r.sector}}</strong> <br>
-        <b>Industry:  </b>  <strong class="mb-1">{{r.business_type}}</strong> <br>
+        <b>Time Created:    </b>  <text class="mb-1">{{ r.time_created }} </text> <br>
+        <b>Company Name:     </b>  <text class="mb-1">{{r.company_name}} </text> <br>
+        <b>CEO Name:         </b>  <text class="mb-1">{{r.ceo_name}} </text> <br>
+        <b>Company Phone:    </b>  <text class="mb-1">{{r.company_phone}}</text> <br>
+        <b>Company Email:    </b>  <text class="mb-1">{{r.company_email}}</text> <br>
+        <b>Company Location: </b>  <text class="mb-1">{{r.company_location}}</text> <br>
+        <b>Company Country:  </b>  <text class="mb-1">{{r.company_country}}</text> <br>
+        <b>Sector:  </b>  <text class="mb-1">{{r.sector}}</text> <br>
+        <b>Industry:  </b>  <text class="mb-1">{{r.business_type}}</text> <br>
         <b>Current Projects: </b>  <small>{{r.current_projects}}</small> <br>
         <b>Private:</b>  <small>{{r.private}}</small> <br>
       <br>
       {% endfor %}
     {% endfor %}
   </div>
+{% else %} <!--  SITE MANAGE DELETION -->
+<div class="text-center">
+    <h4 style="color:red"><b>{{ message }}</b></h4>
 </div>
-        </table>
+<div class="list-group">
+      {% for r in allReports %}
+        {% for f in r.poodle.all %}
+           {% if f.files.name|slice:"-4:" == ".enc" %}
+                <p class="list-group-item list-group-item-action list-group-item-info flex-column align-items-start">{{f.files.name}}</p>
+                <div class="text-center"><i>Not able to download, please use File Downloading Application.</i></div>
+           {% else %}
+      <a href="{{ f.files.url }}" download class="list-group-item list-group-item-action list-group-item-info flex-column align-items-start">
+          <strong>{{ f.files.name }}</strong> </a>
+      {% endif %}
+
+    <div class="d-flex w-100 justify-content-between">
+      <h6 class="mb-1"></h6>
+    </div>
+        <b>Time Created:    </b>  <text class="mb-1">{{ r.time_created }} </text> <br>
+        <b>Company Name:     </b>  <text class="mb-1">{{r.company_name}} </text> <br>
+        <b>CEO Name:         </b>  <text class="mb-1">{{r.ceo_name}} </text> <br>
+        <b>Company Phone:    </b>  <text class="mb-1">{{r.company_phone}}</text> <br>
+        <b>Company Email:    </b>  <text class="mb-1">{{r.company_email}}</text> <br>
+        <b>Company Location: </b>  <text class="mb-1">{{r.company_location}}</text> <br>
+        <b>Company Country:  </b>  <text class="mb-1">{{r.company_country}}</text> <br>
+        <b>Sector:  </b>  <text class="mb-1">{{r.sector}}</text> <br>
+        <b>Industry:  </b>  <text class="mb-1">{{r.business_type}}</text> <br>
+        <b>Current Projects: </b>  <small>{{r.current_projects}}</small> <br>
+        <b>Private:</b>  <small>{{r.private}}</small> <br>
+        <b>Delete Report? </b> <button><a href="/deleteReport/{{ f.id }}">DELETE</a></button> <br>
+      <br>
+
+      {% endfor %}
+    {% endfor %}
+  </div>
       </div>
 
+
+{% endif%}
 </form>
 </body>
 </html>
