@@ -52,16 +52,17 @@ input[type=text]:focus {
 <h4>Search Here:</h4>
 
 <!-- <form  method="POST" action="/showReport/" onsubmit="return validInfo()"> -->
-    <input type="text" name="search_by_time_created" placeholder="Time Created..."> <br>
-  <input type="text" name="search_by_company_name" placeholder="Company Name..."> <br>
+    <input type="text" name="search_by_date_created" placeholder="Enter YYYY-MM-DD"> <br>
+    <input type="text" name="search_by_company_name" placeholder="Company Name..."> <br>
     <input type="text" name="search_by_ceo_name" placeholder="CEO Name..."> <br>
-      <input type="text" name="search_by_company_phone" placeholder="Company Phone..."><br>
-      <input type="text" name="search_by_company_email" placeholder="Company Email..."><br>
-  <input type="text" name="search_by_company_location" placeholder="Company Location..."><br>
-  <input type="text" name="search_by_company_country" placeholder="Company Country..."><br>
-  <input type="text" name="search_by_sector" placeholder="Sector..."><br>
-  <input type="text" name="search_by_business_type" placeholder="Business Type..."><br>
-  <input type="text" name="search_by_current_projects" placeholder="Current Projects..."><br>
+    <input type="text" name="search_by_company_phone" placeholder="Company Phone..."><br>
+    <input type="text" name="search_by_company_email" placeholder="Company Email..."><br>
+    <input type="text" name="search_by_company_location" placeholder="Company Location..."><br>
+    <input type="text" name="search_by_company_country" placeholder="Company Country..."><br>
+    <input type="text" name="search_by_sector" placeholder="Sector..."><br>
+    <input type="text" name="search_by_business_type" placeholder="Business Type..."><br>
+    <input type="text" name="search_by_current_projects" placeholder="Current Projects..."><br>
+    <br>
   <div class="col-lg-3">
   <select class="form-control" name="select_and_or">
   <option value="and">AND</option>
@@ -69,32 +70,30 @@ input[type=text]:focus {
 </select><br>
 </div>
   <input type ="submit" class="btn btn-success btn-lg" name="submit" value="Search"/>
-
-
-    <!--  ################ ADD SEARCH FUNCTIONALITY HERE ############## -->
-<!-- </form> -->
-
 </div>
-<!--END SEARCH BAR -->
 
-    <!-- </form> -->
         <br><br>
 
   {% csrf_token %}
           <div class="text-center">
           <h4><strong>Click to Download & View Report</strong></h4>
-              <p style="color:red"><b>{{ query }}</b></p>
           </div>
   <div class="list-group">
+
       {% for r in allReports %}
         {% for f in r.poodle.all %}
-
+           {% if f.files.name|slice:"-4:" == ".enc" %}
+                <p class="list-group-item list-group-item-action list-group-item-info flex-column align-items-start">{{f.files.name}}</p>
+      <div class="text-center"><i>Not able to download, please use File Downloading Application.</i></div>
+      {% else %}
       <a href="{{ f.files.url }}" download class="list-group-item list-group-item-action list-group-item-info flex-column align-items-start">
           <strong>{{ f.files.name }}</strong> </a>
+      {% endif %}
     <div class="d-flex w-100 justify-content-between">
       <h6 class="mb-1"></h6>
     </div>
         <b>Time Created:    </b>  <strong class="mb-1">{{ r.time_created }} </strong> <br>
+        <b>Date Created (testing):    </b>  <strong class="mb-1">{{ r.date_created }} </strong> <br>
         <b>Company Name:     </b>  <strong class="mb-1">{{r.company_name}} </strong> <br>
         <b>CEO Name:         </b>  <strong class="mb-1">{{r.ceo_name}} </strong> <br>
         <b>Company Phone:    </b>  <strong class="mb-1">{{r.company_phone}}</strong> <br>
@@ -105,6 +104,7 @@ input[type=text]:focus {
         <b>Industry:  </b>  <strong class="mb-1">{{r.business_type}}</strong> <br>
         <b>Current Projects: </b>  <small>{{r.current_projects}}</small> <br>
         <b>Private:</b>  <small>{{r.private}}</small> <br>
+      <br>
       {% endfor %}
     {% endfor %}
   </div>

@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponse, get_object_or_404
+from django.shortcuts import render, HttpResponse
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 #from django.core.context_processors import csrf
@@ -16,8 +16,9 @@ from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
 from mailingsystem.models import Message
 from django.db.models import Q
-#from django.contrib.postgres.search import SearchVector
+from django.contrib.postgres.search import SearchVector
 import requests
+import datetime
 
 # Create your views here.
 def viewUser(request, user_id):
@@ -87,17 +88,90 @@ def showReport(request):
             count += 1
     ### MESSAGE STUFF DO NOT REMOVE #####
 
-    # allows site manager to view all (including private) reports in database
+    # # Site Manager Search - ASHLEY ADD ALL THIS
     if user_name_2.is_superuser:
         allReports = Report.objects.all()
+        if request.method == 'POST':
+            search_by_date_created = request.POST['search_by_date_created']  # Ashley Add
+            search_by_company_name = request.POST['search_by_company_name']
+            search_by_ceo_name = request.POST['search_by_ceo_name']
+            search_by_company_phone = request.POST['search_by_company_phone']
+            search_by_company_email = request.POST['search_by_company_email']
+            search_by_company_location = request.POST['search_by_company_location']
+            search_by_company_country = request.POST['search_by_company_country']
+            search_by_sector = request.POST['search_by_sector']
+            search_by_business_type = request.POST['search_by_business_type']
+            search_by_current_projects = request.POST['search_by_current_projects']
+            select_and_or = request.POST['select_and_or']
+
+            if (select_and_or == 'and'):
+
+                # Ashley Add
+                if (search_by_date_created and not search_by_date_created == ''):  # Ashley Add
+                    allReports = allReports.filter(date_created=search_by_date_created)  # Ashley Add
+
+                if (search_by_company_name and not search_by_company_name == ''):
+                    allReports = allReports.filter(company_name=search_by_company_name)
+
+                if (search_by_ceo_name and not search_by_ceo_name == ''):
+                    allReports = allReports.filter(ceo_name=search_by_ceo_name)
+
+                if (search_by_company_phone and not search_by_company_phone == ''):
+                    allReports = allReports.filter(company_phone=search_by_company_phone)
+
+                if (search_by_company_email and not search_by_company_email == ''):
+                    allReports = allReports.filter(company_email=search_by_company_email)
+
+                if (search_by_company_location and not search_by_company_location == ''):
+                    allReports = allReports.filter(company_location=search_by_company_location)
+
+                if (search_by_company_country and not search_by_company_country == ''):
+                    allReports = allReports.filter(company_country=search_by_company_country)
+
+                if (search_by_sector and not search_by_sector == ''):
+                    allReports = allReports.filter(sector=search_by_sector)
+
+                if (search_by_business_type and not search_by_business_type == ''):
+                    allReports = allReports.filter(business_type=search_by_business_type)
+
+                if (search_by_current_projects and not search_by_current_projects == ''):
+                    allReports = allReports.filter(current_projects=search_by_current_projects)
+
+            elif (select_and_or == 'or'):
+                query = Q()
+
+                # Ashley Add
+                if (search_by_date_created):  # Ashley Add
+                    query |= Q(date_created=search_by_date_created)  # Ashley Add
+
+                if (search_by_company_name):
+                    query |= Q(company_name=search_by_company_name)
+                if (search_by_ceo_name):
+                    query |= Q(ceo_name=search_by_ceo_name)
+                if (search_by_company_phone):
+                    query |= Q(company_phone=search_by_company_phone)
+                if (search_by_company_email):
+                    query |= Q(company_email=search_by_company_email)
+                if (search_by_company_location):
+                    query |= Q(company_location=search_by_company_location)
+                if (search_by_company_country):
+                    query |= Q(company_country=search_by_company_country)
+                if (search_by_sector):
+                    query |= Q(sector=search_by_sector)
+                if (search_by_business_type):
+                    query |= Q(business_type=search_by_business_type)
+                if (search_by_current_projects):
+                    query |= Q(current_projects=search_by_current_projects)
+
+                allReports = allReports.filter(query)
         return render(request, 'showReport.html', {'allReports': allReports, 'num_Messages': count})
+    # Site Manager Search - ASHLEY ADD ALL THIS
 
-
+    ### GENERAL USER SEARCH #####
     user_for_report = UserProfile.objects.all().filter(user=user_name_2).first()
     allReports = Report.objects.all().filter(created_by=user_for_report, private=False)
-
     if request.method == 'POST':
-        search_by_time_created = request.POST['search_by_time_created']
+        search_by_date_created = request.POST['search_by_date_created']  # Ashley Add
         search_by_company_name = request.POST['search_by_company_name']
         search_by_ceo_name = request.POST['search_by_ceo_name']
         search_by_company_phone = request.POST['search_by_company_phone']
@@ -109,10 +183,10 @@ def showReport(request):
         search_by_current_projects = request.POST['search_by_current_projects']
         select_and_or = request.POST['select_and_or']
 
-        # return HttpResponse("IT WORKS")
         if(select_and_or=='and'):
-            if (search_by_time_created and not search_by_time_created== ''):
-                allReports = allReports.filter(time_created=search_by_time_created)
+            # Ashley Add
+            if (search_by_date_created and not search_by_date_created == ''):  # Ashley Add
+                allReports = allReports.filter(date_created=search_by_date_created)  # Ashley Add
 
             if(search_by_company_name and not search_by_company_name==''):
                 allReports=allReports.filter(company_name = search_by_company_name)
@@ -140,11 +214,11 @@ def showReport(request):
 
             if(search_by_current_projects and not search_by_current_projects==''):
                 allReports=allReports.filter(current_projects = search_by_current_projects)
-
         elif(select_and_or=='or'):
             query=Q()
-            if (search_by_time_created):
-                query |= Q(time_created=search_by_time_created)
+            #Ashley Add
+            if (search_by_date_created): # Ashley Add
+                query |= Q(date_created=search_by_date_created) # Ashley Add
             if(search_by_company_name):
                 query |= Q(company_name=search_by_company_name)
             if (search_by_ceo_name):
@@ -165,9 +239,10 @@ def showReport(request):
                 query |= Q(current_projects=search_by_current_projects)
 
             allReports=allReports.filter(query)
-
     return render(request, 'showReport.html', {'allReports': allReports, 'num_Messages': count})
 
+################ ASHLEY ADD ###########
+# def deleteReport(request):
 
 def base(request):
     if request.method == "GET":
@@ -267,7 +342,15 @@ def groupLogin(request):
     return render(request, 'groupLogin.html')
 
 def addUserToGroup(request, group_pk):
-   if request.method == 'POST':
+    ### MESSAGE STUFF DO NOT REMOVE #####
+    messages = Message.objects.all()
+    count = 0
+    for message in messages:
+        if message.recipient == request.user.username:
+            count += 1
+    ### MESSAGE STUFF DO NOT REMOVE #####
+
+    if request.method == 'POST':
        user = request.user
        groupList = request.user.groups.all()
 
@@ -278,12 +361,12 @@ def addUserToGroup(request, group_pk):
 
        if len(userToAddList) == 0:
            return render(request, 'groupHome.html',
-                         {'allGroups': allGroups, 'message': 'Couldn\'t find that user.'})
+                         {'allGroups': allGroups, 'message': 'Couldn\'t find that user.', 'num_Messages': count})
 
        userToAdd = userToAddList[0]
        if userToAdd.groups.filter(id=group_pk).exists():
            return render(request, 'groupHome.html',
-                         {'allGroups': allGroups, 'message': "That user is already a member." })
+                         {'allGroups': allGroups, 'message': "That user is already a member.", 'num_Messages': count})
 
        else:
            group = Group.objects.filter(id=group_pk)[0]
@@ -291,21 +374,28 @@ def addUserToGroup(request, group_pk):
            #return render('groupHome.html', {'groupList': groupList, 'message': "Added successfully."})
            #return HttpResponseRedirect(group.id)
            return render(request, 'groupHome.html',
-                         {'allGroups': allGroups, 'message': "Added successfully."})
+                         {'allGroups': allGroups, 'message': "Added successfully.", 'num_Messages': count})
 
 
 def deleteUserFromGroup(request, group_pk):
-   allGroups = Group.objects.all()
-   user = request.user
-   group = Group.objects.filter(id=group_pk)[0]
+    ### MESSAGE STUFF DO NOT REMOVE #####
+    messages = Message.objects.all()
+    count = 0
+    for message in messages:
+        if message.recipient == request.user.username:
+            count += 1
+    ### MESSAGE STUFF DO NOT REMOVE #####
+    allGroups = Group.objects.all()
+    user = request.user
+    group = Group.objects.filter(id=group_pk)[0]
 
-   if not(user.groups.filter(id=group_pk).exists()):
+    if not(user.groups.filter(id=group_pk).exists()):
        return render(request, 'groupHome.html',
-                     {'allGroups': allGroups, 'message': "User does not belong to group, cannot remove."})
+                     {'allGroups': allGroups, 'message': "User does not belong to group, cannot remove.", 'num_Messages': count})
 
-   group.user_set.remove(request.user)
-   return render(request, 'groupHome.html',
-                 {'allGroups': allGroups, 'message': "Removed successfully."})
+    group.user_set.remove(request.user)
+    return render(request, 'groupHome.html',
+                 {'allGroups': allGroups, 'message': "Removed successfully.", 'num_Messages': count})
 
 
 def register(request):

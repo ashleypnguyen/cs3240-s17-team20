@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.contrib.auth.models import Group
 from django_countries.fields import CountryField
+import datetime
 
 # Validate form objects and print error message to template
 class UserProfile(models.Model):
@@ -22,6 +23,7 @@ class UserProfile(models.Model):
         return self.user.username
 
 class Report(models.Model):
+    date_created = models.DateField(auto_now_add=True) # Ashley Add
     time_created = models.DateTimeField(auto_now_add=True)
     created_by = models.ForeignKey(UserProfile, on_delete=models.CASCADE, default=1, null = True)
     company_name = models.CharField(max_length = 50, blank = True)
@@ -36,7 +38,6 @@ class Report(models.Model):
     private = models.BooleanField(default=False)
     uploaded_at = models.DateTimeField(auto_now_add=True, blank = True)
     poodle = models.ManyToManyField('File', blank = True)
-
 
 class File(models.Model):
     #datetime
