@@ -20,6 +20,7 @@ from django.contrib.postgres.search import SearchVector
 import requests
 import datetime
 import ast
+from Crypto.Cipher import AES
 
 
 # Create your views here.
@@ -87,6 +88,17 @@ def uploadReport(request):
 
         for f in request.FILES.getlist('htmlFile'):
             reportFile = File.objects.create(files = f)
+            if(theReport.encrypted):
+                init_vec = b"1234567890123456"
+                AES_key = AES.new("Nader_is_awesome", AES.MODE_CFB, init_vec)
+                output_filename = f + ".enc"
+                with open(f, 'rb') as r:
+                    raw_file = r.read()
+                    data_enc = AES_key.encrypt(raw_file)
+                with open(output_filename, 'wb') as o:
+                    o.write(data_enc)
+                    print('Encrypted File Name:' + output_filename)
+                reportFile = File.objects.create(files = output_filename)
             theReport.poodle.add(reportFile)
         theReport.save()
         return HttpResponseRedirect("base.html")
