@@ -3,7 +3,7 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 #from django.core.context_processors import csrf
 from django.template import loader
-from .forms import ReportForm
+from .forms import ReportForm, ModelForm
 from .models import User, Group, UserProfile
 from .models import Report
 from .models import File
@@ -19,6 +19,8 @@ from django.db.models import Q
 from django.contrib.postgres.search import SearchVector
 import requests
 import datetime
+import ast
+
 
 # Create your views here.
 def viewUser(request, user_id):
@@ -46,6 +48,7 @@ def uploadReport(request):
     #if request.user.username != "":
     user_name = request.user
     users = UserProfile.objects.all().filter(user=user_name).first()
+    #groups = Group.objects.all().filter(user=user_name).first()
     # print(users)
 
     ### MESSAGE STUFF DO NOT REMOVE #####
@@ -58,6 +61,12 @@ def uploadReport(request):
 
     if request.method == 'POST':
         if report_form.is_valid():
+            # report_form.save(commit=False)
+            # report_form.memgroups = [report_form.id]
+            # for each in report_form.cleaned_data['poodle']:
+            #     theFile = File.objects.create(files=each)
+            #     report_obj.poodle.add(theFile)
+
             theReport = Report()
             theReport.created_by = users
             theReport.company_name = report_form.cleaned_data.get('company_name')
@@ -71,12 +80,19 @@ def uploadReport(request):
             theReport.current_projects = report_form.cleaned_data.get('current_projects')
             theReport.private = report_form.cleaned_data.get('private')
             theReport.save()
+            theReport.memgroups.id = theReport.id
+            theReport.memgroups = report_form.cleaned_data.get('memgroups')
+            theReport.save()
+
+
+
 
         for f in request.FILES.getlist('htmlFile'):
             reportFile = File.objects.create(files = f)
             theReport.poodle.add(reportFile)
         theReport.save()
         return HttpResponseRedirect("base.html")
+
     return render(request, 'uploadReport.html', {'report_form': report_form, 'num_Messages': count})
 
 def showReport(request):
@@ -170,7 +186,7 @@ def showReport(request):
 
     ### GENERAL USER SEARCH #####
     user_for_report = UserProfile.objects.all().filter(user=user_name_2).first()
-    allReports = Report.objects.all().filter(created_by=user_for_report, private=False)
+    allReports = Report.objects.filter(Q(private=False) | Q(memgroups__in=user_name_2.groups.all()) | Q(created_by=user_for_report))
     if request.method == 'POST':
         search_by_date_created = request.POST['search_by_date_created']  # Ashley Add
         search_by_company_name = request.POST['search_by_company_name']
@@ -215,6 +231,7 @@ def showReport(request):
 
             if(search_by_current_projects and not search_by_current_projects==''):
                 allReports=allReports.filter(current_projects = search_by_current_projects)
+
         elif(select_and_or=='or'):
             query=Q()
             #Ashley Add
@@ -239,15 +256,18 @@ def showReport(request):
             if(search_by_current_projects):
                 query |= Q(current_projects=search_by_current_projects)
 
-            allReports=allReports.filter(query)
+            allReports = allReports.filter(query)
     return render(request, 'showReport.html', {'allReports': allReports, 'num_Messages': count})
+
+def showReportInvestor(request):
+    return HttpResponseRedirect("testing")
 
 def deleteReport(request, report_pk):
     user_name_3 = request.user
     if user_name_3.is_superuser:
         #removedReports = Report.objects.filter(id=report_pk).delete()
         removedFiles = File.objects.filter(id=report_pk).delete()
-        return render(request, 'showReport.html', {'removedFiles': removedFiles, 'message': "Report successfully deleted, please refresh page to view remaining reports."})
+        return render(request, 'showReport.html', {'removedFiles': removedFiles, 'message': "Report successfully deleted, please click 'Search' to view remaining reports."})
 
 def base(request):
     if request.method == "GET":
@@ -331,8 +351,10 @@ def groupSignup(request):
     if request.method == "POST":
         form = createGroupForm(data=request.POST)
         if form.is_valid():
-            group = form.save()
-            group.save()
+            group_object = form.cleaned_data['name']
+            newGroup = Group.objects.create(name=group_object)
+            request.user.groups.add(newGroup)
+            request.user.save()
             return HttpResponseRedirect('/confirmGroup/')
 
         else:

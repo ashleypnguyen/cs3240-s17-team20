@@ -37,6 +37,7 @@ class Report(models.Model):
     current_projects = models.CharField(max_length = 10, blank = True)
     private = models.BooleanField(default=False)
     uploaded_at = models.DateTimeField(auto_now_add=True, blank = True)
+    memgroups = models.ManyToManyField(Group, blank = True)
     poodle = models.ManyToManyField('File', blank = True)
 
 class File(models.Model):

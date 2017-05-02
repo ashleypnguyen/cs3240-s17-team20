@@ -42,7 +42,7 @@ input[type=text] {
 <div class="text-center" ><h4 style="color:#626efc">Search</h4></div>
 <div class="row">
     <div class="col-lg-4 col-lg-offset-2">
-        <input type="text" name="search_by_date_created" placeholder="Enter YYYY-MM-DD"><br>
+        <input type="text" name="search_by_date_created" placeholder="Search Date by YYYY-MM-DD"><br>
         <input type="text" name="search_by_company_name" placeholder="Company Name"><br>
         <input type="text" name="search_by_ceo_name" placeholder="CEO Name"><br>
         <input type="text" name="search_by_company_phone" placeholder="Company Phone"><br>
@@ -107,6 +107,7 @@ input[type=text] {
   </div>
 {% else %} <!--  SITE MANAGE DELETION -->
 <div class="text-center">
+    <br>
     <h4 style="color:red"><b>{{ message }}</b></h4>
 </div>
 <div class="list-group">
@@ -134,7 +135,7 @@ input[type=text] {
         <b>Industry:  </b>  <text class="mb-1">{{r.business_type}}</text> <br>
         <b>Current Projects: </b>  <small>{{r.current_projects}}</small> <br>
         <b>Private:</b>  <small>{{r.private}}</small> <br>
-        <b>Delete Report? </b> <button><a href="/deleteReport/{{ f.id }}">DELETE</a></button> <br>
+        <b>Delete Report? </b> <a href="/deleteReport/{{ f.id }}" class="btn btn-danger">DELETE</a><br>
       <br>
 
       {% endfor %}
