@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, HttpResponse, get_object_or_404
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 #from django.core.context_processors import csrf
@@ -16,7 +16,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
 from mailingsystem.models import Message
 from django.db.models import Q
-from django.contrib.postgres.search import SearchVector
+#from django.contrib.postgres.search import SearchVector
 import requests
 
 # Create your views here.
@@ -187,11 +187,24 @@ def base(request):
         if user is not None:
             if user.is_active:
                 login(request, user)
+            #some user type handling using session objects
+            try:
+                profile = UserProfile.objects.get(user=user)
+            except:
+                profile = ""
+            if profile == "":
+                request.session['user_is_investor'] = False
+            else:
+                if profile.user_type == "INVE":
+                    request.session['user_is_investor'] = True
+                else:
+                    request.session['user_is_investor'] = False
             messages = Message.objects.all()
             count = 0
             for message in messages:
                 if message.recipient == request.user.username:
                     count += 1
+            # count = request.session['user_is_investor']
             return render(request, 'base.html', {'badLogin': 0, 'num_Messages': count})
         else:
             return render(request, 'base.html', {'badLogin': 1})
@@ -296,7 +309,6 @@ def deleteUserFromGroup(request, group_pk):
 
 
 def register(request):
-    #context = RequestContext(request)
     registered = False
     if request.method == 'POST':
         user_form = UserForm(data=request.POST)
@@ -311,17 +323,8 @@ def register(request):
             user.save()
             #
             # diffUser = User.objects.create_user(username, password=password)
-
-            newProfile=UserProfile()
-
-            newProfile.user=user
-            print(user)
-            #newProfile.user_type = False
+            newProfile = UserProfile(user=user, user_type=request.POST["user_type"])
             newProfile.save()
-
-
-            # Now we hash the password with the set_password method.
-            # Once hashed, we can update the user object.
 
             # Now sort out the UserProfile instance.
             # Since we need to set the user attribute ourselves, we set commit=False.
