@@ -129,6 +129,7 @@ def showReport(request):
             search_by_sector = request.POST['search_by_sector']
             search_by_business_type = request.POST['search_by_business_type']
             search_by_current_projects = request.POST['search_by_current_projects']
+            search_by_encrypted = request.POST['search_by_encrypted']
             select_and_or = request.POST['select_and_or']
 
             if (select_and_or == 'and'):
@@ -163,6 +164,10 @@ def showReport(request):
                 if (search_by_current_projects and not search_by_current_projects == ''):
                     allReports = allReports.filter(current_projects=search_by_current_projects)
 
+                if (search_by_encrypted and not search_by_encrypted== ''):
+                    allReports = allReports.filter(encrypted=search_by_encrypted)
+
+
             elif (select_and_or == 'or'):
                 query = Q()
 
@@ -188,6 +193,8 @@ def showReport(request):
                     query |= Q(business_type=search_by_business_type)
                 if (search_by_current_projects):
                     query |= Q(current_projects=search_by_current_projects)
+                if (search_by_encrypted):
+                    query |= Q(encrypted=search_by_encrypted)
 
                 allReports = allReports.filter(query)
         return render(request, 'showReport.html', {'allReports': allReports, 'num_Messages': count})
@@ -207,6 +214,7 @@ def showReport(request):
         search_by_sector = request.POST['search_by_sector']
         search_by_business_type = request.POST['search_by_business_type']
         search_by_current_projects = request.POST['search_by_current_projects']
+        search_by_encrypted = request.POST['search_by_encrypted']
         select_and_or = request.POST['select_and_or']
 
         if(select_and_or=='and'):
@@ -241,6 +249,9 @@ def showReport(request):
             if(search_by_current_projects and not search_by_current_projects==''):
                 allReports=allReports.filter(current_projects = search_by_current_projects)
 
+            if (search_by_encrypted and not search_by_encrypted == ''):
+                allReports = allReports.filter(encrypted=search_by_encrypted)
+
         elif(select_and_or=='or'):
             query=Q()
             #Ashley Add
@@ -264,6 +275,8 @@ def showReport(request):
                 query |= Q(business_type=search_by_business_type)
             if(search_by_current_projects):
                 query |= Q(current_projects=search_by_current_projects)
+            if (search_by_encrypted):
+                query |= Q(encrypted=search_by_encrypted)
 
             allReports = allReports.filter(query)
     return render(request, 'showReport.html', {'allReports': allReports, 'num_Messages': count})
