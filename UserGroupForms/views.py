@@ -43,7 +43,7 @@ def search(request):
 
 ########## REPORTS ##############
 def uploadReport(request):
-    report_form = ReportForm(request.POST, request.FILES)
+    report_form = ReportForm(request.POST or None, request.FILES or None)
 
     #if request.user.username != "":
     user_name = request.user
@@ -79,13 +79,11 @@ def uploadReport(request):
             theReport.business_type = report_form.cleaned_data.get('business_type')
             theReport.current_projects = report_form.cleaned_data.get('current_projects')
             theReport.private = report_form.cleaned_data.get('private')
+            theReport.encrypted = report_form.cleaned_data.get('encrypted')
             theReport.save()
             theReport.memgroups.id = theReport.id
-            theReport.memgroups = report_form.cleaned_data.get('memgroups')
+            theReport.memgroups = report_form.cleaned_data.get('share_with_group')
             theReport.save()
-
-
-
 
         for f in request.FILES.getlist('htmlFile'):
             reportFile = File.objects.create(files = f)
@@ -259,8 +257,6 @@ def showReport(request):
             allReports = allReports.filter(query)
     return render(request, 'showReport.html', {'allReports': allReports, 'num_Messages': count})
 
-def showReportInvestor(request):
-    return HttpResponseRedirect("testing")
 
 def deleteReport(request, report_pk):
     user_name_3 = request.user

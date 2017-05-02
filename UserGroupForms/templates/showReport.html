@@ -100,7 +100,8 @@ input[type=text] {
         <b>Sector:  </b>  <text class="mb-1">{{r.sector}}</text> <br>
         <b>Industry:  </b>  <text class="mb-1">{{r.business_type}}</text> <br>
         <b>Current Projects: </b>  <small>{{r.current_projects}}</small> <br>
-        <b>Private:</b>  <small>{{r.private}}</small> <br>
+        <b>Private: </b>  <small>{{r.private}}</small> <br>
+        <b>Encrypted:</b>  <small>{{r.encrypted}}</small> <br>
       <br>
       {% endfor %}
     {% endfor %}
@@ -134,7 +135,8 @@ input[type=text] {
         <b>Sector:  </b>  <text class="mb-1">{{r.sector}}</text> <br>
         <b>Industry:  </b>  <text class="mb-1">{{r.business_type}}</text> <br>
         <b>Current Projects: </b>  <small>{{r.current_projects}}</small> <br>
-        <b>Private:</b>  <small>{{r.private}}</small> <br>
+        <b>Private: </b>  <small>{{r.private}}</small> <br>
+        <b>Encrypted: </b>  <small>{{r.encrypted}}</small> <br>
         <b>Delete Report? </b> <a href="/deleteReport/{{ f.id }}" class="btn btn-danger">DELETE</a><br>
       <br>
 

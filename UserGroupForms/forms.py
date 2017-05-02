@@ -32,14 +32,16 @@ class ReportForm(forms.ModelForm):
     # company_location = forms.CharField(required = False)
     # company_country = forms.CharField(required = False)
     # business_type = forms.CharField(required = False)
-    # current_projects = forms.CharField(required = False)
+    #current_projects = forms.CharField(widget= forms.Textarea, label="current_projects",required=True)
+    share_with_group = forms.ModelMultipleChoiceField(queryset=Group.objects.all(), required=False)
     # poodle = models.ManyToManyField('File', blank = True)
     #current_projects = forms.ChoiceField(choices=[(x, x) for x in range(0, 100)])
     #memgroups = forms.ModelMultipleChoiceField(queryset=Group.objects.all())
     class Meta:
         model = Report
         fields = ('company_name', 'ceo_name', 'company_phone', 'company_email',
-                  'company_location', 'company_country', 'sector', 'business_type', 'current_projects','memgroups', 'private', )
+                  'company_location', 'company_country', 'sector', 'business_type',
+                  'current_projects','share_with_group', 'private','encrypted', )
 
     # def save(self):
     #     Report.objects.create(report_file_name="Bill")
