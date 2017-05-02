@@ -91,10 +91,9 @@ def uploadReport(request):
             if(theReport.encrypted):
                 init_vec = b"1234567890123456"
                 AES_key = AES.new("Nader_is_awesome", AES.MODE_CFB, init_vec)
-                output_filename = f + ".enc"
-                with open(f, 'rb') as r:
-                    raw_file = r.read()
-                    data_enc = AES_key.encrypt(raw_file)
+                output_filename = f.filename + ".enc"
+                raw_file = f.read()
+                data_enc = AES_key.encrypt(raw_file)
                 with open(output_filename, 'wb') as o:
                     o.write(data_enc)
                     print('Encrypted File Name:' + output_filename)
