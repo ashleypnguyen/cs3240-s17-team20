@@ -21,4 +21,7 @@ urlpatterns = [
     url(r'^sitemanager/', views.sm),
     url(r'^search/', views.search),
     url(r'^deleteReport/(?P<report_pk>.*)$', views.deleteReport, name='deleteReport'),
+    url(r'^fdalogin/$', views.fdalogin),
+    url(r'^remote_reports_view/', views.remote_reports_view),
+    url(r'^report_info/', views.report_info),
 ]

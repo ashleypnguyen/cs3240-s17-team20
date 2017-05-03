@@ -20,6 +20,7 @@ from django.contrib.postgres.search import SearchVector
 import requests
 import datetime
 import ast
+import json
 from Crypto.Cipher import AES
 
 
@@ -602,3 +603,72 @@ def sm(request):
 
 
     return render(request, 'sitemanager.html', {'reports' : reports})
+
+@csrf_exempt
+def fdalogin(request):
+
+    context = RequestContext(request)
+
+    if request.method == 'POST':
+
+        username = request.POST['username']
+        password = request.POST['password']
+
+        user = authenticate(username=username, password=password)
+
+
+        if user:
+            # Is the account active? It could have been disabled.
+            if user.is_active:
+                # If the account is valid and active, we can log the user in.
+                # We'll send the user back to the homepage.
+                login(request, user)
+                return HttpResponse("Login successful.")
+            else:
+                # An inactive account was used - no logging in!
+                return HttpResponse("Your account is disabled.")
+        else:
+            # Bad login details were provided. So we can't log the user in.
+            #print("Invalid login details: {0}, {1}".format(username, password))
+            return HttpResponse("Invalid login details supplied.")
+
+@csrf_exempt
+def remote_reports_view(request):
+    print("reports method called")
+    # reports =  Document.objects.filter(user="team29")
+    reports = Report.objects.all()
+    nameList = []
+    for report in reports:
+        nameList.append(report.company_name)
+    #json.dump(reports,ensure_ascii=False)
+    json_list = json.dumps({"list_of_report_names" : nameList})
+
+    return HttpResponse(json_list)
+
+
+@csrf_exempt
+def report_info(request):
+    rep_name = request.POST["report"]
+    print(comp_name)
+    report = Report.objects.all.filter(company_name=comp_name)
+    compName = report.company_name
+    # repName = report.report_name
+    compPhone = report.company_phone
+    compLoc = report.company_location
+    compCountry = report.company_country
+    # compSector = report.company_sector
+    # compIndustry = report.company_industry
+    curProj = report.current_projects
+    files = report.poodle.files.all()
+
+    fileDict = {}
+    for file in files:
+        fileDict[file.dispName] = file.docfile.url
+
+    # compSector,compIndustry, repName
+    infoList = [compName,compPhone,compLoc,compCountry,curProj]
+
+
+    json_list = json.dumps({"report_info": infoList, "report_files": fileDict})
+
+    return HttpResponse(json_list)

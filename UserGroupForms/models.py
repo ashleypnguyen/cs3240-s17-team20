@@ -23,6 +23,7 @@ class UserProfile(models.Model):
         return self.user.username
 
 class Report(models.Model):
+    # title = model.CharField()
     date_created = models.DateField(auto_now_add=True) # Ashley Add
     time_created = models.DateTimeField(auto_now_add=True)
     created_by = models.ForeignKey(UserProfile, on_delete=models.CASCADE, default=1, null = True)
@@ -44,5 +45,5 @@ class Report(models.Model):
 class File(models.Model):
     #datetime
     files = models.FileField(upload_to= 'documents/%Y/%m/%d/', blank = True, null = True)
-    #file_url = models.CharField(max_length = 100, blank = True)
+    # file_url = models.CharField(max_length = 100, blank = True)
     report_for_file = models.ForeignKey(Report, related_name="reportFiles", blank = True,  null = True)
