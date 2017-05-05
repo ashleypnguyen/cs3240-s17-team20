@@ -45,13 +45,9 @@ def search(request):
 
 ########## REPORTS ##############
 def uploadReport(request):
-    report_form = ReportForm(request.POST or None, request.FILES or None)
-
-    #if request.user.username != "":
+    report_form = ReportForm(request.POST, request.FILES)
     user_name = request.user
     users = UserProfile.objects.all().filter(user=user_name).first()
-    #groups = Group.objects.all().filter(user=user_name).first()
-    # print(users)
 
     ### MESSAGE STUFF DO NOT REMOVE #####
     messages = Message.objects.all()
@@ -63,12 +59,6 @@ def uploadReport(request):
 
     if request.method == 'POST':
         if report_form.is_valid():
-            # report_form.save(commit=False)
-            # report_form.memgroups = [report_form.id]
-            # for each in report_form.cleaned_data['poodle']:
-            #     theFile = File.objects.create(files=each)
-            #     report_obj.poodle.add(theFile)
-
             theReport = Report()
             theReport.created_by = users
             theReport.company_name = report_form.cleaned_data.get('company_name')
@@ -167,11 +157,8 @@ def showReport(request):
 
                 if (search_by_encrypted and not search_by_encrypted== ''):
                     allReports = allReports.filter(encrypted=search_by_encrypted)
-
-
             elif (select_and_or == 'or'):
                 query = Q()
-
                 # Ashley Add
                 if (search_by_date_created):  # Ashley Add
                     query |= Q(date_created=search_by_date_created)  # Ashley Add
@@ -203,7 +190,11 @@ def showReport(request):
 
     ### GENERAL USER SEARCH #####
     user_for_report = UserProfile.objects.all().filter(user=user_name_2).first()
-    allReports = Report.objects.filter(Q(private=False) | Q(memgroups__in=user_name_2.groups.all()) | Q(created_by=user_for_report))
+
+    #PLEASE DO NOT MODIFY
+    allReports = Report.objects.filter( (Q(memgroups__in=user_name_2.groups.all()) & Q(private=False)) | Q(created_by=user_for_reporte))
+    #PLEASE DO NOT MODIFY
+    
     if request.method == 'POST':
         search_by_date_created = request.POST['search_by_date_created']  # Ashley Add
         search_by_company_name = request.POST['search_by_company_name']
