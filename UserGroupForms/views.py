@@ -203,7 +203,7 @@ def showReport(request):
 
     ### GENERAL USER SEARCH #####
     user_for_report = UserProfile.objects.all().filter(user=user_name_2).first()
-    allReports = Report.objects.filter(Q(private=False) | Q(memgroups__in=user_name_2.groups.all()) | Q(created_by=user_for_report))
+    userReports = Report.objects.filter(Q(private=False) | Q(memgroups__in=user_name_2.groups.all()) | Q(created_by=user_for_report))
     if request.method == 'POST':
         search_by_date_created = request.POST['search_by_date_created']  # Ashley Add
         search_by_company_name = request.POST['search_by_company_name']
@@ -221,37 +221,37 @@ def showReport(request):
         if(select_and_or=='and'):
             # Ashley Add
             if (search_by_date_created and not search_by_date_created == ''):  # Ashley Add
-                allReports = allReports.filter(date_created=search_by_date_created)  # Ashley Add
+                userReports = userReports.filter(date_created=search_by_date_created)  # Ashley Add
 
             if(search_by_company_name and not search_by_company_name==''):
-                allReports=allReports.filter(company_name = search_by_company_name)
+                userReports=userReports.filter(company_name = search_by_company_name)
 
             if (search_by_ceo_name and not search_by_ceo_name == ''):
-                allReports = allReports.filter(ceo_name=search_by_ceo_name)
+                userReports = userReports.filter(ceo_name=search_by_ceo_name)
 
             if (search_by_company_phone and not search_by_company_phone == ''):
-                allReports = allReports.filter(company_phone=search_by_company_phone)
+                userReports = userReports.filter(company_phone=search_by_company_phone)
 
             if (search_by_company_email and not search_by_company_email == ''):
-                allReports = allReports.filter(company_email=search_by_company_email)
+                userReports = userReports.filter(company_email=search_by_company_email)
 
             if(search_by_company_location and not search_by_company_location==''):
-                allReports=allReports.filter(company_location = search_by_company_location)
+                userReports=userReports.filter(company_location = search_by_company_location)
 
             if(search_by_company_country and not search_by_company_country==''):
-                allReports=allReports.filter(company_country = search_by_company_country)
+                userReports=userReports.filter(company_country = search_by_company_country)
 
             if (search_by_sector and not search_by_sector == ''):
-                allReports = allReports.filter(sector=search_by_sector)
+                userReports = userReports.filter(sector=search_by_sector)
 
             if(search_by_business_type and not search_by_business_type==''):
-                allReports=allReports.filter(business_type = search_by_business_type)
+                userReports=userReports.filter(business_type = search_by_business_type)
 
             if(search_by_current_projects and not search_by_current_projects==''):
-                allReports=allReports.filter(current_projects = search_by_current_projects)
+                userReports=userReports.filter(current_projects = search_by_current_projects)
 
             if (search_by_encrypted and not search_by_encrypted == ''):
-                allReports = allReports.filter(encrypted=search_by_encrypted)
+                userReports = userReports.filter(encrypted=search_by_encrypted)
 
         elif(select_and_or=='or'):
             query=Q()
@@ -279,8 +279,8 @@ def showReport(request):
             if (search_by_encrypted):
                 query |= Q(encrypted=search_by_encrypted)
 
-            allReports = allReports.filter(query)
-    return render(request, 'showReport.html', {'allReports': allReports, 'num_Messages': count})
+            userReports = userReports.filter(query)
+    return render(request, 'showReport.html', {'userReports': userReports, 'num_Messages': count})
 
 
 def deleteReport(request, report_pk):
